@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{"Dashboard.title" | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="11" sizeMd="5">
+                <ion-button (click)="resumeGame()" expand="block">{{"Dashboard.resumeGame" | translate}}</ion-button>
+            </ion-col>
+            <ion-col size="11" sizeMd="5">
+                <ion-button (click)="startGame()" expand="block">{{"Dashboard.startGame" | translate}}</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

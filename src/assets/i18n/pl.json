@@ -1,0 +1,10 @@
+{
+    "Basic": {
+        "title": "Mafia"
+    },
+    "Dashboard": {
+        "title": "Kokpit",
+        "startGame": "Zacznij grę",
+        "resumeGame": "Wznów grę"
+    }
+}
