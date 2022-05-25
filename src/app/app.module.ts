@@ -4,12 +4,13 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
 import { GameState } from './store/game/game.state';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,9 +20,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        NgxsModule.forRoot([GameState], {
-            developmentMode: !environment.production
-        }),
+        NgxsModule.forRoot([GameState]),
+        NgxsStoragePluginModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -33,7 +33,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');

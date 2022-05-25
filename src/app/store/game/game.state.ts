@@ -35,13 +35,13 @@ export class GameState {
         ctx.setState({ ...stateModel, ...payload });
     }
 
-    @Action(GameActions.StartGame)
-    public loginUser(ctx: StateContext<GameStateModel>, { payload }: GameActions.StartGame ) {
-        ctx.patchState({...payload});
+    @Action(GameActions.StartGameAction)
+    public startGame(ctx: StateContext<GameStateModel>) {
+        ctx.patchState({started: true, players: []});
     }
 
-    @Action(GameActions.ClearGame)
-    public clearUser(ctx: StateContext<GameStateModel>) {
+    @Action(GameActions.ClearGameAction)
+    public clearGame(ctx: StateContext<GameStateModel>) {
         const {...rest} = initialState;
         ctx.patchState({...rest});
     }

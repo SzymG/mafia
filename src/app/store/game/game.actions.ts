@@ -5,13 +5,12 @@ export class SetDataAction {
     constructor(public payload: Partial<GameStateModel>) {}
 }
 
-export class StartGame {
+export class StartGameAction {
     public static readonly type = '[GAME] Start Game';
-    constructor(public payload: Pick<GameStateModel, 'started' | 'players'>) {}
+    constructor() {}
 }
 
-
-export class ClearGame {
+export class ClearGameAction {
     public static readonly type = '[GAME] Clear Game';
     constructor() {};
 }

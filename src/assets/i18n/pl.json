@@ -6,5 +6,8 @@
         "title": "Kokpit",
         "startGame": "Zacznij grę",
         "resumeGame": "Wznów grę"
+    },
+    "CharacterSelection": {
+        "title": "Wybór postaci do gry"
     }
 }

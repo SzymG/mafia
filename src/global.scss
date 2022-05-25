@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,57 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+    --ion-color-primary: #d9a43b;
+    --ion-color-primary-rgb: 217, 164, 59;
+    --ion-color-primary-contrast: #000000;
+    --ion-color-primary-contrast-rgb: 0, 0, 0;
+    --ion-color-primary-shade: #a87f2d;
+    --ion-color-primary-tint: #f0b642;
+
+    --ion-color-secondary: #630f0f;
+    --ion-color-secondary-rgb: 99, 15, 15;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: #470b0b;
+    --ion-color-secondary-tint: #801414;
+
+    --ion-toolbar-background: #d9a43b;
+    --ion-toolbar-color: #000000;
+}
+
+@font-face {   
+    font-family: 'Glegoo';
+    src: url('/assets/fonts/Glegoo-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Glegoo';
+    src: url('/assets/fonts/Glegoo-Bold.ttf');
+    font-weight: 600;
+}
+
+* {
+    font-family: Glegoo !important;
+}
+
+ion-content {
+    --background: var(--ion-color-secondary) url("assets/img/background.png") 50% 50%/96% 96% no-repeat;
+}
+
+ion-buttons ~ ion-title {
+    margin-left: -48px;
+}
+
+.center-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bold {
+    font-weight: bold;
+}
