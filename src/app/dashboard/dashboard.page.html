@@ -1,17 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{"Dashboard.title" | translate}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-    <ion-grid>
+    <ion-grid class="dashboard-grid center-grid">
         <ion-row class="ion-justify-content-center">
-            <ion-col size="11" sizeMd="5">
-                <ion-button (click)="resumeGame()" expand="block">{{"Dashboard.resumeGame" | translate}}</ion-button>
+            <ion-col size="11" class="logo-container ion-text-center">
+                <img src="/assets/img/logo.png" alt="Logo">
             </ion-col>
-            <ion-col size="11" sizeMd="5">
-                <ion-button (click)="startGame()" expand="block">{{"Dashboard.startGame" | translate}}</ion-button>
+            <ion-col size="11" sizeMd="5" class="ion-margin-top">
+                <ion-row>
+                    <ion-col size="12" *ngIf="game.started">
+                        <ion-button class="bold" (click)="resumeGame()" expand="block" size="large">
+                            {{"Dashboard.resumeGame" | translate}}
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-button class="bold" (click)="startGame()" expand="block" size="large">
+                            {{"Dashboard.startGame" | translate}}
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>
