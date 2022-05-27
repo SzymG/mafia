@@ -29,4 +29,28 @@ export class GameService implements OnDestroy {
     isPlayerSelected(name: string): boolean {
         return !!this.gamePlayers.find(player => player.name === name);
     }
+
+    getTownPlayers(): GamePlayer[] {
+        return this.gamePlayers.filter((player) => {
+            return ['A', 'TS'].includes(player.symbol);
+        });
+    }
+
+    getMafiaPlayers(): GamePlayer[] {
+        return this.gamePlayers.filter((player) => {
+            return ['MK', 'MS'].includes(player.symbol);
+        });
+    }
+    
+    getNeutralPlayers(): GamePlayer[] {
+        return this.gamePlayers.filter((player) => {
+            return ['SK', 'N'].includes(player.symbol);
+        });
+    }
+
+    getCiviliansPlayers(): GamePlayer[] {
+        return this.gamePlayers.filter((player) => {
+            return ['C'].includes(player.symbol);
+        });
+    }
 }

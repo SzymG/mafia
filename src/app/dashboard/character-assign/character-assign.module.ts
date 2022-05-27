@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CharacterAssignPageRoutingModule } from './character-assign-routing.module';
 import { CharacterAssignPage } from './character-assign.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     CharacterAssignPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   declarations: [CharacterAssignPage]
 })

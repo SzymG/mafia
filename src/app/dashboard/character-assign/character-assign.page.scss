@@ -1,0 +1,23 @@
+.character-assign-grid {
+    .section-title {
+        position: relative;
+
+        &:after {
+            content: "";
+            position: absolute;
+            height: 10px;
+            bottom: -16px;
+            left: 30%;
+            right: 30%;
+            background-image: url("/assets/img/bottom.png");
+            background-position: center;
+            background-size: contain;
+        }
+    }
+
+    .assign-title {
+        margin: 0;
+        text-align: center;
+        font-size: .8rem;
+    }
+}

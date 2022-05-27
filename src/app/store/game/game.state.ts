@@ -74,7 +74,7 @@ export class GameState {
 
     @Action(GameActions.ChangePlayersCountAction)
     public changePlayersCount(ctx: StateContext<GameStateModel>, { payload }: GameActions.ChangePlayersCountAction) {
-        const {players, maxPlayersCount, ...rest} = initialState;
-        ctx.patchState({players: [], maxPlayersCount: payload, ...rest});
+        const {players, started, maxPlayersCount, ...rest} = initialState;
+        ctx.patchState({players: [], started: true, maxPlayersCount: payload, ...rest});
     }
 }
