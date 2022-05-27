@@ -1,0 +1,20 @@
+.player-item-container {
+    padding: 1rem;
+    
+    .image-container {
+        background-image: url("/assets/img/frame.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &.selected {
+        .image-container {
+            background-image: url("/assets/img/frame-active.png");
+        }
+    }
+}

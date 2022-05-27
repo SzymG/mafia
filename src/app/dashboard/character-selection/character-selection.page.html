@@ -9,5 +9,43 @@
 </ion-header>
 
 <ion-content>
+    <ion-grid class="character-selection-grid">
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center">{{"CharacterSelection.playersAmount" | translate}}</h5>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item class="item-transparent">
+                    <ion-range min="7" max="20" [(ngModel)]="playersCount" (change)="playersCountChanged()">
+                        <ion-icon color="primary" slot="start" size="small" name="person-remove"></ion-icon>
+                        <ion-icon color="primary" slot="end" name="person-add"></ion-icon>
+                    </ion-range>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ion-text color="primary">
+                    {{playersCount}}
+                </ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold">{{"Basic.town" | translate}}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="town-players">
+                    <ion-col size="5" *ngFor="let player of townPlayers">
+                        <player-item [name]="player.name" [selected]="false"></player-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

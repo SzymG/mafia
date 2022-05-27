@@ -1,0 +1,13 @@
+.character-selection-grid {
+    ion-range {
+        --knob-size: 28px;
+        --bar-height: 4px;
+    }
+
+    .town-players {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+}

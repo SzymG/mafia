@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { PlayersState } from './store/players/players.state';
 
 @NgModule({
     declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        NgxsModule.forRoot([GameState]),
+        NgxsModule.forRoot([GameState, PlayersState]),
         NgxsStoragePluginModule.forRoot(),
         TranslateModule.forRoot({
             loader: {

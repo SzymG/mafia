@@ -1,6 +1,10 @@
 {
     "Basic": {
-        "title": "Mafia"
+        "title": "Mafia",
+        "town": "Miasto",
+        "mafia": "Mafia",
+        "neutrals": "Neurtalni",
+        "cits": "Cywile"
     },
     "Dashboard": {
         "title": "Kokpit",
@@ -8,6 +12,44 @@
         "resumeGame": "Wznów grę"
     },
     "CharacterSelection": {
-        "title": "Wybór postaci do gry"
+        "title": "Wybór postaci do gry",
+        "playersAmount": "Łączna liczba graczy"
+    },
+    "Characters": {
+        "lawyer": "Adwokat",
+        "agent": "Agent",
+        "alchemist": "Alchemik",
+        "amnesia": "Cierpiący na amnezję",
+        "barman": "Barman",
+        "clown": "Błazen",
+        "mayor": "Burmistrz",
+        "harlot": "Nierządnica",
+        "consiliere": "Consiliere",
+        "dentist": "Dentysta",
+        "don": "Ojciec Chrzestny",
+        "doctor": "Doktor",
+        "girl": "Mała dziewczynka",
+        "escort": "Eskorta (prostytutka)",
+        "gravedigger": "Grabarz",
+        "priest": "Kapłan",
+        "hunter": "Łowca",
+        "caporegime": "Caporegime (mafiozo)",
+        "magican": "Magik",
+        "medium": "Medium",
+        "avenger": "Mściciel",
+        "guard": "Ochroniarz",
+        "prosecutor": "Oskarżyciel",
+        "cheater": "Oszust",
+        "killer": "Seryjny zabójca",
+        "survivalist": "Surwiwalista",
+        "matchmaker": "Swatka",
+        "madman": "Szaleniec",
+        "blackmailer": "Szaleniec",
+        "transporter": "Transporter",
+        "vampire": "Wampir",
+        "veteran": "Weteran",
+        "janitor": "Woźny",
+        "reviver": "Wskrzesiciel",
+        "civilian": "Cywil"
     }
 }

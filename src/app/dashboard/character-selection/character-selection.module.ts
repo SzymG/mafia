@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CharacterSelectionPageRoutingModule } from './character-selection-routing.module';
 import { CharacterSelectionPage } from './character-selection.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     CharacterSelectionPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   declarations: [CharacterSelectionPage]
 })

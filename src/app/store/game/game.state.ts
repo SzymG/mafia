@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 import * as GameActions from './game.actions';
 
-export interface Player {
+export interface GamePlayer {
     id: string;
     name: string;
     associated_name: string;
 }
 
 export interface GameStateModel {
-    players: Player[];
+    players: GamePlayer[];
     started: boolean;
 }
 

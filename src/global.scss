@@ -78,3 +78,7 @@ ion-buttons ~ ion-title {
 .bold {
     font-weight: bold;
 }
+
+.item-transparent {
+    --background: rgba(0, 0, 0, 0);
+}
