@@ -20,7 +20,7 @@
         <ion-row>
             <ion-col size="12">
                 <ion-item class="item-transparent">
-                    <ion-range min="7" max="20" [(ngModel)]="playersCount" (change)="playersCountChanged()">
+                    <ion-range min="7" max="20" [value]="playersCount" (ionChange)="playersCountChanged($event)">
                         <ion-icon color="primary" slot="start" size="small" name="person-remove"></ion-icon>
                         <ion-icon color="primary" slot="end" name="person-add"></ion-icon>
                     </ion-range>
@@ -35,17 +35,70 @@
         <ion-row>
             <ion-col size="12">
                 <ion-text color="primary">
-                    <h5 class="ion-text-center bold">{{"Basic.town" | translate}}</h5>
+                    <h5 class="ion-text-center bold section-title">{{"Basic.town" | translate}}</h5>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
-                <ion-row class="town-players">
+                <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of townPlayers">
-                        <player-item [name]="player.name" [selected]="false"></player-item>
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
         </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold section-title">{{"Basic.mafia" | translate}}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="scroll-players">
+                    <ion-col size="5" *ngFor="let player of mafiaPlayers">
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold section-title">{{"Basic.neutrals" | translate}}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="scroll-players">
+                    <ion-col size="5" *ngFor="let player of neutralPlayers">
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold section-title">{{"Basic.cits" | translate}}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row>
+                    <ion-col size="5">
+                        <player-item [name]="'civilian'" [selected]="civilianCount > 0"></player-item>
+                    </ion-col>
+                    <ion-col size="7" class="civilians-count-container">
+                        <ion-text color="primary">
+                            <p class="ion-text-center bold">{{civilianCount}}</p>
+                        </ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button class="bold" (click)="confirmSelection()" [disabled]="!playersSelectedProperly" expand="block" size="large">
+                    {{"CharacterSelection.confirm" | translate}}
+                </ion-button>
+            </ion-col>
+        </ion-row>
     </ion-grid>
-
 </ion-content>

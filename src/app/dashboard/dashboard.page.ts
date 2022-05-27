@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { GameState, GameStateModel } from '../store/game/game.state';
 import { StartGameAction } from '../store/game/game.actions';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, OnDestroy {
     @Select(GameState) game$: Observable<GameStateModel>;
 
     public game: GameStateModel;
@@ -33,14 +33,17 @@ export class DashboardPage implements OnInit {
     ngOnInit() {
     }
 
+    ngOnDestroy(): void {
+        this.subscriber.unsubscribe();
+    }
+
     resumeGame() {
         // TODO przekierowanie już powinno iść na /game i tam odpowiednio guard w zależności od przypisania
         this.router.navigate(['/dashboard/character-assign']);
     }
 
     startGame() {
-        this.store.dispatch(new StartGameAction()).pipe(first()).subscribe((res) => {
-            console.log('res', res);
+        this.store.dispatch(new StartGameAction()).pipe(first()).subscribe(_ => {
             this.router.navigate(['/dashboard/character-selection']);
         });
     }

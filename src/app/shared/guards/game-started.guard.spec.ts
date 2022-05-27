@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GameStartedGuard } from './game-started.guard';
+import { GameStartedAndNotSelectedGuard } from './game-started.guard';
 
 describe('DashboardGuard', () => {
-  let guard: GameStartedGuard;
+  let guard: GameStartedAndNotSelectedGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(GameStartedGuard);
+    guard = TestBed.inject(GameStartedAndNotSelectedGuard);
   });
 
   it('should be created', () => {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GameStartedGuard } from '../shared/guards/game-started.guard';
+import { GameStartedAndNotSelectedGuard } from '../shared/guards/game-started.guard';
 import { PlayersSelectedGuard } from '../shared/guards/players-selected.guard';
 
 import { DashboardPage } from './dashboard.page';
@@ -13,7 +13,7 @@ const routes: Routes = [
     {
         path: 'character-selection',
         loadChildren: () => import('./character-selection/character-selection.module').then(m => m.CharacterSelectionPageModule),
-        canActivate: [GameStartedGuard],
+        canActivate: [GameStartedAndNotSelectedGuard],
     },
     {
         path: 'character-assign',

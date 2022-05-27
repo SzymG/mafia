@@ -13,7 +13,11 @@
     },
     "CharacterSelection": {
         "title": "Wybór postaci do gry",
-        "playersAmount": "Łączna liczba graczy"
+        "playersAmount": "Łączna liczba graczy",
+        "confirm": "Potwierdź wybór"
+    },
+    "CharacterAssign": {
+        "title": "Przypisywanie postaci"
     },
     "Characters": {
         "lawyer": "Adwokat",
