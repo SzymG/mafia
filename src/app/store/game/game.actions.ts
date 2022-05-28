@@ -1,4 +1,5 @@
 import { Player } from "../players/players.state";
+import { GamePlayer } from "./game.state";
 
 export class UnselectPlayerAction {
     public static readonly type = '[GAME] Unselect Player';
@@ -12,7 +13,7 @@ export class SelectPlayerAction {
 
 export class SelectCiviliansAndMarkAsSelectedAction {
     public static readonly type = '[GAME] Select Civilians';
-    constructor(public payload: Player[]) {}
+    constructor(public payload: GamePlayer[]) {}
 }
 
 export class StartGameAction {

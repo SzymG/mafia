@@ -25,23 +25,23 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-:root {
-    --ion-color-primary: #d9a43b;
-    --ion-color-primary-rgb: 217, 164, 59;
-    --ion-color-primary-contrast: #000000;
-    --ion-color-primary-contrast-rgb: 0, 0, 0;
-    --ion-color-primary-shade: #836323ae;
-    --ion-color-primary-tint: #f0b642;
+:root, :host, html, body {
+    --ion-color-primary: #d9a43b !important;
+    --ion-color-primary-rgb: 217, 164, 59 !important;
+    --ion-color-primary-contrast: #000000 !important;
+    --ion-color-primary-contrast-rgb: 0, 0, 0 !important;
+    --ion-color-primary-shade: #836323ae !important;
+    --ion-color-primary-tint: #f0b642 !important;
 
-    --ion-color-secondary: #630f0f;
-    --ion-color-secondary-rgb: 99, 15, 15;
-    --ion-color-secondary-contrast: #ffffff;
-    --ion-color-secondary-contrast-rgb: 255, 255, 255;
-    --ion-color-secondary-shade: #470b0b;
-    --ion-color-secondary-tint: #801414;
+    --ion-color-secondary: #630f0f !important;
+    --ion-color-secondary-rgb: 99, 15, 15 !important;
+    --ion-color-secondary-contrast: #ffffff !important;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255 !important;
+    --ion-color-secondary-shade: #470b0b !important;
+    --ion-color-secondary-tint: #801414 !important;
 
-    --ion-toolbar-background: #d9a43b;
-    --ion-toolbar-color: #000000;
+    --ion-toolbar-background: #d9a43b !important;
+    --ion-toolbar-color: #000000 !important;
 }
 
 @font-face {   

@@ -4,6 +4,7 @@ import { Player } from '../players/players.state';
 import * as GameActions from './game.actions';
 
 export interface GamePlayer extends Player {
+    id?: string;
     associated_name?: string;
 }
 
@@ -21,6 +22,16 @@ const initialState = {
     started: false,
     playersSelected: false,
     playersAssigned: false
+};
+
+const makeid = length => {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    for (let i = 0; i < length; i += 1) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
 };
 
 @State<GameStateModel>({
@@ -45,13 +56,19 @@ export class GameState {
     @Action(GameActions.SelectPlayerAction)
     public selectPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectPlayerAction) {
         const {players, ...rest} = ctx.getState();
-        ctx.setState({ ...rest, players: [...players, payload] });
+        ctx.setState({ ...rest, players: [...players, {id: makeid(10), ...payload}] });
     }
 
     @Action(GameActions.SelectCiviliansAndMarkAsSelectedAction)
     public selectCivilians(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectCiviliansAndMarkAsSelectedAction) {
         const {players, playersSelected, ...rest} = ctx.getState();
-        ctx.setState({ ...rest, players: [...players, ...payload], playersSelected: true });
+
+        const civilians = payload.map((civil) => {
+            civil.id = makeid(10);
+            return civil;
+        });
+
+        ctx.setState({ ...rest, players: [...players, ...civilians], playersSelected: true });
     }
 
     @Action(GameActions.StartGameAction)
