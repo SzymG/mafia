@@ -19,7 +19,10 @@
     "CharacterAssign": {
         "title": "Przypisywanie postaci",
         "clickToAssign": "Kliknij, aby przypisać",
-        "confirm": "Potwierdź wybór"
+        "confirm": "Potwierdź wybór",
+        "assignTitle": "Przypisywanie",
+        "passName": "Wpisz imię",
+        "save": "Zapisz"
     },
     "Characters": {
         "lawyer": "Adwokat",

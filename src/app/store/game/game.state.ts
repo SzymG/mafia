@@ -5,7 +5,7 @@ import * as GameActions from './game.actions';
 
 export interface GamePlayer extends Player {
     id?: string;
-    associated_name?: string;
+    assign_name?: string;
 }
 
 export interface GameStateModel {
@@ -63,9 +63,13 @@ export class GameState {
     public selectCivilians(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectCiviliansAndMarkAsSelectedAction) {
         const {players, playersSelected, ...rest} = ctx.getState();
 
-        const civilians = payload.map((civil) => {
-            civil.id = makeid(10);
-            return civil;
+        const civilians: GamePlayer[] = [];
+        
+        payload.forEach((civil) => {
+            civilians.push({
+                id: makeid(10),
+                ...civil
+            });
         });
 
         ctx.setState({ ...rest, players: [...players, ...civilians], playersSelected: true });
@@ -93,5 +97,20 @@ export class GameState {
     public changePlayersCount(ctx: StateContext<GameStateModel>, { payload }: GameActions.ChangePlayersCountAction) {
         const {players, started, maxPlayersCount, ...rest} = initialState;
         ctx.patchState({players: [], started: true, maxPlayersCount: payload, ...rest});
+    }
+
+    @Action(GameActions.AssignPlayerAction)
+    public assignPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignPlayerAction) {
+        const {players, ...rest} = ctx.getState();
+
+        const updatedPlayers = players.map((player) => {
+            if(player.id === payload.id) {
+                player.assign_name = payload.assign_name
+            }
+
+            return player;
+        });
+
+        ctx.setState({ ...rest, players: [...updatedPlayers]});
     }
 }

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: CharacterAssignPage
+  },
+  {
+    path: 'assign-modal',
+    loadChildren: () => import('./assign-modal/assign-modal.module').then( m => m.AssignModalPageModule)
   }
 ];
 

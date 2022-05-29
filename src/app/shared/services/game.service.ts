@@ -30,6 +30,12 @@ export class GameService implements OnDestroy {
         return !!this.gamePlayers.find(player => player.name === name);
     }
 
+    areAllPlayersAssigned() {
+        return !this.gamePlayers.find((player) => {
+            return !player.assign_name
+        });
+    }
+
     getTownPlayers(): GamePlayer[] {
         return this.gamePlayers.filter((player) => {
             return ['A', 'TS'].includes(player.symbol);
