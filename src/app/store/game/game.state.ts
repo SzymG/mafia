@@ -113,4 +113,11 @@ export class GameState {
 
         ctx.setState({ ...rest, players: [...updatedPlayers]});
     }
+
+    @Action(GameActions.MarkPlayersAsAssignedAction)
+    public markPlayersAsAssigned(ctx: StateContext<GameStateModel>) {
+        const {playersAssigned, ...rest} = ctx.getState();
+
+        ctx.setState({ ...rest, playersAssigned: true});
+    }
 }

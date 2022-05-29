@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Store } from '@ngxs/store';
+import { first } from 'rxjs/operators';
 import { GameService } from 'src/app/shared/services/game.service';
+import { MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
 import { GamePlayer } from 'src/app/store/game/game.state';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
 
@@ -17,7 +21,9 @@ export class CharacterAssignPage implements OnInit {
 
     constructor(
         private readonly gameService: GameService,
-        private readonly modalCtrl: ModalController
+        private readonly modalCtrl: ModalController,
+        private readonly store: Store,
+        private readonly router: Router
     ) {
         this.townGamePlayers = this.gameService.getTownPlayers();
         this.mafiaGamePlayers = this.gameService.getMafiaPlayers();
@@ -40,8 +46,9 @@ export class CharacterAssignPage implements OnInit {
     }
 
     confirmSelection() {
-        // TODO zmienić odpowiednią flagę (akcja) i przejść na nowy route (game)
-        console.log('confirm')
+        this.store.dispatch(new MarkPlayersAsAssignedAction()).pipe(first()).subscribe(_ => {
+            this.router.navigate(['/game']);
+        });
     }
 
     get playersAssignedProperly() {

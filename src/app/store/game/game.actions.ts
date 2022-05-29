@@ -40,3 +40,8 @@ export class AssignPlayerAction {
     public static readonly type = '[GAME] Assign Player';
     constructor(public payload: {id: string, assign_name: string}) {};
 }
+
+export class MarkPlayersAsAssignedAction {
+    public static readonly type = '[GAME] Mark All Players Assigned';
+    constructor() {};
+}
