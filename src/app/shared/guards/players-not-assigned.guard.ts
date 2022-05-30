@@ -13,6 +13,6 @@ export class PlayersNotAssignedGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        return !this.store.selectSnapshot<boolean>(state => state.game.playersAssigned) || this.router.parseUrl('/game');
+        return !this.store.selectSnapshot<boolean>(state => state.game.playersAssigned) || this.router.parseUrl('/tabs/dashboard/character-list');
     }
 }

@@ -1,28 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PlayersAssignedGuard } from './shared/guards/players-assigned.guard';
-import { PlayersNotAssignedGuard } from './shared/guards/players-not-assigned.guard';
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-    },
-    {
-        path: 'dashboard',
-        canActivate: [PlayersNotAssignedGuard],
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
-    },
-    {
-        path: 'game',
-        canActivate: [PlayersAssignedGuard],
-        loadChildren: () => import('./game/game.module').then(m => m.GamePageModule)
-    },
-    {
-        path: '**',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
+      path: '',
+      loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
     },
 ];
 @NgModule({

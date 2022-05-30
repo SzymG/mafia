@@ -14,6 +14,6 @@ export class GameStartedAndNotSelectedGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         return (this.store.selectSnapshot<boolean>(state => state.game.started) && !this.store.selectSnapshot<boolean>(state => state.game.playersSelected))
-            || this.router.parseUrl('/dashboard');
+            || this.router.parseUrl('/tabs/dashboard');
     }
 }

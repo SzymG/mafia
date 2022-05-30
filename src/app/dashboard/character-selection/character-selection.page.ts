@@ -75,7 +75,7 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         for (let i = 0; i < this.civilianCount; i++) { ciliviansArray.push(civilian) };
 
         this.store.dispatch(new SelectCiviliansAndMarkAsSelectedAction(ciliviansArray)).pipe(first()).subscribe(_ => {
-            this.router.navigate(['/dashboard/character-assign']);
+            this.router.navigate(['/tabs/dashboard/character-assign']);
         });
     }
 

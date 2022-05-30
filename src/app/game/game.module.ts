@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { GamePageRoutingModule } from './game-routing.module';
 
 import { GamePage } from './game.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GamePageRoutingModule
+    GamePageRoutingModule,
+    TranslateModule
   ],
   declarations: [GamePage]
 })

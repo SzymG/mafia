@@ -16,6 +16,6 @@ export class PlayersSelectedGuard implements CanActivate {
         const isGameStarted = this.store.selectSnapshot<boolean>(state => state.game.started);
         const arePlayersSelected = this.store.selectSnapshot<boolean>(state => state.game.playersSelected);
 
-        return isGameStarted ? (arePlayersSelected ? true : this.router.parseUrl('/dashboard/character-selection')) : this.router.parseUrl('/dashboard');
+        return isGameStarted ? (arePlayersSelected ? true : this.router.parseUrl('/tabs/dashboard/character-selection')) : this.router.parseUrl('/tabs/dashboard');
     }
 }

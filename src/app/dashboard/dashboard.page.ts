@@ -39,12 +39,12 @@ export class DashboardPage implements OnInit, OnDestroy {
 
     resumeGame() {
         // TODO przekierowanie już powinno iść na /game i tam odpowiednio guard w zależności od przypisania
-        this.router.navigate(['/dashboard/character-assign']);
+        this.router.navigate(['/tabs/dashboard/character-assign']);
     }
 
     startGame() {
         this.store.dispatch(new StartGameAction()).pipe(first()).subscribe(_ => {
-            this.router.navigate(['/dashboard/character-selection']);
+            this.router.navigate(['/tabs/dashboard/character-selection']);
         });
     }
 }

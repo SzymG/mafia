@@ -1,0 +1,12 @@
+<ion-tabs>
+    <ion-tab-bar slot="bottom" color="secondary" *ngIf="(game$ | async).playersAssigned">
+        <ion-tab-button tab="dashboard">
+            <ion-icon name="people"></ion-icon>
+            <ion-label>{{"Basic.players" | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="game" selected>
+            <ion-icon name="dice"></ion-icon>
+            <ion-label>{{"Basic.game" | translate}}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

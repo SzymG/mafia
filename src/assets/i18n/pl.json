@@ -4,7 +4,9 @@
         "town": "Miasto",
         "mafia": "Mafia",
         "neutrals": "Neurtalni",
-        "cits": "Cywile"
+        "cits": "Cywile",
+        "players": "Postaci",
+        "game": "Gra"
     },
     "Dashboard": {
         "title": "Kokpit",
@@ -23,6 +25,12 @@
         "assignTitle": "Przypisywanie",
         "passName": "Wpisz imię",
         "save": "Zapisz"
+    },
+    "Game": {
+        "endGame": "Zakończ grę"
+    },
+    "CharacterList": {
+        "title": "Lista postaci w grze"
     },
     "Characters": {
         "lawyer": "Adwokat",

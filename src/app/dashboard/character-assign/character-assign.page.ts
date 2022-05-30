@@ -47,7 +47,7 @@ export class CharacterAssignPage implements OnInit {
 
     confirmSelection() {
         this.store.dispatch(new MarkPlayersAsAssignedAction()).pipe(first()).subscribe(_ => {
-            this.router.navigate(['/game']);
+            this.router.navigate(['/tabs/game']);
         });
     }
 
