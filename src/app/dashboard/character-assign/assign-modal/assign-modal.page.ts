@@ -25,7 +25,7 @@ export class AssignModalPage implements OnInit {
     }
 
     ionViewDidEnter(): void {
-        this.nameInput.setFocus();
+        // this.nameInput.setFocus();
     }
 
     confirmAssign() {
