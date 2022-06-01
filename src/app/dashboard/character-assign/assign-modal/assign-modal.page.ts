@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput, ModalController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { first } from 'rxjs/operators';
 import { AssignPlayerAction } from 'src/app/store/game/game.actions';
@@ -11,6 +11,8 @@ import { GamePlayer } from 'src/app/store/game/game.state';
     styleUrls: ['./assign-modal.page.scss'],
 })
 export class AssignModalPage implements OnInit {
+    @ViewChild('nameInput') nameInput: IonInput;
+
     public player: GamePlayer;
     public assignName: string;
 
@@ -20,6 +22,10 @@ export class AssignModalPage implements OnInit {
     ) { }
 
     ngOnInit() {
+    }
+
+    ionViewDidEnter(): void {
+        this.nameInput.setFocus();
     }
 
     confirmAssign() {

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text="" icon="chevron-back-outline" defaultHref="dashboard">
+            <ion-back-button text="" icon="chevron-back-outline" defaultHref="tabs/dashboard">
             </ion-back-button>
         </ion-buttons>
         <ion-title class="ion-text-center">{{"CharacterSelection.title" | translate}}</ion-title>
@@ -41,7 +41,9 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of townPlayers">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
+                            (selectEvent)="selectPlayer(player)">
+                        </player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -55,7 +57,9 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of mafiaPlayers">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
+                            (selectEvent)="selectPlayer(player)">
+                        </player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -69,7 +73,9 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of neutralPlayers">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" (click)="selectPlayer(player)"></player-item>
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
+                            (selectEvent)="selectPlayer(player)">
+                        </player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -83,7 +89,8 @@
             <ion-col size="12">
                 <ion-row>
                     <ion-col size="5">
-                        <player-item [name]="'civilian'" [selected]="civilianCount > 0"></player-item>
+                        <player-item [name]="'civilian'" [selected]="civilianCount > 0" [selectable]="true">
+                        </player-item>
                     </ion-col>
                     <ion-col size="7" class="civilians-count-container">
                         <ion-text color="primary">
@@ -95,7 +102,8 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button class="bold" (click)="confirmSelection()" [disabled]="!playersSelectedProperly" expand="block" size="large">
+                <ion-button class="bold" (click)="confirmSelection()" [disabled]="!playersSelectedProperly"
+                    expand="block" size="large">
                     {{"CharacterSelection.confirm" | translate}}
                 </ion-button>
             </ion-col>
