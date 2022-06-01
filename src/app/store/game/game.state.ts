@@ -46,7 +46,7 @@ export class GameState {
     constructor() {}
 
     @Action(GameActions.UnselectPlayerAction)
-    public setData(ctx: StateContext<GameStateModel>, { payload }: GameActions.UnselectPlayerAction) {
+    public unselectPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.UnselectPlayerAction) {
         const {players, ...rest} = ctx.getState();
         const selectedPlayers = players.filter(player => player.name !== payload.name);
 

@@ -51,6 +51,10 @@ export class CharacterAssignPage implements OnInit {
         });
     }
 
+    manageUsers() {
+        console.log('manage');
+    }
+
     get playersAssignedProperly() {
         return this.gameService.areAllPlayersAssigned();;
     }

@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { PlayersState } from './store/players/players.state';
+import { UsersState } from './store/user/user.state';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { PlayersState } from './store/players/players.state';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        NgxsModule.forRoot([GameState, PlayersState]),
+        NgxsModule.forRoot([GameState, PlayersState, UsersState]),
         NgxsStoragePluginModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
