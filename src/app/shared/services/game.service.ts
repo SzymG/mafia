@@ -32,7 +32,7 @@ export class GameService implements OnDestroy {
 
     areAllPlayersAssigned() {
         return !this.gamePlayers.find((player) => {
-            return !player.assign_name
+            return !player.user?.id
         });
     }
 

@@ -24,7 +24,10 @@
         "confirm": "Potwierdź wybór",
         "assignTitle": "Przypisywanie",
         "passName": "Wpisz imię",
-        "save": "Zapisz"
+        "save": "Zapisz",
+        "choose": "Wybierz",
+        "enter": "Wpisz",
+        "assignOne": "Przypisz osobę"
     },
     "Game": {
         "endGame": "Zakończ grę"

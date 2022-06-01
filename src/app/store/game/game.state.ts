@@ -5,7 +5,10 @@ import * as GameActions from './game.actions';
 
 export interface GamePlayer extends Player {
     id?: string;
-    assign_name?: string;
+    user?: {
+        id: string;
+        assign_name: string;
+    }
 }
 
 export interface GameStateModel {
@@ -102,10 +105,15 @@ export class GameState {
     @Action(GameActions.AssignPlayerAction)
     public assignPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignPlayerAction) {
         const {players, ...rest} = ctx.getState();
+        console.log(players);
+        console.log(payload);
 
         const updatedPlayers = players.map((player) => {
             if(player.id === payload.id) {
-                player.assign_name = payload.assign_name
+                player.user = {
+                    id: payload?.user?.id || makeid(10),
+                    assign_name: payload.user.assign_name
+                };
             }
 
             return player;

@@ -22,9 +22,9 @@
             <ion-col size="12">
                 <ion-row>
                     <ion-col size="6" *ngFor="let player of townGamePlayers">
-                        <player-item [name]="player.name" [selected]="!!player.assign_name"></player-item>
+                        <player-item [name]="player.name" [selected]="!!player.user?.assign_name"></player-item>
                         <ion-text color="primary">
-                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
                         </ion-text>
                     </ion-col>
                 </ion-row>
@@ -39,9 +39,9 @@
             <ion-col size="12">
                 <ion-row>
                     <ion-col size="6" *ngFor="let player of mafiaGamePlayers">
-                        <player-item [name]="player.name" [selected]="!!player.assign_name"></player-item>
+                        <player-item [name]="player.name" [selected]="!!player.user?.assign_name"></player-item>
                         <ion-text color="primary">
-                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
                         </ion-text>
                     </ion-col>
                 </ion-row>
@@ -56,9 +56,9 @@
             <ion-col size="12">
                 <ion-row>
                     <ion-col size="6" *ngFor="let player of neutralGamePlayers">
-                        <player-item [name]="player.name" [selected]="!!player.assign_name"></player-item>
+                        <player-item [name]="player.name" [selected]="!!player.user?.assign_name"></player-item>
                         <ion-text color="primary">
-                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
                         </ion-text>
                     </ion-col>
                 </ion-row>
@@ -73,9 +73,9 @@
             <ion-col size="12">
                 <ion-row>
                     <ion-col size="6" *ngFor="let player of civiliansGamePlayers">
-                        <player-item [name]="player.name" [selected]="!!player.assign_name"></player-item>
+                        <player-item [name]="player.name" [selected]="!!player.user?.assign_name"></player-item>
                         <ion-text color="primary">
-                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
                         </ion-text>
                     </ion-col>
                 </ion-row>

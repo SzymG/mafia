@@ -19,17 +19,54 @@
                         <img [src]="'/assets/img/characters/' + player.name + '.png'">
                     </ion-col>
                 </ion-row>
+
                 <ion-row>
                     <ion-col size="12">
-                        <ion-input #nameInput class="name-input bold" [(ngModel)]="assignName"
-                            placeholder="{{'CharacterAssign.passName' | translate}}"></ion-input>
+                        <ion-segment [(ngModel)]="segment" scrollable>
+                            <ion-segment-button value="user">
+                                {{"CharacterAssign.choose" | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button value="name">
+                                {{"CharacterAssign.enter" | translate}}
+                            </ion-segment-button>
+                        </ion-segment>
                     </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="12">
-                        <ion-button class="bold" (click)="confirmAssign()" [disabled]="!assignName" expand="block">
-                            {{"CharacterAssign.save" | translate}}
-                        </ion-button>
+
+                    <ion-col size="12" [ngSwitch]="segment">
+                        <ion-row *ngSwitchCase="'user'">
+                            <ion-col size="12">
+                                <ion-list lines="none">
+                                    <ion-item color="primary">
+                                        <ion-select placeholder="{{'CharacterAssign.assignOne' | translate}}"
+                                            [(ngModel)]="user" color="primary">
+                                            <!-- TODO opcje userów -->
+                                            <!-- <ion-select-option value="f">Female</ion-select-option>
+                                            <ion-select-option value="m">Male</ion-select-option> -->
+                                        </ion-select>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-button class="bold" (click)="confirmAssignUser()" [disabled]="!user"
+                                    expand="block">
+                                    {{"CharacterAssign.save" | translate}}
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row *ngSwitchCase="'name'" class="ion-no-margin">
+                            <ion-col size="12">
+                                <ion-input class="name-input bold" [(ngModel)]="userName"
+                                    placeholder="{{'CharacterAssign.passName' | translate}}">
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-button class="bold" (click)="confirmAssignName()" [disabled]="!userName"
+                                    expand="block">
+                                    {{"CharacterAssign.save" | translate}}
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
                     </ion-col>
                 </ion-row>
             </ion-col>

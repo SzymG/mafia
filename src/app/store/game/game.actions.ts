@@ -1,4 +1,5 @@
 import { Player } from "../players/players.state";
+import { User } from "../user/user.state";
 import { GamePlayer } from "./game.state";
 
 export class UnselectPlayerAction {
@@ -38,7 +39,7 @@ export class ChangePlayersCountAction {
 
 export class AssignPlayerAction {
     public static readonly type = '[GAME] Assign Player';
-    constructor(public payload: {id: string, assign_name: string}) {};
+    constructor(public payload: {id: string, user: User}) {};
 }
 
 export class MarkPlayersAsAssignedAction {

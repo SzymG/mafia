@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { IonInput, ModalController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { first } from 'rxjs/operators';
 import { AssignPlayerAction } from 'src/app/store/game/game.actions';
 import { GamePlayer } from 'src/app/store/game/game.state';
+import { User } from 'src/app/store/user/user.state';
 
 @Component({
     selector: 'app-assign-modal',
@@ -11,10 +12,11 @@ import { GamePlayer } from 'src/app/store/game/game.state';
     styleUrls: ['./assign-modal.page.scss'],
 })
 export class AssignModalPage implements OnInit {
-    @ViewChild('nameInput') nameInput: IonInput;
-
     public player: GamePlayer;
-    public assignName: string;
+    public user: User;
+    public userName: string;
+
+    public segment: string = 'user';
 
     constructor(
         private readonly modalCtrl: ModalController,
@@ -24,12 +26,14 @@ export class AssignModalPage implements OnInit {
     ngOnInit() {
     }
 
-    ionViewDidEnter(): void {
-        // this.nameInput.setFocus();
+    confirmAssignUser() {
+        // this.store.dispatch(new AssignPlayerAction({id: this.player.id, user: {assign_name: this.userName}})).pipe(first()).subscribe(_ => {
+        //     this.dismiss();
+        // });
     }
 
-    confirmAssign() {
-        this.store.dispatch(new AssignPlayerAction({id: this.player.id, assign_name: this.assignName})).pipe(first()).subscribe(_ => {
+    confirmAssignName() {
+        this.store.dispatch(new AssignPlayerAction({id: this.player.id, user: {assign_name: this.userName}})).pipe(first()).subscribe(_ => {
             this.dismiss();
         });
     }
