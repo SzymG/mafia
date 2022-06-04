@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 import { GameService } from 'src/app/shared/services/game.service';
 import { PlayersService } from 'src/app/shared/services/players.service';
 import {
-    ChangePlayersCountAction, SelectCiviliansAndMarkAsSelectedAction,
+    ChangePlayersCountAction, ClearPlayersAction, SelectCiviliansAndMarkAsSelectedAction,
     SelectPlayerAction, UnselectPlayerAction
 } from 'src/app/store/game/game.actions';
 import { GameState, GameStateModel } from 'src/app/store/game/game.state';
@@ -66,6 +66,10 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         } else {
             this.store.dispatch(new UnselectPlayerAction(player));
         }
+    }
+
+    resetSelection() {
+        this.store.dispatch(new ClearPlayersAction());
     }
 
     confirmSelection() {

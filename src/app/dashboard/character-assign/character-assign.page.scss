@@ -21,14 +21,11 @@
         text-align: center;
         font-size: .8rem;
     }
-}
 
-ion-buttons {
-    & ~ ion-title {
-        margin-left: 0 !important;
-    }
-
-    &.user-icon {
-        font-size: 1.5rem;
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

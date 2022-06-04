@@ -25,7 +25,6 @@ export class DashboardPage implements OnInit, OnDestroy {
         this.subscriber.add(
             this.game$.subscribe((game) => { 
                 this.game = game;
-                console.log(this.game);
             })
         );
     }
@@ -38,7 +37,6 @@ export class DashboardPage implements OnInit, OnDestroy {
     }
 
     resumeGame() {
-        // TODO przekierowanie już powinno iść na /game i tam odpowiednio guard w zależności od przypisania
         this.router.navigate(['/tabs/dashboard/character-assign']);
     }
 

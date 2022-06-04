@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { GamePlayer, GameState, GameStateModel } from 'src/app/store/game/game.state';
 
@@ -13,6 +13,7 @@ export class GameService implements OnDestroy {
     private subscriber: Subscription = new Subscription();
 
     constructor(
+        private readonly store: Store
     ) {
         this.subscriber.add(
             this.game$.subscribe((game) => {
@@ -58,5 +59,9 @@ export class GameService implements OnDestroy {
         return this.gamePlayers.filter((player) => {
             return ['C'].includes(player.symbol);
         });
+    }
+
+    get game() {
+        return this.store.selectSnapshot<GameStateModel>(state => state.game);
     }
 }

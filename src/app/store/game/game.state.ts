@@ -97,14 +97,15 @@ export class GameState {
 
     @Action(GameActions.ClearPlayersAction)
     public clearPlayers(ctx: StateContext<GameStateModel>) {
-        const {players, ...rest} = initialState;
-        ctx.patchState({players: [], ...rest});
+        const {maxPlayersCount} = initialState;
+        ctx.patchState({players: [], maxPlayersCount});
     }
 
     @Action(GameActions.ChangePlayersCountAction)
     public changePlayersCount(ctx: StateContext<GameStateModel>, { payload }: GameActions.ChangePlayersCountAction) {
-        const {players, started, maxPlayersCount, ...rest} = initialState;
-        ctx.patchState({players: [], started: true, maxPlayersCount: payload, ...rest});
+        const {players, maxPlayersCount, ...rest} = ctx.getState();
+        
+        ctx.patchState({players: payload > maxPlayersCount ? players : [], maxPlayersCount: payload, ...rest});
     }
 
     @Action(GameActions.AssignPlayerAction)
@@ -123,6 +124,24 @@ export class GameState {
         });
 
         ctx.setState({ ...rest, players: [...updatedPlayers]});
+    }
+
+    @Action(GameActions.AssignAllPlayersAction)
+    public assignAllPlayers(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignAllPlayersAction) {
+        const {players, ...rest} = ctx.getState();
+
+        if(players.length === payload.length) {
+            const updatedPlayers = players.map((player, index) => {
+                player.user = {
+                    id: payload[index].id,
+                    assign_name: payload[index].assign_name
+                };
+    
+                return player;
+            });
+    
+            ctx.setState({ ...rest, players: [...updatedPlayers]});
+        }
     }
 
     @Action(GameActions.MarkPlayersAsAssignedAction)

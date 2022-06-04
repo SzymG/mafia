@@ -16,7 +16,8 @@
     "CharacterSelection": {
         "title": "Wybór postaci do gry",
         "playersAmount": "Łączna liczba graczy",
-        "confirm": "Potwierdź wybór"
+        "confirm": "Potwierdź wybór",
+        "reset": "Resetuj"
     },
     "CharacterAssign": {
         "title": "Przypisywanie postaci",
@@ -24,10 +25,16 @@
         "confirm": "Potwierdź wybór",
         "assignTitle": "Przypisywanie",
         "passName": "Wpisz imię",
+        "cancel": "Anuluj",
         "save": "Zapisz",
         "choose": "Wybierz",
         "enter": "Wpisz",
-        "assignOne": "Przypisz osobę"
+        "assignOne": "Przypisz osobę",
+        "listManage": "Zarządzaj listą",
+        "assignAutomatically": "Przypisz automatycznie",
+        "notEnoughPlayers": "Za mało graczy aby przypisać automatycznie",
+        "assignedSuccessfully": "Przypisano pomyślnie",
+        "assignNotEqual": "Niepoprawna liczba wybranych graczy. Wybrano {{selected}} na {{of}}"
     },
     "Game": {
         "endGame": "Zakończ grę"
