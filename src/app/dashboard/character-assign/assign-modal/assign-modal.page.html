@@ -39,9 +39,7 @@
                                     <ion-item color="primary">
                                         <ion-select placeholder="{{'CharacterAssign.assignOne' | translate}}"
                                             [(ngModel)]="user" color="primary">
-                                            <!-- TODO opcje userów -->
-                                            <!-- <ion-select-option value="f">Female</ion-select-option>
-                                            <ion-select-option value="m">Male</ion-select-option> -->
+                                            <ion-select-option *ngFor="let user of users" value="{{user.id}}">{{user.assign_name}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>
                                 </ion-list>

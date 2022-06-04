@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Store } from '@ngxs/store';
+import { InitPlayersAction } from '../players/players.actions';
 import { Player } from '../players/players.state';
 import * as GameActions from './game.actions';
 
@@ -46,7 +47,9 @@ const makeid = length => {
 
 @Injectable()
 export class GameState {
-    constructor() {}
+    constructor(
+        private readonly store: Store
+    ) {}
 
     @Action(GameActions.UnselectPlayerAction)
     public unselectPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.UnselectPlayerAction) {
@@ -80,6 +83,8 @@ export class GameState {
 
     @Action(GameActions.StartGameAction)
     public startGame(ctx: StateContext<GameStateModel>) {
+        this.store.dispatch(new InitPlayersAction());
+        
         const {started, ...rest} = initialState;
         ctx.patchState({started: true, ...rest});
     }
@@ -105,8 +110,6 @@ export class GameState {
     @Action(GameActions.AssignPlayerAction)
     public assignPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignPlayerAction) {
         const {players, ...rest} = ctx.getState();
-        console.log(players);
-        console.log(payload);
 
         const updatedPlayers = players.map((player) => {
             if(player.id === payload.id) {

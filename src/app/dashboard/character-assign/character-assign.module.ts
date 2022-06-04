@@ -8,14 +8,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CharacterAssignPageRoutingModule,
-    TranslateModule,
-    SharedModule
-  ],
-  declarations: [CharacterAssignPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CharacterAssignPageRoutingModule,
+        TranslateModule,
+        SharedModule
+    ],
+    declarations: [
+        CharacterAssignPage
+    ]
 })
-export class CharacterAssignPageModule {}
+export class CharacterAssignPageModule { }

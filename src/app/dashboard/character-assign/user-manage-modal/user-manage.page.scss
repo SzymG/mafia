@@ -1,0 +1,14 @@
+.user-manage-grid {
+    .name-input {
+        margin: 2px;
+        border: 2px solid var(--ion-color-primary) !important;
+        color: var(--ion-color-primary);
+        border-radius: 5px;
+    }
+
+    .trash-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -35,6 +35,10 @@
     "CharacterList": {
         "title": "Lista postaci w grze"
     },
+    "UserManage": {
+        "title": "Zarządzanie użytkownikami",
+        "add": "Dodaj"
+    },
     "Characters": {
         "lawyer": "Adwokat",
         "agent": "Agent",

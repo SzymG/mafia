@@ -11,7 +11,12 @@ const routes: Routes = [
   {
     path: 'assign-modal',
     loadChildren: () => import('./assign-modal/assign-modal.module').then( m => m.AssignModalPageModule)
+  },
+  {
+    path: 'user-manage',
+    loadChildren: () => import('./user-manage-modal/user-manage.module').then( m => m.UserManagePageModule)
   }
+
 ];
 
 @NgModule({

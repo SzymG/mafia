@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { State } from '@ngxs/store';
+import { Action, State, StateContext } from '@ngxs/store';
+import * as PlayersActions from './players.actions';
 
 export interface Player {
     name: string;
@@ -167,4 +168,9 @@ const initialState = {
 @Injectable()
 export class PlayersState {
     constructor() {}
+
+    @Action(PlayersActions.InitPlayersAction)
+    public initPlayers(ctx: StateContext<PlayersStateModel>) {
+        ctx.patchState(initialState);
+    }
 }

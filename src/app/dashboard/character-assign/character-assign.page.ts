@@ -7,6 +7,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 import { MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
 import { GamePlayer } from 'src/app/store/game/game.state';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
+import { UserManagePage } from './user-manage-modal/user-manage.page';
 
 @Component({
     selector: 'app-character-assign',
@@ -51,8 +52,12 @@ export class CharacterAssignPage implements OnInit {
         });
     }
 
-    manageUsers() {
-        console.log('manage');
+    async manageUsers() {
+        const modal = await this.modalCtrl.create({
+            component: UserManagePage,
+        });
+
+        await modal.present();
     }
 
     get playersAssignedProperly() {

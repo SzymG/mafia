@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline" defaultHref="tabs/dashboard/character-assign"
+                (click)="dismiss()">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{ "UserManage.title" | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="user-manage-grid">
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="10">
+                <ion-row *ngIf="users">
+                    <ion-col size="12" class="user-list" *ngFor="let user of users">
+                        <ion-row>
+                            <ion-col size="10">
+                                <div class="user-item">
+                                    <ion-text color="primary">
+                                        <p>{{user.assign_name}}</p>
+                                    </ion-text>
+                                </div>
+                            </ion-col>
+                            <ion-col size="2" (click)="removeUser(user)" class="trash-container">
+                                <ion-text color="primary">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-input class="name-input bold" [(ngModel)]="userName"
+                            placeholder="{{'CharacterAssign.passName' | translate}}">
+                        </ion-input>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-button class="bold" (click)="addUser()" [disabled]="!userName" expand="block">
+                            {{"UserManage.add" | translate}}
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
