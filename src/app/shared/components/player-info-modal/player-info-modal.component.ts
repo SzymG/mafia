@@ -8,7 +8,7 @@ import { Player } from 'src/app/store/players/players.state';
     styleUrls: ['./player-info-modal.component.scss'],
 })
 export class PlayerInfoModalComponent implements OnInit {
-
+    public segment: string = 'info';
     public player: Player;
 
     constructor(

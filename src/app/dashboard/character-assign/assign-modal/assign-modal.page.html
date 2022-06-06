@@ -38,14 +38,14 @@
                                 <ion-list lines="none">
                                     <ion-item color="primary">
                                         <ion-select placeholder="{{'CharacterAssign.assignOne' | translate}}"
-                                            [(ngModel)]="user" color="primary">
+                                            [(ngModel)]="userId" color="primary">
                                             <ion-select-option *ngFor="let user of users" value="{{user.id}}">{{user.assign_name}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>
                                 </ion-list>
                             </ion-col>
                             <ion-col size="12">
-                                <ion-button class="bold" (click)="confirmAssignUser()" [disabled]="!user"
+                                <ion-button class="bold" (click)="confirmAssignUser()" [disabled]="!userId"
                                     expand="block">
                                     {{"CharacterAssign.save" | translate}}
                                 </ion-button>

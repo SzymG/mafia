@@ -17,7 +17,7 @@ export class AssignModalPage implements OnInit, OnDestroy {
     
     public users: User[] = [];
     public player: GamePlayer;
-    public user: User;
+    public userId: string;
     public userName: string;
     public segment: string = 'user';
 
@@ -26,7 +26,7 @@ export class AssignModalPage implements OnInit, OnDestroy {
     constructor(
         private readonly modalCtrl: ModalController,
         private readonly store: Store
-    ) {      
+    ) {
         this.subscriber.add(
             this.users$.subscribe((userState) => { 
                 this.users = userState.users;
@@ -43,7 +43,7 @@ export class AssignModalPage implements OnInit, OnDestroy {
 
     confirmAssignUser() {
         const selectedUser = this.users.find((user) => {
-            return this.user === user.id;
+            return this.userId === user.id;
         });
         
         this.store.dispatch(new AssignPlayerAction({id: this.player.id, user: selectedUser})).pipe(first()).subscribe(_ => {

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PlayerItemComponent } from './components/player-item/player-item.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PlayerInfoModalComponent } from './components/player-info-modal/player-info-modal.component';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { PlayerInfoModalComponent } from './components/player-info-modal/player-
     ],
     imports: [
         CommonModule,
-        TranslateModule
+        TranslateModule,
+        FormsModule,
+        IonicModule
     ],
     exports: [
         PlayerItemComponent,

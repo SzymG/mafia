@@ -42,6 +42,10 @@
     "CharacterList": {
         "title": "Lista postaci w grze"
     },
+    "PlayerInfo" : {
+        "info": "Informacje",
+        "action": "Akcje"
+    },
     "UserManage": {
         "title": "Zarządzanie użytkownikami",
         "add": "Dodaj"

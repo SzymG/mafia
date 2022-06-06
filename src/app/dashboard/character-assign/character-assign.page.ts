@@ -42,10 +42,15 @@ export class CharacterAssignPage implements OnInit {
     }
 
     async assignPlayer(player: GamePlayer) {
+        const users = this.store.selectSnapshot<User[]>(state => state.user.users);
+        const selectedUser = users.find(user => user.id === player.user.id);
+
         const modal = await this.modalCtrl.create({
             component: AssignModalPage,
             componentProps: {
-                player
+                player,
+                userId: selectedUser?.id,
+                userName: !selectedUser ? player?.user?.assign_name : null
             }
         });
 
