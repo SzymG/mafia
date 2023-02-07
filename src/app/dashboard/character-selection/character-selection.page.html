@@ -21,15 +21,16 @@
         <ion-row>
             <ion-col size="12">
                 <ion-item class="item-transparent">
-                    <ion-range min="7" max="20" [value]="playersCount" (ionChange)="playersCountChanged($event)">
+                    <ion-range min="7" max="30" [value]="maxPlayersCount" (ionChange)="playersCountChanged($event)">
                         <ion-icon color="primary" slot="start" size="small" name="person-remove"></ion-icon>
                         <ion-icon color="primary" slot="end" name="person-add"></ion-icon>
                     </ion-range>
                 </ion-item>
             </ion-col>
-            <ion-col size="12" class="ion-text-center">
+            <ion-col size="12" id="players-count" class="ion-text-center">
                 <ion-text color="primary">
-                    {{playersCount}}
+                    <span *ngIf="selectedPlayersCount" id="selected-count">{{selectedPlayersCount}} /</span>
+                    <span id="max-count">{{maxPlayersCount}}</span>
                 </ion-text>
             </ion-col>
         </ion-row>

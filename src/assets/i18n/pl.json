@@ -50,6 +50,19 @@
         "title": "Zarządzanie użytkownikami",
         "add": "Dodaj"
     },
+    "Fractions": {
+        "TK": "Town Killing",
+        "TI": "Town Investigate",
+        "TP": "Town Protective",
+        "TS": "Town Support",
+        "TL": "Town Law",
+        "RT": "Random Town",
+        "MK": "Mafia Killing",
+        "MS": "Mafia Support",
+        "N": "Neutral",
+        "NE": "Neutral Evil",
+        "NK": "Neutral Killing"
+    },
     "Characters": {
         "lawyer": "Adwokat",
         "agent": "Agent",

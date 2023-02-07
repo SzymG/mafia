@@ -18,7 +18,6 @@ export class GameService implements OnDestroy {
         this.subscriber.add(
             this.game$.subscribe((game) => {
                 this.gamePlayers = game.players;
-                console.log('game', game);
             })
         );
     }

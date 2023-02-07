@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { GameService } from 'src/app/shared/services/game.service';
+import { PlayersConfigService } from 'src/app/shared/services/players-config.service';
 import { PlayersService } from 'src/app/shared/services/players.service';
 import {
     ChangePlayersCountAction, ClearPlayersAction, SelectCiviliansAndMarkAsSelectedAction,
@@ -20,7 +21,8 @@ import { Player } from 'src/app/store/players/players.state';
 export class CharacterSelectionPage implements OnInit, OnDestroy {
     @Select(GameState) game$: Observable<GameStateModel>;
 
-    public playersCount: number;
+    public maxPlayersCount: number;
+    public selectedPlayersCount: number;
     public civilianCount: number;
 
     public townPlayers: Player[] = [];
@@ -31,18 +33,24 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
 
     constructor(
         private readonly playersService: PlayersService,
+        private readonly playersConfigService: PlayersConfigService,
         private readonly gameService: GameService,
         private readonly store: Store,
         private readonly router: Router
     ) {
         this.subscriber.add(this.game$.subscribe((game) => {
-            this.playersCount = game.maxPlayersCount;
-            this.civilianCount = this.playersCount - game.players.length;
+            this.maxPlayersCount = game.maxPlayersCount;
+            this.selectedPlayersCount = game.players.length || 0;
+            this.civilianCount = this.maxPlayersCount - this.selectedPlayersCount;
         }));
 
         this.townPlayers = this.playersService.getTownPlayers();
         this.mafiaPlayers = this.playersService.getMafiaPlayers();
         this.neutralPlayers = this.playersService.getNeutralPlayers();
+
+        for(let i = 7; i <= 30; i++) {
+            this.playersConfigService.getConfigByCount(i);
+        }
     }
 
     ngOnInit() {

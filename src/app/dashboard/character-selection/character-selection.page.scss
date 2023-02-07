@@ -30,6 +30,16 @@
         }
     }
 
+    #players-count {
+        #selected-count {
+            margin-right: .25rem;
+        }
+
+        #max-count {
+            font-size: 1.7rem;
+        }
+    }
+
     .civilians-count-container {
         display: flex;
         justify-content: center;
