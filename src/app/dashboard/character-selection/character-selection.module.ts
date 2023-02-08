@@ -6,6 +6,7 @@ import { CharacterSelectionPageRoutingModule } from './character-selection-routi
 import { CharacterSelectionPage } from './character-selection.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ConfigTableComponent } from './config-table/config-table.component';
 
 @NgModule({
   imports: [
@@ -14,8 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     IonicModule,
     CharacterSelectionPageRoutingModule,
     TranslateModule,
-    SharedModule
+    SharedModule,
   ],
-  declarations: [CharacterSelectionPage]
+  declarations: [CharacterSelectionPage, ConfigTableComponent]
 })
 export class CharacterSelectionPageModule {}

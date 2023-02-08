@@ -1,0 +1,17 @@
+.config-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .cell {
+        & > div {
+            height: 1.5rem;
+            padding: 0 .2rem;
+            font-size: .75rem;
+            border: 1px solid var(--ion-color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

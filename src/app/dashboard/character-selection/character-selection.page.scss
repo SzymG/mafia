@@ -16,10 +16,12 @@
     .section-title {
         position: relative;
 
+        h5 {
+            margin-top: 0;
+        }
+
         .section-count {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-left: .5rem;
 
             .selected {
                 font-size: .8rem;

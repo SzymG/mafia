@@ -1,0 +1,12 @@
+<div class="config-table">
+    <div class="cell" *ngFor="let item of playersConfig?.items">
+        <div class="symbol">
+            <ng-container *ngFor="let symbol of item.symbol; let i = index">
+                {{ i > 0 ? ' / ' + symbol : symbol }}
+            </ng-container>
+        </div>
+        <div class="count">
+            0 / {{ item.count }}
+        </div>
+    </div>
+</div>

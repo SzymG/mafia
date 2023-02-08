@@ -36,14 +36,13 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         private readonly store: Store,
         private readonly router: Router
     ) {
+        this.availablePlayers = this.playersService.getAvailablePlayers();
+
         this.subscriber.add(this.game$.pipe(debounceTime(150)).subscribe((game) => {
             this.maxPlayersCount = game.maxPlayersCount;
             this.gamePlayers = game.players;
             this.playersConfig = this.playersConfigService.getConfigByCount(this.maxPlayersCount);
-            console.log(this.playersConfig);
         }));
-
-        this.availablePlayers = this.playersService.getAvailablePlayers();
     }
 
     ngOnInit() {

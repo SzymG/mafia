@@ -37,11 +37,14 @@
         <ion-row>
             <ion-col size="12">
                 <ion-text color="primary section-title">
-                    <h5 class="ion-text-center bold">{{"Basic.town" | translate}}</h5>
-                    <div class="section-count" *ngIf="playersConfig?.town">
-                        <span class="selected">{{townSelectedPlayersCount}} /</span>
-                        <span class="max">{{playersConfig.town.count}}</span>
-                    </div>
+                    <h5 class="ion-text-center bold">
+                        {{"Basic.town" | translate}}
+                        <span class="section-count" *ngIf="playersConfig?.town">
+                            <span class="selected">{{townSelectedPlayersCount}} /</span>
+                            <span class="max">{{playersConfig.town.count}}</span>
+                        </span>
+                    </h5>
+                    <config-table [type]="'town'"></config-table>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
@@ -57,7 +60,9 @@
         <ion-row>
             <ion-col size="12">
                 <ion-text color="primary">
-                    <h5 class="ion-text-center bold section-title">{{"Basic.cits" | translate}}</h5>
+                    <h5 class="ion-text-center bold section-title">
+                        {{"Basic.cits" | translate}}
+                    </h5>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
@@ -77,11 +82,14 @@
         <ion-row>
             <ion-col size="12">
                 <ion-text color="primary section-title">
-                    <h5 class="ion-text-center bold">{{"Basic.mafia" | translate}}</h5>
-                    <div class="section-count" *ngIf="playersConfig?.mafia">
-                        <span class="selected">{{mafiaSelectedPlayersCount}} /</span>
-                        <span class="max">{{playersConfig.mafia.count}}</span>
-                    </div>
+                    <h5 class="ion-text-center bold">
+                        {{"Basic.mafia" | translate}}
+                        <span class="section-count" *ngIf="playersConfig?.mafia">
+                            <span class="selected">{{mafiaSelectedPlayersCount}} /</span>
+                            <span class="max">{{playersConfig.mafia.count}}</span>
+                        </span>
+                    </h5>
+                    <config-table [type]="'mafia'"></config-table>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
@@ -97,11 +105,14 @@
         <ion-row>
             <ion-col size="12">
                 <ion-text color="primary section-title">
-                    <h5 class="ion-text-center bold">{{"Basic.neutrals" | translate}}</h5>
-                    <div class="section-count" *ngIf="playersConfig?.neutral">
-                        <span class="selected">{{neutralSelectedPlayersCount}} /</span>
-                        <span class="max">{{playersConfig.neutral.count}}</span>
-                    </div>
+                    <h5 class="ion-text-center bold">
+                        {{"Basic.neutrals" | translate}}
+                        <span class="section-count" *ngIf="playersConfig?.neutrals">
+                            <span class="selected">{{neutralsSelectedPlayersCount}} /</span>
+                            <span class="max">{{playersConfig.neutrals.count}}</span>
+                        </span>
+                    </h5>
+                    <config-table [type]="'neutral'"></config-table>
                 </ion-text>
             </ion-col>
             <ion-col size="12">

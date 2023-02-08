@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 
-interface ConfigItem {
-    symbol: string[],
-    count: number
-}
-
 interface Config {
     town: ConfigItem[];
     civilians: ConfigItem,
     mafia: ConfigItem[];
     neutral: ConfigItem[];
+}
+
+export interface ConfigItem {
+    symbol: string[],
+    count: number
 }
 
 export interface ConfigWithCount {
