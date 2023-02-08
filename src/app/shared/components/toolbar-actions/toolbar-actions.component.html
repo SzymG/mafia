@@ -1,0 +1,8 @@
+<span class="icon-container" #icon>
+    <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+</span>
+<div class="actions" #actions>
+    <div class="action-item" *ngFor="let item of config" (click)="item.handler()">
+        {{item.text}}
+    </div>
+</div>
