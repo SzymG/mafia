@@ -31,7 +31,6 @@ export class ConfigTableComponent implements OnInit, OnDestroy {
             this.gamePlayers = game.players;
             const config = this.playersConfigService.getConfigByCount(game?.maxPlayersCount || 0);
             this.playersConfig = config[this.type];
-            console.log(this.playersConfig);
         }));
     }
 
@@ -40,5 +39,9 @@ export class ConfigTableComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriber.unsubscribe();
+    }
+    
+    getSelectedSymbolCount(symbol: string[]) {
+        return this.gamePlayers.filter(player => symbol.includes(player.symbol))?.length || 0;
     }
 }

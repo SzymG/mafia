@@ -6,6 +6,7 @@
         </ion-buttons>
         <ion-title class="ion-text-center">{{"CharacterSelection.title" | translate}}</ion-title>
     </ion-toolbar>
+    <toolbar-actions [config]="toolbarActionsConfig"></toolbar-actions>
 </ion-header>
 
 <ion-content>
@@ -15,7 +16,6 @@
                 <ion-text color="primary">
                     <h5 class="ion-text-center">{{"CharacterSelection.playersAmount" | translate}}</h5>
                 </ion-text>
-                <ion-button size="small" (click)="resetSelection()">{{ "CharacterSelection.reset" | translate }}</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -107,9 +107,9 @@
                 <ion-text color="primary section-title">
                     <h5 class="ion-text-center bold">
                         {{"Basic.neutrals" | translate}}
-                        <span class="section-count" *ngIf="playersConfig?.neutrals">
-                            <span class="selected">{{neutralsSelectedPlayersCount}} /</span>
-                            <span class="max">{{playersConfig.neutrals.count}}</span>
+                        <span class="section-count" *ngIf="playersConfig?.neutral">
+                            <span class="selected">{{neutralSelectedPlayersCount}} /</span>
+                            <span class="max">{{playersConfig.neutral.count}}</span>
                         </span>
                     </h5>
                     <config-table [type]="'neutral'"></config-table>

@@ -5,12 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PlayerInfoModalComponent } from './components/player-info-modal/player-info-modal.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ToolbarActionsComponent } from './components/toolbar-actions/toolbar-actions.component';
 
 
 @NgModule({
     declarations: [
         PlayerItemComponent,
-        PlayerInfoModalComponent
+        PlayerInfoModalComponent,
+        ToolbarActionsComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +22,8 @@ import { IonicModule } from '@ionic/angular';
     ],
     exports: [
         PlayerItemComponent,
-        PlayerInfoModalComponent
+        PlayerInfoModalComponent,
+        ToolbarActionsComponent
     ]
 })
 export class SharedModule { }

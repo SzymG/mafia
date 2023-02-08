@@ -4,6 +4,7 @@ import { AlertController, AlertInput, ModalController, ToastController } from '@
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { first } from 'rxjs/operators';
+import { ToolbarActionsConfig } from 'src/app/shared/components/toolbar-actions/toolbar-actions.component';
 import { GameService } from 'src/app/shared/services/game.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { AssignAllPlayersAction, AssignPlayerAction, MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
@@ -18,6 +19,18 @@ import { UserManagePage } from './user-manage-modal/user-manage.page';
     styleUrls: ['./character-assign.page.scss'],
 })
 export class CharacterAssignPage implements OnInit {
+    
+    public toolbarActionsConfig: ToolbarActionsConfig[] = [
+        {
+            text: this.translateService.instant('CharacterAssign.listManage'),
+            handler: this.manageUsers.bind(this)
+        },
+        {
+            text: this.translateService.instant('CharacterAssign.assignAutomatically'),
+            handler: this.assignAutomatically.bind(this)
+        },
+    ];
+
     public townGamePlayers: GamePlayer[] = [];
     public mafiaGamePlayers: GamePlayer[] = [];
     public neutralGamePlayers: GamePlayer[] = [];

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
+import { ToolbarActionsConfig } from 'src/app/shared/components/toolbar-actions/toolbar-actions.component';
 import { GameService } from 'src/app/shared/services/game.service';
 import { ConfigWithCount, PlayersConfigService } from 'src/app/shared/services/players-config.service';
 import { PlayersService } from 'src/app/shared/services/players.service';
@@ -21,10 +23,16 @@ import { AvailablePlayers, Player } from 'src/app/store/players/players.state';
 export class CharacterSelectionPage implements OnInit, OnDestroy {
     @Select(GameState) game$: Observable<GameStateModel>;
 
+    public toolbarActionsConfig: ToolbarActionsConfig[] = [
+        {
+            text: this.translate.instant('CharacterSelection.reset'),
+            handler: this.resetSelection.bind(this)
+        },
+    ];
+
     public playersConfig: ConfigWithCount;
     public maxPlayersCount: number;
     public gamePlayers: GamePlayer[];
-
     public availablePlayers: AvailablePlayers;
 
     private subscriber: Subscription = new Subscription();
@@ -34,7 +42,8 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         private readonly playersConfigService: PlayersConfigService,
         private readonly gameService: GameService,
         private readonly store: Store,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly translate: TranslateService
     ) {
         this.availablePlayers = this.playersService.getAvailablePlayers();
 
