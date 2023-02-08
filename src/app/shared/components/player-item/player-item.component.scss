@@ -18,7 +18,22 @@
         }
     }
 
-    .character-info {
-        vertical-align: middle;
+    .name {
+        font-size: .9rem;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+
+        .character-info {
+            font-size: .7rem;
+            width: 1.4rem;
+            height: 1.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--ion-color-primary);
+            border: 1px solid var(--ion-color-primary);
+            margin-bottom: .2rem;
+        }
     }
 }

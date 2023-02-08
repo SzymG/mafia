@@ -4,9 +4,9 @@
             <img [src]="'/assets/img/characters/' + name + '.png'">
         </ion-col>
         <ion-col size="12" class="ion-text-center" (click)="labelClick()">
-            <ion-text color="primary" class="bold">
+            <ion-text color="primary" class="bold name">
                 {{"Characters." + name | translate}}
-                <span *ngIf="selectable" class="character-info"><ion-icon name="help-circle-outline"></ion-icon></span>
+                <span *ngIf="selectable" class="character-info">{{player?.symbol}}</span>
             </ion-text>
         </ion-col>
     </ion-row>

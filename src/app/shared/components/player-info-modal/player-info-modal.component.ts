@@ -10,6 +10,7 @@ import { Player } from 'src/app/store/players/players.state';
 export class PlayerInfoModalComponent implements OnInit {
     public segment: string = 'info';
     public player: Player;
+    public actionable: boolean = false;
 
     constructor(
         private readonly modalCtrl: ModalController
