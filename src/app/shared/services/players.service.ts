@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Player, PlayersState } from 'src/app/store/players/players.state';
-
-const TOWN_FRACTIONS = ['TK', 'TI', 'TP', 'TS', 'TL', 'RT'];
-const MAFIA_FRACTIONS = ['MK', 'MS'];
-const NEUTRAL_FRACTIONS = ['N', 'NK', 'NE'];
+import { AvailablePlayers, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, Player, PlayersState, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
 
 @Injectable({
     providedIn: 'root'
@@ -22,22 +18,12 @@ export class PlayersService {
         return this.players.find(player => player.name === name);
     }
 
-    getTownPlayers(): Player[] {
-        return this.players.filter((player) => {
-            return TOWN_FRACTIONS.includes(player.symbol);
-        });
-    }
-
-    getMafiaPlayers(): Player[] {
-        return this.players.filter((player) => {
-            return MAFIA_FRACTIONS.includes(player.symbol);
-        });
-    }
-
-    getNeutralPlayers(): Player[] {
-        return this.players.filter((player) => {
-            return NEUTRAL_FRACTIONS.includes(player.symbol);
-        });
+    getAvailablePlayers(): AvailablePlayers {
+        return {
+            town: this.players.filter(player => TOWN_FRACTIONS.includes(player.symbol)),
+            mafia: this.players.filter(player => MAFIA_FRACTIONS.includes(player.symbol)),
+            neutral: this.players.filter(player => NEUTRAL_FRACTIONS.includes(player.symbol)),
+        };
     }
 
     isMafiaPlayer(symbol: string) {

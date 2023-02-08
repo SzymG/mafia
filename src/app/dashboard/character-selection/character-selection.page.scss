@@ -16,6 +16,22 @@
     .section-title {
         position: relative;
 
+        .section-count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .selected {
+                font-size: .8rem;
+                margin-top: .25rem;
+            }
+
+            .max {
+                font-size: 1.4rem;
+                margin-left: .25rem;
+            }
+        }
+
         &:after {
             content: "";
             position: absolute;

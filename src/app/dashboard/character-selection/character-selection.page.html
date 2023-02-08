@@ -36,45 +36,17 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-text color="primary">
-                    <h5 class="ion-text-center bold section-title">{{"Basic.town" | translate}}</h5>
+                <ion-text color="primary section-title">
+                    <h5 class="ion-text-center bold">{{"Basic.town" | translate}}</h5>
+                    <div class="section-count" *ngIf="playersConfig?.town">
+                        <span class="selected">{{townSelectedPlayersCount}} /</span>
+                        <span class="max">{{playersConfig.town.count}}</span>
+                    </div>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
                 <ion-row class="scroll-players">
-                    <ion-col size="5" *ngFor="let player of townPlayers">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
-                            (selectEvent)="selectPlayer(player)">
-                        </player-item>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary">
-                    <h5 class="ion-text-center bold section-title">{{"Basic.mafia" | translate}}</h5>
-                </ion-text>
-            </ion-col>
-            <ion-col size="12">
-                <ion-row class="scroll-players">
-                    <ion-col size="5" *ngFor="let player of mafiaPlayers">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
-                            (selectEvent)="selectPlayer(player)">
-                        </player-item>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary">
-                    <h5 class="ion-text-center bold section-title">{{"Basic.neutrals" | translate}}</h5>
-                </ion-text>
-            </ion-col>
-            <ion-col size="12">
-                <ion-row class="scroll-players">
-                    <ion-col size="5" *ngFor="let player of neutralPlayers">
+                    <ion-col size="5" *ngFor="let player of availablePlayers.town">
                         <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
                             (selectEvent)="selectPlayer(player)">
                         </player-item>
@@ -98,6 +70,46 @@
                         <ion-text color="primary">
                             <p class="ion-text-center bold">{{civilianCount}}</p>
                         </ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary section-title">
+                    <h5 class="ion-text-center bold">{{"Basic.mafia" | translate}}</h5>
+                    <div class="section-count" *ngIf="playersConfig?.mafia">
+                        <span class="selected">{{mafiaSelectedPlayersCount}} /</span>
+                        <span class="max">{{playersConfig.mafia.count}}</span>
+                    </div>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="scroll-players">
+                    <ion-col size="5" *ngFor="let player of availablePlayers.mafia">
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
+                            (selectEvent)="selectPlayer(player)">
+                        </player-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary section-title">
+                    <h5 class="ion-text-center bold">{{"Basic.neutrals" | translate}}</h5>
+                    <div class="section-count" *ngIf="playersConfig?.neutral">
+                        <span class="selected">{{neutralSelectedPlayersCount}} /</span>
+                        <span class="max">{{playersConfig.neutral.count}}</span>
+                    </div>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="scroll-players">
+                    <ion-col size="5" *ngFor="let player of availablePlayers.neutral">
+                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
+                            (selectEvent)="selectPlayer(player)">
+                        </player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>

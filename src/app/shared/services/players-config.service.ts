@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
 
 interface ConfigItem {
-    symbol: string | string[],
+    symbol: string[],
     count: number
 }
 
 interface Config {
-    town: ConfigItem[],
-    mafia: ConfigItem[],
-    neutral: ConfigItem[]
+    town: ConfigItem[];
+    civilians: ConfigItem,
+    mafia: ConfigItem[];
+    neutral: ConfigItem[];
+}
+
+export interface ConfigWithCount {
+    town: {
+        count: number,
+        civiliansCount: number,
+        items: ConfigItem[]
+    },
+    mafia:  {
+        count: number,
+        items: ConfigItem[]
+    },
+    neutral:  {
+        count: number,
+        items: ConfigItem[]
+    }
 }
 
 @Injectable({
@@ -16,140 +33,191 @@ interface Config {
 })
 export class PlayersConfigService {
     constructor(
-    ) { }
+    ) {}
 
-    getConfigByCount(count: number) {
-        let town: ConfigItem[] = [];
-        let mafia: ConfigItem[] = [];
-        let neutral: ConfigItem[] = [];
-
+    getConfigByCount(count: number): ConfigWithCount {
         switch (count) {
             case 7:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'RT', count: 2 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 2 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }],
+                });
             case 8:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }],
+                });
             case 9:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: ['TP', 'TS'], count: 1 }, { symbol: 'RT', count: 2 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP', 'TS'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 2 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }],
+                });
             case 10:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: ['TP', 'TS'], count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP', 'TS'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }],
+                });
             case 11:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'TP', count: 1 }, { symbol: ['TS', 'TL'], count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS', 'TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 12:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'TP', count: 1 }, { symbol: ['TS', 'TL'], count: 1 }, { symbol: 'RT', count: 4 }];
-                mafia = [{ symbol: 'MK', count: 1 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS', 'TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 4 },
+                    mafia: [{ symbol: ['MK'], count: 1 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 13:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 14:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 1 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 4 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: ['N', 'NE'], count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 1 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 4 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N', 'NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 15:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 16:
-                town = [{ symbol: 'TK', count: 1 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 4 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 1 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 1 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 4 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 1 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 17:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 3 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 2 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 3 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 2 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 18:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 4 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 2 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 4 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 2 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 19:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 5 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 2 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 5 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 2 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 20:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 1 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 6 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 2 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 1 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 6 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 2 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 21:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 5 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 5 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 22:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 6 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 6 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 23:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 7 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 7 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 24:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 8 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 8 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 25:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 9 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 9 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 26:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 10 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 3 }];
-                neutral = [{ symbol: 'N', count: 1 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 10 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 3 }],
+                    neutral: [{ symbol: ['N'], count: 1 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 27:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 9 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 4 }];
-                neutral = [{ symbol: 'N', count: 2 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 9 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 4 }],
+                    neutral: [{ symbol: ['N'], count: 2 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 28:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 1 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 10 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 4 }];
-                neutral = [{ symbol: 'N', count: 2 }, { symbol: 'NE', count: 1 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 1 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 10 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 4 }],
+                    neutral: [{ symbol: ['N'], count: 2 }, { symbol: ['NE'], count: 1 }, { symbol: ['NK'], count: 1 }],
+                });
             case 29:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 2 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 9 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 4 }];
-                neutral = [{ symbol: 'N', count: 2 }, { symbol: 'NE', count: 2 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 2 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 9 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 4 }],
+                    neutral: [{ symbol: ['N'], count: 2 }, { symbol: ['NE'], count: 2 }, { symbol: ['NK'], count: 1 }],
+                });
             case 30:
-                town = [{ symbol: 'TK', count: 2 }, { symbol: 'TI', count: 2 }, { symbol: 'TP', count: 2 }, { symbol: 'TS', count: 2 }, { symbol: 'TL', count: 1 }, { symbol: 'RT', count: 10 }];
-                mafia = [{ symbol: 'MK', count: 2 }, { symbol: 'MS', count: 4 }];
-                neutral = [{ symbol: 'N', count: 2 }, { symbol: 'NE', count: 2 }, { symbol: 'NK', count: 1 }];
-                break;
+                return this.mapConfig({
+                    town: [{ symbol: ['TK'], count: 2 }, { symbol: ['TI'], count: 2 }, { symbol: ['TP'], count: 2 }, { symbol: ['TS'], count: 2 }, { symbol: ['TL'], count: 1 }],
+                    civilians: { symbol: ['RT'], count: 10 },
+                    mafia: [{ symbol: ['MK'], count: 2 }, { symbol: ['MS'], count: 4 }],
+                    neutral: [{ symbol: ['N'], count: 2 }, { symbol: ['NE'], count: 2 }, { symbol: ['NK'], count: 1 }],
+                });
         }
-
-        return this.mapPlayersArrayToConfig({ town, mafia, neutral });
     }
 
-    private mapPlayersArrayToConfig(config: Config) {
-        return config;
+    private mapConfig(config: Config): ConfigWithCount {
+        const add = (a, b) => { return a + b };
+        return {
+            town: {
+                count: config.town.map(item => item.count).reduce(add, 0),
+                civiliansCount: config.civilians.count,
+                items: config.town 
+            },
+            mafia: { count: config.mafia.map(item => item.count).reduce(add, 0), items: config.mafia },
+            neutral: { count: config.neutral.map(item => item.count).reduce(add, 0), items: config.neutral },
+        }
     }
 }

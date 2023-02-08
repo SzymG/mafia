@@ -2,16 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { debounceTime, first } from 'rxjs/operators';
 import { GameService } from 'src/app/shared/services/game.service';
-import { PlayersConfigService } from 'src/app/shared/services/players-config.service';
+import { ConfigWithCount, PlayersConfigService } from 'src/app/shared/services/players-config.service';
 import { PlayersService } from 'src/app/shared/services/players.service';
 import {
     ChangePlayersCountAction, ClearPlayersAction, SelectCiviliansAndMarkAsSelectedAction,
     SelectPlayerAction, UnselectPlayerAction
 } from 'src/app/store/game/game.actions';
-import { GameState, GameStateModel } from 'src/app/store/game/game.state';
-import { Player } from 'src/app/store/players/players.state';
+import { GameState, GameStateModel, GamePlayer } from 'src/app/store/game/game.state';
+import { AvailablePlayers, Player } from 'src/app/store/players/players.state';
 
 @Component({
     selector: 'app-character-selection',
@@ -21,13 +21,11 @@ import { Player } from 'src/app/store/players/players.state';
 export class CharacterSelectionPage implements OnInit, OnDestroy {
     @Select(GameState) game$: Observable<GameStateModel>;
 
+    public playersConfig: ConfigWithCount;
     public maxPlayersCount: number;
-    public selectedPlayersCount: number;
-    public civilianCount: number;
+    public gamePlayers: GamePlayer[];
 
-    public townPlayers: Player[] = [];
-    public mafiaPlayers: Player[] = [];
-    public neutralPlayers: Player[] = [];
+    public availablePlayers: AvailablePlayers;
 
     private subscriber: Subscription = new Subscription();
 
@@ -38,19 +36,14 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         private readonly store: Store,
         private readonly router: Router
     ) {
-        this.subscriber.add(this.game$.subscribe((game) => {
+        this.subscriber.add(this.game$.pipe(debounceTime(150)).subscribe((game) => {
             this.maxPlayersCount = game.maxPlayersCount;
-            this.selectedPlayersCount = game.players.length || 0;
-            this.civilianCount = this.maxPlayersCount - this.selectedPlayersCount;
+            this.gamePlayers = game.players;
+            this.playersConfig = this.playersConfigService.getConfigByCount(this.maxPlayersCount);
+            console.log(this.playersConfig);
         }));
 
-        this.townPlayers = this.playersService.getTownPlayers();
-        this.mafiaPlayers = this.playersService.getMafiaPlayers();
-        this.neutralPlayers = this.playersService.getNeutralPlayers();
-
-        for(let i = 7; i <= 30; i++) {
-            this.playersConfigService.getConfigByCount(i);
-        }
+        this.availablePlayers = this.playersService.getAvailablePlayers();
     }
 
     ngOnInit() {
@@ -94,5 +87,25 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
     // W przyszłości rozszerzyć sprawdzanie czy poprawnie wybrano postaci
     get playersSelectedProperly() {
         return this.civilianCount >= 0;
+    }
+
+    get selectedPlayersCount() {
+        return this.gamePlayers?.length || 0;
+    }
+
+    get civilianCount() {
+        return this.playersConfig?.town?.civiliansCount || 0;
+    }
+
+    get townSelectedPlayersCount() {
+        return this.gamePlayers?.filter(player => this.playersService.isTownPlayer(player.symbol))?.length || 0;
+    }
+
+    get mafiaSelectedPlayersCount() {
+        return this.gamePlayers?.filter(player => this.playersService.isMafiaPlayer(player.symbol))?.length || 0;
+    }
+
+    get neutralSelectedPlayersCount() {
+        return this.gamePlayers?.filter(player => this.playersService.isNeutralPlayer(player.symbol))?.length || 0;
     }
 }
