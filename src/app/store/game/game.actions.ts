@@ -14,7 +14,7 @@ export class SelectPlayerAction {
 
 export class SelectCiviliansAndMarkAsSelectedAction {
     public static readonly type = '[GAME] Select Civilians';
-    constructor(public payload: Player[]) {}
+    constructor(public payload: {civilians: Player[], gameWithNumbers: boolean}) {}
 }
 
 export class StartGameAction {

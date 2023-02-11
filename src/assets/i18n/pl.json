@@ -17,7 +17,8 @@
         "title": "Wybór postaci do gry",
         "playersAmount": "Łączna liczba graczy",
         "confirm": "Potwierdź wybór",
-        "reset": "Resetuj graczy"
+        "reset": "Resetuj graczy",
+        "gameWithNumbers": "Przypisz numery do graczy"
     },
     "CharacterAssign": {
         "title": "Przypisywanie postaci",

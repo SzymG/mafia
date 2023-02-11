@@ -34,6 +34,7 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
     public maxPlayersCount: number;
     public gamePlayers: GamePlayer[];
     public availablePlayers: AvailablePlayers;
+    public gameWithNumbers: boolean = false;
 
     private subscriber: Subscription = new Subscription();
 
@@ -87,7 +88,7 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
 
         for (let i = 0; i < this.civilianCount; i++) { ciliviansArray.push(civilian) };
 
-        this.store.dispatch(new SelectCiviliansAndMarkAsSelectedAction(ciliviansArray)).pipe(first()).subscribe(_ => {
+        this.store.dispatch(new SelectCiviliansAndMarkAsSelectedAction({ civilians: ciliviansArray, gameWithNumbers: this.gameWithNumbers })).pipe(first()).subscribe(_ => {
             this.router.navigate(['/tabs/dashboard/character-assign']);
         });
     }

@@ -68,6 +68,11 @@ ion-buttons ~ ion-title {
     margin-left: -48px;
 }
 
+ion-checkbox {
+    --background: rgba(0, 0, 0, 0);
+    --border-color: var(--ion-color-primary);
+}
+
 .center-grid {
     height: 100%;
     display: flex;
@@ -81,4 +86,5 @@ ion-buttons ~ ion-title {
 
 .item-transparent {
     --background: rgba(0, 0, 0, 0);
+    --border-color: var(--ion-color-primary-shade);
 }

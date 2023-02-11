@@ -33,7 +33,7 @@ export class CharacterListPage implements OnInit, OnDestroy {
             });
 
             this.civiliansGamePlayers = game.players.filter((player) => {
-                return ['C'].includes(player.symbol);
+                return ['RT'].includes(player.symbol);
             });
         }));
     }

@@ -8,7 +8,7 @@ import { ToolbarActionsConfig } from 'src/app/shared/components/toolbar-actions/
 import { GameService } from 'src/app/shared/services/game.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { AssignAllPlayersAction, AssignPlayerAction, MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
-import { GamePlayer } from 'src/app/store/game/game.state';
+import { GamePlayer, GamePlayers } from 'src/app/store/game/game.state';
 import { User } from 'src/app/store/user/user.state';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
 import { UserManagePage } from './user-manage-modal/user-manage.page';
@@ -31,10 +31,9 @@ export class CharacterAssignPage implements OnInit {
         },
     ];
 
-    public townGamePlayers: GamePlayer[] = [];
-    public mafiaGamePlayers: GamePlayer[] = [];
-    public neutralGamePlayers: GamePlayer[] = [];
-    public civiliansGamePlayers: GamePlayer[] = [];
+
+
+    public gamePlayers: GamePlayers;
 
     constructor(
         private readonly gameService: GameService,
@@ -45,10 +44,7 @@ export class CharacterAssignPage implements OnInit {
         private readonly toastService: ToastService,
         private readonly alertController: AlertController
     ) {
-        this.townGamePlayers = this.gameService.getTownPlayers();
-        this.mafiaGamePlayers = this.gameService.getMafiaPlayers();
-        this.neutralGamePlayers = this.gameService.getNeutralPlayers();
-        this.civiliansGamePlayers = this.gameService.getCiviliansPlayers();
+        this.gamePlayers = this.gameService.getPlayers();
     }
 
     ngOnInit() {
@@ -56,7 +52,7 @@ export class CharacterAssignPage implements OnInit {
 
     async assignPlayer(player: GamePlayer) {
         const users = this.store.selectSnapshot<User[]>(state => state.user.users);
-        const selectedUser = users.find(user => user.id === player.user.id);
+        const selectedUser = users.find(user => user.id === player?.user?.id);
 
         const modal = await this.modalCtrl.create({
             component: AssignModalPage,

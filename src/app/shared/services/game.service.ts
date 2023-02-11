@@ -1,7 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { GamePlayer, GameState, GameStateModel } from 'src/app/store/game/game.state';
+import { GamePlayer, GamePlayers, GameState, GameStateModel } from 'src/app/store/game/game.state';
+import { CIVILIAN_SYMBOL, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
 
 @Injectable({
     providedIn: 'root'
@@ -36,28 +37,13 @@ export class GameService implements OnDestroy {
         });
     }
 
-    getTownPlayers(): GamePlayer[] {
-        return this.gamePlayers.filter((player) => {
-            return ['A', 'TS'].includes(player.symbol);
-        });
-    }
-
-    getMafiaPlayers(): GamePlayer[] {
-        return this.gamePlayers.filter((player) => {
-            return ['MK', 'MS'].includes(player.symbol);
-        });
-    }
-    
-    getNeutralPlayers(): GamePlayer[] {
-        return this.gamePlayers.filter((player) => {
-            return ['SK', 'N'].includes(player.symbol);
-        });
-    }
-
-    getCiviliansPlayers(): GamePlayer[] {
-        return this.gamePlayers.filter((player) => {
-            return ['C'].includes(player.symbol);
-        });
+    getPlayers(): GamePlayers {
+        return {
+            town: this.gamePlayers.filter(player => TOWN_FRACTIONS.includes(player.symbol) && player.symbol !== CIVILIAN_SYMBOL),
+            mafia: this.gamePlayers.filter(player => MAFIA_FRACTIONS.includes(player.symbol)),
+            neutral: this.gamePlayers.filter(player => NEUTRAL_FRACTIONS.includes(player.symbol)),
+            civilian: this.gamePlayers.filter(player => CIVILIAN_SYMBOL === player.symbol),
+        };
     }
 
     get game() {

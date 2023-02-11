@@ -16,10 +16,28 @@
         }
     }
 
-    .assign-title {
-        margin: 0;
-        text-align: center;
-        font-size: .8rem;
+    .assign-title-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .number {
+            font-size: .9rem;
+            border: 1px solid var(--ion-color-primary);
+            line-height: 1.3rem;
+            height: 1.3rem;
+            width: 1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .assign-title {
+            font-size: .8rem;
+            margin: 0;
+            text-align: center;
+        }
     }
 
     .buttons-container {
