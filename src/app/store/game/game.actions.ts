@@ -51,3 +51,13 @@ export class MarkPlayersAsAssignedAction {
     public static readonly type = '[GAME] Mark All Players Assigned';
     constructor() {};
 }
+
+export class StartNightAction {
+    public static readonly type = '[GAME] Start night';
+    constructor() {};
+}
+
+export class StartDayAction {
+    public static readonly type = '[GAME] Start day';
+    constructor() {};
+}

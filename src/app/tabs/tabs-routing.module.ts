@@ -17,6 +17,11 @@ const routes: Routes = [
                 path: 'game',
                 canActivate: [PlayersAssignedGuard],
                 loadChildren: () => import('../game/game.module').then(m => m.GamePageModule)
+            },
+            {
+                path: 'history',
+                canActivate: [PlayersAssignedGuard],
+                loadChildren: () => import('../history/history.module').then(m => m.HistoryPageModule)
             }
         ]
     },

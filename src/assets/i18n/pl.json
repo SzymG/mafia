@@ -6,7 +6,10 @@
         "neutrals": "Neurtalni",
         "cits": "Cywile",
         "players": "Postaci",
-        "game": "Gra"
+        "game": "Gra",
+        "history": "Historia",
+        "yes": "Tak",
+        "no": "Nie"
     },
     "Dashboard": {
         "title": "Kokpit",
@@ -38,7 +41,15 @@
         "assignNotEqual": "Niepoprawna liczba wybranych graczy. Wybrano {{selected}} na {{of}}"
     },
     "Game": {
-        "endGame": "Zakończ grę"
+        "endGame": "Zakończ grę",
+        "night": "Noc",
+        "day": "Dzień",
+        "endGameConfirm": "Czy na pewno chcesz zakończyć grę?",
+        "startDay": "Rozpocznij dzień",
+        "startDayConfirm": "Czy na pewno chcesz rozpocząć kolejny dzień?",
+        "startNight": "Rozpocznij noc",
+        "startNightConfirm": "Czy na pewno chcesz rozpocząć kolejną noc?",
+        "fullMoon": "Pełnia"
     },
     "CharacterList": {
         "title": "Lista postaci w grze"

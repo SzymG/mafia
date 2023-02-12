@@ -2,6 +2,35 @@
     <ion-grid class="game-grid">
         <ion-row>
             <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold section-title">{{ "Game." + game.phase | translate }} {{
+                        game.dayNumber }}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-row *ngIf="isNight && game.fullMoon.active" class="moon-container">
+                <ion-col size="12" class="ion-text-center">
+                    <img src="/assets/img/full-moon.png" alt="Full moon">
+                </ion-col>
+                <ion-col size="12" color="primary" class="ion-text-center">
+                    <ion-text color="primary">
+                        {{"Game.fullMoon" | translate}}
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button *ngIf="isNight; else startDayButtonTemplate" class="bold" (click)="startDay()"
+                    expand="block" size="large">
+                    {{"Game.startDay" | translate}}
+                </ion-button>
+                <ng-template #startDayButtonTemplate>
+                    <ion-button class="bold" (click)="startNight()" expand="block" size="large">
+                        {{"Game.startNight" | translate}}
+                    </ion-button>
+                </ng-template>
+            </ion-col>
+            <ion-col size="12">
                 <ion-button class="bold" (click)="endGame()" expand="block" size="large">
                     {{"Game.endGame" | translate}}
                 </ion-button>
