@@ -62,6 +62,11 @@
         "title": "Zarządzanie użytkownikami",
         "add": "Dodaj"
     },
+    "History": {
+        "title": "Historia akcji",
+        "noData": "Brak akcji do wyświetlenia",
+        "fullMoonMessage": "Rozpoczęcie pełni księżyca"
+    },
     "Fractions": {
         "TK": "Town Killing",
         "TI": "Town Investigate",

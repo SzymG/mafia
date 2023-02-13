@@ -6,13 +6,17 @@ import { PlayerInfoModalComponent } from './components/player-info-modal/player-
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ToolbarActionsComponent } from './components/toolbar-actions/toolbar-actions.component';
+import { HistoryItemComponent } from './components/history-item/history-item.component';
+import { HistoryItemImagePipe } from './pipes/history-item-image.pipe';
 
 
 @NgModule({
     declarations: [
         PlayerItemComponent,
         PlayerInfoModalComponent,
-        ToolbarActionsComponent
+        ToolbarActionsComponent,
+        HistoryItemComponent,
+        HistoryItemImagePipe
     ],
     imports: [
         CommonModule,
@@ -23,7 +27,8 @@ import { ToolbarActionsComponent } from './components/toolbar-actions/toolbar-ac
     exports: [
         PlayerItemComponent,
         PlayerInfoModalComponent,
-        ToolbarActionsComponent
+        ToolbarActionsComponent,
+        HistoryItemComponent
     ]
 })
 export class SharedModule { }

@@ -31,8 +31,6 @@ export class CharacterAssignPage implements OnInit {
         },
     ];
 
-
-
     public gamePlayers: GamePlayers;
 
     constructor(

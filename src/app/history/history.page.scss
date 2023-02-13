@@ -1,0 +1,19 @@
+.history-grid {
+    .section-title {
+        margin-bottom: 1.2rem;
+    }
+
+    .day-container-title {
+        font-weight: 600;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        height: 3rem;
+        width: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid var(--ion-color-primary);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

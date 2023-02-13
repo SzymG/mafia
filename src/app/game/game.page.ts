@@ -44,7 +44,6 @@ export class GamePage implements OnInit, OnDestroy {
         this.showConfirmationModal(this.translateService.instant('Game.startDayConfirm')).then((confirmed) => {
             if(confirmed) {
                 this.store.dispatch(new StartDayAction()).pipe(first()).subscribe(_ => {
-                    console.log('startDay');
                 });
             }
         });
@@ -54,7 +53,6 @@ export class GamePage implements OnInit, OnDestroy {
         this.showConfirmationModal(this.translateService.instant('Game.startNightConfirm')).then((confirmed) => {
             if(confirmed) {
                 this.store.dispatch(new StartNightAction()).pipe(first()).subscribe(_ => {
-                    console.log('startNight');
                 });
             }
         });

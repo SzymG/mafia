@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Store } from '@ngxs/store';
+import { AddHistoryItemAction, ClearHistoryItemsAction } from '../history/history.actions';
+import { HISTORY_ITEM_TYPE } from '../history/history.state';
 import { InitPlayersAction } from '../players/players.actions';
 import { Player } from '../players/players.state';
 import * as GameActions from './game.actions';
@@ -121,6 +123,7 @@ export class GameState {
 
     @Action(GameActions.ClearGameAction)
     public clearGame(ctx: StateContext<GameStateModel>) {
+        this.store.dispatch(new ClearHistoryItemsAction());
         const { ...rest } = initialState;
         ctx.patchState({ ...rest });
     }
@@ -207,7 +210,9 @@ export class GameState {
             probability: fullMoon.probability + FULL_MOON_PROBABILITY
         };
 
-        if(isFullMoonActive) {
+        if (isFullMoonActive) {
+            this.store.dispatch(new AddHistoryItemAction({ dayNumber: rest.dayNumber, phase: GAME_PHASE.night, type: HISTORY_ITEM_TYPE.fullMoon }));
+
             newFullMoon = {
                 active: true,
                 probability: FULL_MOON_PROBABILITY

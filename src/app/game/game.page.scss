@@ -2,21 +2,7 @@
     margin-top: 1rem;
     
     .section-title {
-        position: relative;
         margin-bottom: 1rem;
-
-        &:after {
-            content: "";
-            position: absolute;
-            height: 10px;
-            bottom: -16px;
-            left: 30%;
-            right: 30%;
-            background-image: url("/assets/img/bottom.png");
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
     }
 
     .moon-container {

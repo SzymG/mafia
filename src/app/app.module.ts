@@ -4,7 +4,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
 import { GameState } from './store/game/game.state';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -13,6 +12,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { PlayersState } from './store/players/players.state';
 import { UsersState } from './store/user/user.state';
+import { HistoryState } from './store/history/history.state';
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,7 +22,7 @@ import { UsersState } from './store/user/user.state';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        NgxsModule.forRoot([GameState, PlayersState, UsersState]),
+        NgxsModule.forRoot([GameState, PlayersState, UsersState, HistoryState]),
         NgxsStoragePluginModule.forRoot(),
         TranslateModule.forRoot({
             loader: {

@@ -88,3 +88,20 @@ ion-checkbox {
     --background: rgba(0, 0, 0, 0);
     --border-color: var(--ion-color-primary-shade);
 }
+
+.section-title {
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        height: 10px;
+        bottom: -16px;
+        left: 30%;
+        right: 30%;
+        background-image: url("/assets/img/bottom.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}

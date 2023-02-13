@@ -1,9 +1,40 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>history</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title class="ion-text-center">{{ "History.title" | translate }}</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  // TODO historia wykonywanych akcji w grze
+    <ion-grid class="history-grid center-grid">
+        <ng-container *ngIf="hasHistoryItems; else noDataTemplate">
+            <ion-row *ngFor="let day of historyItemsByDay | keyvalue" class="day-container">
+                <ion-col size="12" class="ion-text-center">
+                    <ion-text color="primary" class="day-container-title">
+                        {{ day.key }}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="12" class="phase-container" *ngFor="let phase of day.value | keyvalue">
+                    <ion-row>
+                        <ion-col size="12" class="ion-text-center section-title">
+                            <ion-text color="primary" class="phase-container-title">
+                                {{ "Game." + phase.key | translate }}
+                            </ion-text>
+                        </ion-col>
+                        <ion-col size="12">
+                            <history-item *ngFor="let item of phase.value" [item]="item"></history-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ng-container>
+    </ion-grid>
 </ion-content>
+<ng-template #noDataTemplate>
+    <ion-row>
+        <ion-col size="12" class="ion-text-center">
+            <ion-text color="primary">
+                {{ "History.noData" | translate }}
+            </ion-text>
+        </ion-col>
+    </ion-row>
+</ng-template>
