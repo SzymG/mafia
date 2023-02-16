@@ -13,6 +13,7 @@ export class CharacterListPage implements OnInit, OnDestroy {
     @Select(GameState) game$: Observable<GameStateModel>;
 
     public gamePlayers: GamePlayers;
+    public showAlive: boolean = false;
 
     private subscriber: Subscription = new Subscription();
 
@@ -29,5 +30,10 @@ export class CharacterListPage implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriber.unsubscribe();
+    }
+
+    get allPlayersAlive() {
+        return false;
+        // TODO zwróć odpowiednio;
     }
 }

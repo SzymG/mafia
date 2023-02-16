@@ -18,11 +18,23 @@
         }
     }
 
+    
+    &.killed {
+        .image-container {
+            background-image: url("/assets/img/frame-killed.png");
+        }
+
+        .name {
+            color: var(--ion-color-gray);
+        }
+    }
+
     .name {
         font-size: .9rem;
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
+        color: var(--ion-color-primary);
 
         .character-info {
             font-size: .7rem;
@@ -31,7 +43,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--ion-color-primary);
             border: 1px solid var(--ion-color-primary);
             margin-bottom: .2rem;
         }

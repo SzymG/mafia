@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
+import { GamePlayer } from '../game/game.state';
 import * as HistoryActions from './history.actions';
 
 export const HISTORY_ITEM_TYPE = {
@@ -10,7 +11,9 @@ export const HISTORY_ITEM_TYPE = {
 export interface HistoryItem {
     dayNumber: number,
     phase: string,
-    type: string
+    type: string,
+    sourcePlayer?: GamePlayer,
+    destinationPlayer?: GamePlayer
 }
 
 export interface HistoryStateModel {

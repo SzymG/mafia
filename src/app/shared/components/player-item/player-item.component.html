@@ -1,10 +1,10 @@
-<div class="player-item-container" [class.selected]="selected">
+<div class="player-item-container" [class.killed]="gamePlayer && !gamePlayer?.user?.alive" [class.selected]="selected">
     <ion-row>
         <ion-col size="12" class="image-container" (click)="imageClick()">
             <img [src]="'/assets/img/characters/' + name + '.png'">
         </ion-col>
-        <ion-col size="12" class="ion-text-center" (click)="labelClick()">
-            <ion-text color="primary" class="bold name">
+        <ion-col size="12" class="ion-text-center" (click)="labelClick()" *ngIf="withLabel">
+            <ion-text class="bold name">
                 {{"Characters." + name | translate}}
                 <span *ngIf="selectable" class="character-info">{{player?.symbol}}</span>
             </ion-text>

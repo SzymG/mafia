@@ -52,11 +52,14 @@
         "fullMoon": "Pełnia"
     },
     "CharacterList": {
-        "title": "Lista postaci w grze"
+        "title": "Lista postaci w grze",
+        "showAlive": "Pokaż tylko żywych"
     },
     "PlayerInfo" : {
         "info": "Informacje",
-        "action": "Akcje"
+        "action": "Akcje",
+        "kill": "Zabij",
+        "killConfirm": "Czy na pewno chcesz uśmiercić gracza?"
     },
     "UserManage": {
         "title": "Zarządzanie użytkownikami",
@@ -65,7 +68,8 @@
     "History": {
         "title": "Historia akcji",
         "noData": "Brak akcji do wyświetlenia",
-        "fullMoonMessage": "Rozpoczęcie pełni księżyca"
+        "fullMoonMessage": "Rozpoczęcie pełni księżyca",
+        "killMessage": "Został uśmiercony"
     },
     "Fractions": {
         "TK": "Town Killing",

@@ -9,7 +9,8 @@ import { HistoryItem } from 'src/app/store/history/history.state';
 export class HistoryItemComponent implements OnInit {
     @Input() item: HistoryItem;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
     }

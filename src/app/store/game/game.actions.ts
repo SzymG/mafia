@@ -61,3 +61,8 @@ export class StartDayAction {
     public static readonly type = '[GAME] Start day';
     constructor() {};
 }
+
+export class KillPlayerAction {
+    public static readonly type = '[GAME] Kill Player';
+    constructor(public payload: GamePlayer) {};
+}

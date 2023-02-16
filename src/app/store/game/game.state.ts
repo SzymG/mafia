@@ -19,6 +19,7 @@ export interface GamePlayer extends Player {
     user?: {
         id: string;
         assign_name: string;
+        alive: boolean;
         number?: number;
     }
 }
@@ -153,7 +154,8 @@ export class GameState {
                 player.user = {
                     id: payload?.user?.id || makeid(10),
                     number: rest.gameWithNumbers ? randomPlayerNumber : null,
-                    assign_name: payload.user.assign_name
+                    assign_name: payload.user.assign_name,
+                    alive: true
                 };
             }
 
@@ -176,7 +178,8 @@ export class GameState {
                 player.user = {
                     id: payload[index].id,
                     number: rest.gameWithNumbers ? randomPlayerNumber : null,
-                    assign_name: payload[index].assign_name
+                    assign_name: payload[index].assign_name,
+                    alive: true
                 };
 
                 return player;
@@ -220,6 +223,22 @@ export class GameState {
         }
 
         ctx.setState({ ...rest, phase: GAME_PHASE.night, fullMoon: newFullMoon });
+    }
+
+    @Action(GameActions.KillPlayerAction)
+    public killPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.KillPlayerAction) {
+        const { players, ...rest } = ctx.getState();
+
+        const updatedPlayers = players.map((player) => {
+            if (player.id === payload.id) {
+                player.user.alive = false;
+                this.store.dispatch(new AddHistoryItemAction({ dayNumber: rest.dayNumber, phase: rest.phase, type: HISTORY_ITEM_TYPE.kill, destinationPlayer: payload }));
+            }
+
+            return player;
+        });
+
+        ctx.setState({ ...rest, players: [...updatedPlayers] });
     }
 
     getUniquePlayerNumber(numbers: number[], playersCount: number) {
