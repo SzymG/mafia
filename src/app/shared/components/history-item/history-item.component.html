@@ -7,7 +7,10 @@
             <ion-row class="info-container">
                 <ion-col size="12" class="ion-text-center">
                     <ion-text class="message" color="primary">
-                        {{ item.destinationPlayer ? item.destinationPlayer?.user?.assign_name + ' -> ' : '' }}{{ "History." + item.type + "Message" | translate }}
+                        <span *ngIf="item.destinationPlayer?.user">
+                           {{ item.destinationPlayer?.user?.assign_name }} <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </span>
+                        {{ "History." + item.type + "Message" | translate }}
                     </ion-text>
                 </ion-col>
             </ion-row>

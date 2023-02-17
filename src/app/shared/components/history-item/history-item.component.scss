@@ -3,4 +3,16 @@
         height: 100%;
         align-items: center;
     }
+
+    .message {
+        &, span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            ion-icon {
+                margin: 0 .5rem;
+            }
+        }
+    }
 }

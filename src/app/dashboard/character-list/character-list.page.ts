@@ -32,8 +32,8 @@ export class CharacterListPage implements OnInit, OnDestroy {
         this.subscriber.unsubscribe();
     }
 
-    get allPlayersAlive() {
-        return false;
-        // TODO zwróć odpowiednio;
+    get isAnyOneKilled() {
+        const { town, mafia, neutral, civilian } = this.gamePlayers;
+        return !![...town, ...mafia, ...neutral, ...civilian].find(palyer => !palyer.user.alive);
     }
 }

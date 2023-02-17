@@ -6,7 +6,7 @@
 
 <ion-content>
     <ion-grid class="character-list-grid">
-        <div class="player-switch" *ngIf="!allPlayersAlive">
+        <div class="player-switch" *ngIf="isAnyOneKilled">
             <ion-checkbox color="primary" [(ngModel)]="showAlive"></ion-checkbox>
             <ion-label color="primary" class="ion-margin-start">
                 {{"CharacterList.showAlive" | translate}}
