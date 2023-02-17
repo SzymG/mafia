@@ -66,3 +66,8 @@ export class KillPlayerAction {
     public static readonly type = '[GAME] Kill Player';
     constructor(public payload: GamePlayer) {};
 }
+
+export class EndVotingAction {
+    public static readonly type = '[GAME] End Voting';
+    constructor(public payload: GamePlayer | null) {};
+}

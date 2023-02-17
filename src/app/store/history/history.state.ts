@@ -5,7 +5,8 @@ import * as HistoryActions from './history.actions';
 
 export const HISTORY_ITEM_TYPE = {
     fullMoon: 'fullMoon',
-    kill: 'kill'
+    kill: 'kill',
+    hang: 'hang'
 };
 
 export interface HistoryItem {

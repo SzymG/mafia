@@ -49,7 +49,8 @@
         "startDayConfirm": "Czy na pewno chcesz rozpocząć kolejny dzień?",
         "startNight": "Rozpocznij noc",
         "startNightConfirm": "Czy na pewno chcesz rozpocząć kolejną noc?",
-        "fullMoon": "Pełnia"
+        "fullMoon": "Pełnia",
+        "startVoting": "Rozpocznij głosowanie"
     },
     "CharacterList": {
         "title": "Lista postaci w grze",
@@ -69,7 +70,16 @@
         "title": "Historia akcji",
         "noData": "Brak akcji do wyświetlenia",
         "fullMoonMessage": "Rozpoczęcie pełni księżyca",
-        "killMessage": "Został uśmiercony"
+        "killMessage": "Został uśmiercony",
+        "hangMessage": "Zginął przez powieszenie"
+    },
+    "Voting": {
+        "title": "Głosowanie",
+        "endVoting": "Zakończ głosowanie",
+        "endVotingSuccess": "Pomyślnie zakończono głosowanie!",
+        "endVotingConfirm": "Czy na pewno chcesz zakończyć głosowanie bez powieszenia żadnego z graczy?",
+        "hangPlayer": "Powieś gracza",
+        "hangPlayerConfirm": "Czy na pewno skazujesz wybranego gracza na ścięcie?"
     },
     "Fractions": {
         "TK": "Town Killing",

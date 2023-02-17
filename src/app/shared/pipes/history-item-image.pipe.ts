@@ -12,6 +12,8 @@ export class HistoryItemImagePipe implements PipeTransform {
                 return '/assets/img/full-moon.png';
             case HISTORY_ITEM_TYPE.kill:
                 return '/assets/img/rip.png';
+            case HISTORY_ITEM_TYPE.hang:
+                return '/assets/img/hang.png';
             default:
                 return value;
         }

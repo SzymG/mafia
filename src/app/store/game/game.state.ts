@@ -38,6 +38,7 @@ export interface GameStateModel {
     gameWithNumbers: boolean;
     playersSelected: boolean;
     playersAssigned: boolean;
+    votingEnded: boolean;
     phase: string;
     dayNumber: number,
     fullMoon: {
@@ -53,6 +54,7 @@ const initialState = {
     gameWithNumbers: false,
     playersSelected: false,
     playersAssigned: false,
+    votingEnded: false,
     phase: GAME_PHASE.day,
     dayNumber: 1,
     fullMoon: {
@@ -84,6 +86,9 @@ export class GameState {
         private readonly store: Store
     ) { }
 
+    /**
+     * Odznaczenie gracza jako wybranego do gry (zanim gra się jeszcze zaczęła)
+     */
     @Action(GameActions.UnselectPlayerAction)
     public unselectPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.UnselectPlayerAction) {
         const { players, ...rest } = ctx.getState();
@@ -92,12 +97,18 @@ export class GameState {
         ctx.setState({ ...rest, players: [...selectedPlayers] });
     }
 
+    /**
+     * Zaznaczenie gracza jako wybranego do gry (zanim gra się jeszcze zaczęła)
+     */
     @Action(GameActions.SelectPlayerAction)
     public selectPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectPlayerAction) {
         const { players, ...rest } = ctx.getState();
         ctx.setState({ ...rest, players: [...players, { id: makeid(10), ...payload }] });
     }
 
+    /**
+     * Dopełnienie wybranych graczy odpowiednią liczbą cywilów
+     */
     @Action(GameActions.SelectCiviliansAndMarkAsSelectedAction)
     public selectCivilians(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectCiviliansAndMarkAsSelectedAction) {
         const { players, playersSelected, ...rest } = ctx.getState();
@@ -114,6 +125,9 @@ export class GameState {
         ctx.setState({ ...rest, players: [...players, ...civilians], playersSelected: true, gameWithNumbers: payload.gameWithNumbers });
     }
 
+    /**
+     * Rozpoczęcie gry
+     */
     @Action(GameActions.StartGameAction)
     public startGame(ctx: StateContext<GameStateModel>) {
         this.store.dispatch(new InitPlayersAction());
@@ -122,6 +136,9 @@ export class GameState {
         ctx.patchState({ started: true, ...rest });
     }
 
+    /**
+     * Zakończenie gry
+     */
     @Action(GameActions.ClearGameAction)
     public clearGame(ctx: StateContext<GameStateModel>) {
         this.store.dispatch(new ClearHistoryItemsAction());
@@ -129,12 +146,19 @@ export class GameState {
         ctx.patchState({ ...rest });
     }
 
+    
+    /**
+     * Odznaczenie wszystkich graczy (zanim gra się jeszcze zaczęła)
+     */
     @Action(GameActions.ClearPlayersAction)
     public clearPlayers(ctx: StateContext<GameStateModel>) {
         const { maxPlayersCount } = initialState;
         ctx.patchState({ players: [], maxPlayersCount });
     }
 
+    /**
+     * Zmiana liczby graczy (zanim gra się jeszcze zaczęła)
+     */
     @Action(GameActions.ChangePlayersCountAction)
     public changePlayersCount(ctx: StateContext<GameStateModel>, { payload }: GameActions.ChangePlayersCountAction) {
         const { players, maxPlayersCount, ...rest } = ctx.getState();
@@ -142,6 +166,9 @@ export class GameState {
         ctx.patchState({ players: payload > maxPlayersCount ? players : [], maxPlayersCount: payload, ...rest });
     }
 
+    /**
+     * Przypisanie osoby do postaci
+     */
     @Action(GameActions.AssignPlayerAction)
     public assignPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignPlayerAction) {
         const { players, ...rest } = ctx.getState();
@@ -165,6 +192,9 @@ export class GameState {
         ctx.setState({ ...rest, players: [...updatedPlayers] });
     }
 
+    /**
+     * Automatyczne przypisanie osób do wszystkich postaci
+     */
     @Action(GameActions.AssignAllPlayersAction)
     public assignAllPlayers(ctx: StateContext<GameStateModel>, { payload }: GameActions.AssignAllPlayersAction) {
         const { players, ...rest } = ctx.getState();
@@ -189,6 +219,9 @@ export class GameState {
         }
     }
 
+    /**
+     * Oznaczenie, że wszyscy gracze są przypisani do postaci
+     */
     @Action(GameActions.MarkPlayersAsAssignedAction)
     public markPlayersAsAssigned(ctx: StateContext<GameStateModel>) {
         const { playersAssigned, ...rest } = ctx.getState();
@@ -196,13 +229,19 @@ export class GameState {
         ctx.setState({ ...rest, playersAssigned: true });
     }
 
+    /**
+     * Rozpoczęcie kolejnego dnia
+     */
     @Action(GameActions.StartDayAction)
     public startDay(ctx: StateContext<GameStateModel>) {
-        const { phase, dayNumber, ...rest } = ctx.getState();
+        const { phase, dayNumber, votingEnded, ...rest } = ctx.getState();
 
-        ctx.setState({ ...rest, phase: GAME_PHASE.day, dayNumber: dayNumber + 1 });
+        ctx.setState({ ...rest, phase: GAME_PHASE.day, dayNumber: dayNumber + 1, votingEnded: false });
     }
 
+    /**
+     * Rozpoczęcie kolejnej nocy
+     */
     @Action(GameActions.StartNightAction)
     public startNight(ctx: StateContext<GameStateModel>) {
         const { phase, fullMoon, ...rest } = ctx.getState();
@@ -225,6 +264,9 @@ export class GameState {
         ctx.setState({ ...rest, phase: GAME_PHASE.night, fullMoon: newFullMoon });
     }
 
+    /**
+     * Zabicie gracza przez GM
+     */
     @Action(GameActions.KillPlayerAction)
     public killPlayer(ctx: StateContext<GameStateModel>, { payload }: GameActions.KillPlayerAction) {
         const { players, ...rest } = ctx.getState();
@@ -239,6 +281,29 @@ export class GameState {
         });
 
         ctx.setState({ ...rest, players: [...updatedPlayers] });
+    }
+
+    /**
+     * Zakończenie głosowania plus ewentualne powieszenie przegłosowanego gracza
+     */
+    @Action(GameActions.EndVotingAction)
+    public endVoting(ctx: StateContext<GameStateModel>, { payload }: GameActions.EndVotingAction) {
+        const { players, votingEnded, ...rest } = ctx.getState();
+        let updatedPlayers = players;
+
+        // Jeśli ktoś został powieszony
+        if(payload) {
+            updatedPlayers = players.map((player) => {
+                if (player.id === payload.id) {
+                    player.user.alive = false;
+                    this.store.dispatch(new AddHistoryItemAction({ dayNumber: rest.dayNumber, phase: rest.phase, type: HISTORY_ITEM_TYPE.hang, destinationPlayer: payload }));
+                }
+    
+                return player;
+            });
+        }
+
+        ctx.setState({ ...rest, players: [...updatedPlayers], votingEnded: true });
     }
 
     getUniquePlayerNumber(numbers: number[], playersCount: number) {

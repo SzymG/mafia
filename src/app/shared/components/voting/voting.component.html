@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline" defaultHref="tabs/dashboard/game" (click)="dismiss()">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{"Voting.title" | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="voting-grid">
+        <ion-row class="ion-justify-content-center">
+            <div id="timer" (click)="resetTimer()">
+                <div class="icon-container">
+                    <ion-icon name="hourglass-outline"></ion-icon>
+                </div>
+                <div class="time-container">
+                    {{time}}
+                </div>
+            </div>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <div class="player-switch">
+                    <ion-checkbox color="primary" [(ngModel)]="showAlive"></ion-checkbox>
+                    <ion-label color="primary" class="ion-margin-start">
+                        {{"CharacterList.showAlive" | translate}}
+                    </ion-label>
+                </div>
+            </ion-col>
+            <ng-container *ngFor="let player of players">
+                <ion-col size="4" *ngIf="!showAlive || (showAlive && player.user?.alive)">
+                    <player-item [name]="player.name" [withLabel]="false" [selectable]="true" [selected]="selectedPlayer?.id === player.id"
+                        (selectEvent)="selectPlayer(player)"></player-item>
+                        <ion-text color="primary" class="assign-title-container">
+                            <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
+                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                        </ion-text>
+                </ion-col>
+            </ng-container>
+            <ion-col size="12">
+                <ion-button class="bold" (click)="killSelected()" expand="block" size="large">
+                    {{"Voting." + (selectedPlayer ? 'hangPlayer' : 'endVoting') | translate}}
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ToolbarActionsComponent } from './components/toolbar-actions/toolbar-actions.component';
 import { HistoryItemComponent } from './components/history-item/history-item.component';
 import { HistoryItemImagePipe } from './pipes/history-item-image.pipe';
+import { VotingComponent } from './components/voting/voting.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HistoryItemImagePipe } from './pipes/history-item-image.pipe';
         PlayerInfoModalComponent,
         ToolbarActionsComponent,
         HistoryItemComponent,
-        HistoryItemImagePipe
+        HistoryItemImagePipe,
+        VotingComponent
     ],
     imports: [
         CommonModule,
@@ -28,7 +30,8 @@ import { HistoryItemImagePipe } from './pipes/history-item-image.pipe';
         PlayerItemComponent,
         PlayerInfoModalComponent,
         ToolbarActionsComponent,
-        HistoryItemComponent
+        HistoryItemComponent,
+        VotingComponent
     ]
 })
 export class SharedModule { }
