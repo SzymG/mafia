@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
@@ -12,7 +12,11 @@ import { ModalService } from '../../services/modal.service';
     templateUrl: './player-info-modal.component.html',
     styleUrls: ['./player-info-modal.component.scss'],
 })
-export class PlayerInfoModalComponent implements OnInit {
+export class PlayerInfoModalComponent implements OnInit, OnDestroy {
+    @HostListener('window:popstate', ['$event']) dismissModal() {
+        this.dismiss();
+    }
+
     public segment: string = 'info';
     public player: GamePlayer;
     public actionable: boolean = false;
@@ -24,7 +28,19 @@ export class PlayerInfoModalComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        const modalState = {
+            modal: true,
+            desc: 'User assign modal'
+        };
+
+        history.pushState(modalState, null);
         this.actionable = !!this.player.user;
+    }
+
+    ngOnDestroy(): void {
+        if (window.history.state.modal) {
+            history.back();
+        }
     }
 
     dismiss() {

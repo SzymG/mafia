@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,11 @@ import { User, UsersState, UserStateModel } from 'src/app/store/user/user.state'
 })
 export class UserManagePage implements OnInit, OnDestroy {
     @Select(UsersState) users$: Observable<UserStateModel>;
-    
+
+    @HostListener('window:popstate', ['$event']) dismissModal() {
+        this.dismiss();
+    }
+
     public users: User[] = [];
     public userName: string;
 
@@ -22,18 +26,28 @@ export class UserManagePage implements OnInit, OnDestroy {
     constructor(
         private readonly modalCtrl: ModalController,
         private readonly store: Store
-    ) {   
+    ) {
         this.subscriber.add(
-            this.users$.subscribe((userState) => { 
+            this.users$.subscribe((userState) => {
                 this.users = userState.users;
             })
         );
     }
 
     ngOnInit() {
+        const modalState = {
+            modal: true,
+            desc: 'User manage modal'
+        };
+
+        history.pushState(modalState, null);
     }
 
     ngOnDestroy(): void {
+        if (window.history.state.modal) {
+            history.back();
+        }
+
         this.subscriber.unsubscribe();
     }
 

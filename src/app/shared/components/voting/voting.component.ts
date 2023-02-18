@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { interval, Subscription } from 'rxjs';
@@ -14,6 +14,10 @@ import { ToastService } from '../../services/toast.service';
     styleUrls: ['./voting.component.scss'],
 })
 export class VotingComponent implements OnInit, OnDestroy {
+    @HostListener('window:popstate', ['$event']) dismissModal() {
+        this.dismiss();
+    }
+
     public players: GamePlayer[];
     public selectedPlayer: GamePlayer;
     public showAlive: boolean = true;
@@ -34,9 +38,19 @@ export class VotingComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        const modalState = {
+            modal: true,
+            desc: 'User manage modal'
+        };
+
+        history.pushState(modalState, null);
     }
 
     ngOnDestroy(): void {
+        if (window.history.state.modal) {
+            history.back();
+        }
+
         this.subscriber.unsubscribe();
     }
 

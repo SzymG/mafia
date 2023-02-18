@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -14,6 +14,10 @@ import { User, UsersState, UserStateModel } from 'src/app/store/user/user.state'
 })
 export class AssignModalPage implements OnInit, OnDestroy {
     @Select(UsersState) users$: Observable<UserStateModel>;
+
+    @HostListener('window:popstate', ['$event']) dismissModal() {
+        this.dismiss();
+    }
     
     public users: User[] = [];
     public player: GamePlayer;
@@ -35,9 +39,19 @@ export class AssignModalPage implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        const modalState = {
+            modal: true,
+            desc: 'User assign modal'
+        };
+
+        history.pushState(modalState, null);
     }
 
     ngOnDestroy(): void {
+        if (window.history.state.modal) {
+            history.back();
+        }
+
         this.subscriber.unsubscribe();
     }
 

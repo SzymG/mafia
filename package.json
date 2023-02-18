@@ -6,7 +6,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev": "ionic cordova run android -ls",
+    "start:android": "ionic cordova run android",
     "build": "ng build",
+    "build:android": "ionic cordova build --release android",
+    "build-full:android": "ionic cordova build --release android && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mafia.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk mafia && del /f \"./apps/v%npm_config_number%\" && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ./apps/v%npm_config_number%/mafia.apk",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
