@@ -19,7 +19,7 @@ export class PlayerItemComponent implements OnChanges {
 
     @Output() selectEvent = new EventEmitter<boolean>();
 
-    private player: Player;
+    public player: Player;
 
     constructor(
         private readonly modalCtrl: ModalController,

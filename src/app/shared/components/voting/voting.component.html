@@ -35,7 +35,7 @@
                         (selectEvent)="selectPlayer(player)"></player-item>
                         <ion-text color="primary" class="assign-title-container">
                             <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
-                            <p class="assign-title" (click)="assignPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+                            <p class="assign-title" (click)="selectPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
                         </ion-text>
                 </ion-col>
             </ng-container>
