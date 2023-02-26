@@ -3,6 +3,7 @@
         display: flex;
         justify-content: end;
         align-items: center;
+
         .symbol {
             background-image: url("/assets/img/frame.png");
             background-repeat: no-repeat;
@@ -16,6 +17,12 @@
             align-items: center;
             color: var(--ion-color-primary);
         }
+    }
+
+    .name {
+        color: var(--ion-color-primary);
+        font-weight: 600;
+        font-size: 1.7rem;
     }
 }
 

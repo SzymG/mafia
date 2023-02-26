@@ -10,40 +10,151 @@
 
 <ion-content>
     <ion-grid class="voting-grid">
-        <ion-row class="ion-justify-content-center">
-            <div id="timer" (click)="resetTimer()">
-                <div class="icon-container">
-                    <ion-icon name="hourglass-outline"></ion-icon>
-                </div>
-                <div class="time-container">
-                    {{time}}
-                </div>
-            </div>
+        <ion-row class="fixed-top">
+            <ion-col size="12" class="ion-no-padding">
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-row class="ion-justify-content-center">
+                            <div id="timer" (click)="resetTimer()">
+                                <div class="icon-container">
+                                    <ion-icon name="hourglass-outline"></ion-icon>
+                                </div>
+                                <div class="time-container">
+                                    {{time}}
+                                </div>
+                            </div>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col size="6" id="reset" (click)="resetVoting()">
+                        <div class="icon-container">
+                            <ion-icon name="refresh-outline"></ion-icon>
+                        </div>
+                        <div class="label">
+                            {{"Voting.reset" | translate}}
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-justify-content-center">
+                    <ion-col size="6">
+                        <ion-button class="bold" (click)="endVoting()" expand="block" size="small">
+                            {{"Voting.endVoting" | translate}}
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="6" *ngIf="canStartGuiltyPhase">
+                        <ion-button class="bold" (click)="makeGuilty()" expand="block" size="small">
+                            {{"Voting.guilty" | translate}}
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="6" *ngIf="canKillSelectedPlayer">
+                        <ion-button class="bold" (click)="killSelected()" expand="block" size="small">
+                            {{"Voting.hangPlayer" | translate}}
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
         </ion-row>
-        <ion-row>
-            <ion-col size="12">
-                <div class="player-switch">
-                    <ion-checkbox color="primary" [(ngModel)]="showAlive"></ion-checkbox>
-                    <ion-label color="primary" class="ion-margin-start">
-                        {{"CharacterList.showAlive" | translate}}
-                    </ion-label>
-                </div>
-            </ion-col>
-            <ng-container *ngFor="let player of players">
-                <ion-col size="4" *ngIf="!showAlive || (showAlive && player.user?.alive)">
-                    <player-item [name]="player.name" [withLabel]="false" [selectable]="true" [selected]="selectedPlayer?.id === player.id"
-                        (selectEvent)="selectPlayer(player)"></player-item>
-                        <ion-text color="primary" class="assign-title-container">
-                            <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
-                            <p class="assign-title" (click)="selectPlayer(player)">{{ player.user?.assign_name || ("CharacterAssign.clickToAssign" | translate) }}</p>
+        <ion-row class="scrollable">
+            <ion-col size="12" *ngIf="!isGuiltyPhase; else guiltyPhaseTemplate">
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-text color="primary">
+                            <h5 class="ion-text-center bold section-title">{{"Basic.players" | translate}}</h5>
                         </ion-text>
-                </ion-col>
-            </ng-container>
-            <ion-col size="12">
-                <ion-button class="bold" (click)="killSelected()" expand="block" size="large">
-                    {{"Voting." + (selectedPlayer ? 'hangPlayer' : 'endVoting') | translate}}
-                </ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <div class="player-switch">
+                            <ion-checkbox color="primary" [(ngModel)]="showAlive"></ion-checkbox>
+                            <ion-label color="primary" class="ion-margin-start">
+                                {{"CharacterList.showAlive" | translate}}
+                            </ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ng-container *ngFor="let player of players">
+                        <ion-col size="12" *ngIf="!showAlive || (showAlive && player.user?.alive)"
+                            class="ion-no-padding">
+                            <ion-row>
+                                <ion-col size="3">
+                                    <player-item [name]="player.name" [withLabel]="false" [class]="'ion-no-padding'"
+                                        [selected]="selectedPlayer?.id === player.id"></player-item>
+                                </ion-col>
+                                <ion-col size="6" class="assign-title-container">
+                                    <ion-text color="primary">
+                                        <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
+                                        <p class="assign-title">{{ player.user?.assign_name }}</p>
+                                    </ion-text>
+                                </ion-col>
+                                <ion-col size="3">
+                                    <div class="vote-container">
+                                        <span class="remove"
+                                            [style.visibility]="(player.voting.for - player.voting.against > 0) ? 'visible' : 'hidden'"
+                                            (click)="addVoteAgainst(player)">
+                                            <ion-icon name="remove-circle-outline"></ion-icon>
+                                        </span>
+                                        <span class="count">{{player.voting.for - player.voting.against}}</span>
+                                        <span class="add" (click)="addVoteFor(player)">
+                                            <ion-icon name="add-circle-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ng-container>
+                </ion-row>
             </ion-col>
+            <ng-template #guiltyPhaseTemplate>
+                <ion-col size="12">
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-text color="primary">
+                                <h5 class="ion-text-center bold section-title">{{"Voting.guiltyTitle" | translate : { name: selectedPlayer.user.assign_name } }}</h5>
+                            </ion-text>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-justify-content-center">
+                        <ion-col size="5">
+                            <player-item [name]="selectedPlayer.name" [withLabel]="false" [class]="'ion-no-padding'"
+                                [selected]="true"></player-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-justify-content-center">
+                        <ion-col size="12" class="ion-text-center guilty-title">
+                            <ion-text color="primary">
+                                {{"Voting.guilty" | translate}}
+                            </ion-text>
+                        </ion-col>
+                        <ion-col size="3">
+                            <div class="vote-container">
+                                <span class="remove"
+                                    [style.visibility]="(selectedPlayer.voting.for > 0) ? 'visible' : 'hidden'"
+                                    (click)="removeVoteFor(selectedPlayer)">
+                                    <ion-icon name="remove-circle-outline"></ion-icon>
+                                </span>
+                                <span class="count">{{selectedPlayer.voting.for}}</span>
+                                <span class="add" (click)="addVoteFor(selectedPlayer)">
+                                    <ion-icon name="add-circle-outline"></ion-icon>
+                                </span>
+                            </div>
+                        </ion-col>
+                        <ion-col size="3">
+                            <div class="vote-container">
+                                <span class="remove"
+                                    [style.visibility]="(selectedPlayer.voting.against > 0) ? 'visible' : 'hidden'"
+                                    (click)="removeVoteAgainst(selectedPlayer)">
+                                    <ion-icon name="remove-circle-outline"></ion-icon>
+                                </span>
+                                <span class="count">{{selectedPlayer.voting.against}}</span>
+                                <span class="add" (click)="addVoteAgainst(selectedPlayer)">
+                                    <ion-icon name="add-circle-outline"></ion-icon>
+                                </span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ng-template>
         </ion-row>
     </ion-grid>
 </ion-content>

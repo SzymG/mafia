@@ -32,6 +32,9 @@
                                 <ion-col size="12" class="image-symbol">
                                     <img [src]="'/assets/img/characters/' + player.name + '.png'">
                                 </ion-col>
+                                <ion-col size="12" class="name-container ion-text-center">
+                                    <div class="name">{{ "Characters." + player.name | translate }}</div>
+                                </ion-col>
                                 <ion-col size="12" class="symbol-container">
                                     <div class="symbol">{{player.symbol}}</div>
                                 </ion-col>

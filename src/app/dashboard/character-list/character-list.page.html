@@ -22,7 +22,7 @@
                 <ion-row>
                     <ng-container *ngFor="let player of gamePlayers?.town">
                         <ion-col size="6" *ngIf="!showAlive || (showAlive && player.user?.alive)">
-                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true"></player-item>
+                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true" [showInfoModal]="true"></player-item>
                             <ion-text class="list-title-container" [class.killed]="!player.user?.alive">
                                 <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
                                 <p class="assign-title">{{ player.user?.assign_name }}</p>
@@ -42,7 +42,7 @@
                 <ion-row>
                     <ng-container *ngFor="let player of gamePlayers?.mafia">
                         <ion-col size="6" *ngIf="!showAlive || (showAlive && player.user?.alive)">
-                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true"></player-item>
+                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true" [showInfoModal]="true"></player-item>
                             <ion-text class="list-title-container" [class.killed]="!player.user?.alive">
                                 <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
                                 <p class="assign-title">{{ player.user?.assign_name }}</p>
@@ -62,7 +62,7 @@
                 <ion-row>
                     <ng-container *ngFor="let player of gamePlayers?.neutral">
                         <ion-col size="6" *ngIf="!showAlive || (showAlive && player.user?.alive)">
-                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true"></player-item>
+                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true" [showInfoModal]="true"></player-item>
                             <ion-text class="list-title-container" [class.killed]="!player.user?.alive">
                                 <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
                                 <p class="assign-title">{{ player.user?.assign_name }}</p>
@@ -82,7 +82,7 @@
                 <ion-row>
                     <ng-container *ngFor="let player of gamePlayers?.civilian">
                         <ion-col size="6" *ngIf="!showAlive || (showAlive && player.user?.alive)">
-                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true"></player-item>
+                            <player-item [gamePlayer]="player" [name]="player.name" [selected]="true" [showInfoModal]="true"></player-item>
                             <ion-text class="list-title-container" [class.killed]="!player.user?.alive">
                                 <div class="number" *ngIf="player.user?.number">{{player.user?.number}}</div>
                                 <p class="assign-title">{{ player.user?.assign_name }}</p>

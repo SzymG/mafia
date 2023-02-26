@@ -12,8 +12,10 @@ import { PlayerInfoModalComponent } from '../player-info-modal/player-info-modal
 })
 export class PlayerItemComponent implements OnChanges {
     @Input() name: string;
+    @Input() class: string;
     @Input() selected: boolean = false;
     @Input() selectable: boolean = false;
+    @Input() showInfoModal: boolean = false;
     @Input() withLabel: boolean = true;
     @Input() gamePlayer: GamePlayer;
 
@@ -24,28 +26,31 @@ export class PlayerItemComponent implements OnChanges {
     constructor(
         private readonly modalCtrl: ModalController,
         private readonly playerService: PlayersService
-    ) {}
+    ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         this.player = this.gamePlayer || this.playerService.getByName(this.name);
     }
 
     imageClick() {
-        if(this.selectable) {
+        if (this.selectable) {
             this.selectEvent.emit(!this.selected);
-        } else {
+        }
+        if (this.showInfoModal) {
             this.showPlayerModal();
         }
     }
 
     labelClick() {
-        this.showPlayerModal();
+        if (this.showInfoModal) {
+            this.showPlayerModal();
+        }
     }
 
     private async showPlayerModal() {
         const modal = await this.modalCtrl.create({
             component: PlayerInfoModalComponent,
-            componentProps: { 
+            componentProps: {
                 player: this.player
             }
         });
