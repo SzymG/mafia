@@ -3,7 +3,7 @@ import { Action, State, StateContext } from '@ngxs/store';
 import * as PlayersActions from './players.actions';
 
 export const CIVILIAN_SYMBOL = 'RT';
-export const TOWN_FRACTIONS = ['TK', 'TI', 'TP', 'TS', 'TL', CIVILIAN_SYMBOL];
+export const TOWN_FRACTIONS = ['A', 'TK', 'TI', 'TP', 'TS', 'TL', CIVILIAN_SYMBOL];
 export const MAFIA_FRACTIONS = ['MK', 'MS'];
 export const NEUTRAL_FRACTIONS = ['N', 'NK', 'NE'];
 
