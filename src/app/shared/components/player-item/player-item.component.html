@@ -5,7 +5,7 @@
         </ion-col>
         <ion-col size="12" class="ion-text-center" (click)="labelClick()" *ngIf="withLabel">
             <ion-text class="bold name">
-                {{"Characters." + name | translate}}
+                {{ ("Characters." + name + ".name") | translate}}
                 <span *ngIf="selectable" class="character-info">{{player?.symbol}}</span>
             </ion-text>
         </ion-col>

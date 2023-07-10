@@ -12,9 +12,9 @@ export class SelectPlayerAction {
     constructor(public payload: Player) {}
 }
 
-export class SelectCiviliansAndMarkAsSelectedAction {
-    public static readonly type = '[GAME] Select Civilians';
-    constructor(public payload: {civilians: Player[], gameWithNumbers: boolean}) {}
+export class SelectTowniesAndMarkAsSelectedAction {
+    public static readonly type = '[GAME] Select Townies';
+    constructor(public payload: {townies: Player[], gameWithNumbers: boolean}) {}
 }
 
 export class StartGameAction {

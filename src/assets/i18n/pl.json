@@ -56,11 +56,13 @@
         "title": "Lista postaci w grze",
         "showAlive": "Pokaż tylko żywych"
     },
-    "PlayerInfo" : {
+    "PlayerInfo": {
         "info": "Informacje",
         "action": "Akcje",
         "kill": "Zabij",
-        "killConfirm": "Czy na pewno chcesz uśmiercić gracza?"
+        "killConfirm": "Czy na pewno chcesz uśmiercić gracza?",
+        "victoryCondition": "Warunek zwycięstwa",
+        "description": "Opis"
     },
     "UserManage": {
         "title": "Zarządzanie użytkownikami",
@@ -93,47 +95,510 @@
         "TS": "Town Support",
         "TL": "Town Law",
         "RT": "Random Town",
-        "MK": "Mafia Killing",
+        "GF": "Godfather",
+        "MF": "Mafiozo",
         "MS": "Mafia Support",
         "N": "Neutral",
         "NE": "Neutral Evil",
         "NK": "Neutral Killing"
     },
     "Characters": {
-        "lawyer": "Adwokat",
-        "agent": "Agent",
-        "alchemist": "Alchemik",
-        "amnesia": "Cierpiący na amnezję",
-        "barman": "Barman",
-        "clown": "Błazen",
-        "mayor": "Burmistrz",
-        "harlot": "Nierządnica",
-        "consiliere": "Consiliere",
-        "dentist": "Dentysta",
-        "don": "Ojciec Chrzestny",
-        "doctor": "Doktor",
-        "girl": "Mała dziewczynka",
-        "escort": "Eskorta (prostytutka)",
-        "gravedigger": "Grabarz",
-        "priest": "Kapłan",
-        "hunter": "Łowca",
-        "caporegime": "Caporegime (mafiozo)",
-        "magican": "Magik",
-        "medium": "Medium",
-        "avenger": "Mściciel",
-        "guard": "Ochroniarz",
-        "prosecutor": "Oskarżyciel",
-        "cheater": "Oszust",
-        "killer": "Seryjny zabójca",
-        "survivalist": "Surwiwalista",
-        "matchmaker": "Swatka",
-        "madman": "Szaleniec",
-        "blackmailer": "Szaleniec",
-        "transporter": "Transporter",
-        "vampire": "Wampir",
-        "veteran": "Weteran",
-        "janitor": "Woźny",
-        "reviver": "Wskrzesiciel",
-        "civilian": "Cywil"
+        "godfather": {
+            "name": "Ojciec chrzestny",
+            "info": "Głowa rodziny mafijnej, ma decydujący głos, jeśli chodzi o wybór nocnej ofiary. Niewrażliwy na nocny atak. Rozkazy OJCA CHRZESTNEGO wykonuje MAFIOSO, lecz gdy ten ginie OJCIEC CHRZESTNY zmienia się w mafioza i zaczyna zabijać dla mafii, przy zachowaniu swojej karty. Szeryf widzi go, jako postać niewinną, a Agent jako mieszczucha.",
+            "victoryCondition": "Wyeliminować NK, Ronina oraz liczba członkowie mafii >= miasto.",
+            "descriptionHeadline": "Jesteś szefem tego miasta, połowa się tobie kłania, a drugie pół nie wie kim jesteś, szara eminencja w garniturze i główny „Lalkarz”, zarządzaj tym imperium grzechu.",
+            "description": "Niewrażliwy na nocny atak. Głowa rodziny mafijnej, w nocy ma decydujący głos, jeśli chodzi o wybór nocnej ofiary."
+        },
+        "mafioso": {
+            "name": "Mafiozo",
+            "info": "Wykonuje rozkazy OJCA CHRZESTNEGO. Dokonuje ataków na zlecenie mafii w nocy.  Część postaci może zabić go w trakcie nocnego działania. Jeśli MAFIOSO ginie zastępuje go OJCIEC CHRZESTNY, jeśli ten też jest wyeliminowany MAFIOSEM staje się MS.",
+            "victoryCondition": "Wyeliminować NK, Ronina  oraz liczba  członkowie mafii >= miasto.",
+            "descriptionHeadline": "Jesteś zbrojnym ramieniem i lewą ręką Dona, elegancko eliminujesz wskazane cele, bez pytania i bez skrupułów. Zero litości dla wrogów rodziny.",
+            "description": "W nocy wykonuje rozkazy OJCA CHRZESTNEGO. Udaje się do ofiary wskazanej przez OJCA CHRZESTNEGO i dokonuje ataku."
+        },
+        "agent": {
+            "name": "Agent",
+            "info": "Każdej nocy może wykonać  zwiad i dowiedzieć się bezpośrednio i konkretnie kim jest dana postać.Jeśli odwiedzi Mordercę,Wilkołaka w pełni umiera, w innym wypadku NK są określane jako mieszczuchy, DON jest zawsze mieszczuchem dla Agenta, Oszust może wpłynąć na wyniki śledztwa agenta.",
+            "victoryCondition": "Wyeliminować NK, MAFIĘ, Ronina",
+            "descriptionHeadline": "Jesteś największą podporą miasta, nocami zakradasz się do domów i zdobywasz ciekawe informacje na temat twoich sąsiadów.",
+            "description": "W nocy może wykonać zwiad i dowiedzieć się jaką rolę ma dana postać."
+        },
+        "clown": {
+            "name": "Błazen",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "mourder": {
+            "name": "Morderca",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "janitor": {
+            "name": "Woźny",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "bodyguard": {
+            "name": "Ochroniarz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "doctor": {
+            "name": "Doktor",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "escortLady": {
+            "name": "Eskorta",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "femmeFatale": {
+            "name": "Femme fatale",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "medium": {
+            "name": "Medium",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "ressurector": {
+            "name": "Wskrzesiciel",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "avenger": {
+            "name": "Mściciel",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "hangman": {
+            "name": "Kat",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "matchmaker": {
+            "name": "Swatka",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "mayor": {
+            "name": "Burmistrz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "littleGirl": {
+            "name": "Mała dziewczynka",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "townie": {
+            "name": "Mieszczuch",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "bartender": {
+            "name": "Barman",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "insomniac": {
+            "name": "Lunatyk",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "survivalist": {
+            "name": "Surwiwalista",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "illusionist": {
+            "name": "Iluzjonista",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "madman": {
+            "name": "Szaleniec",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "blackmailer": {
+            "name": "Szantażysta",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "priest": {
+            "name": "Kapłan",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "woodsman": {
+            "name": "Leśnik",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "undertaker": {
+            "name": "Grabarz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "alchemist": {
+            "name": "Alchemik",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "transporter": {
+            "name": "Transporter",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "oldtimer": {
+            "name": "Weteran",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "frauder": {
+            "name": "Oszust",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "counselor": {
+            "name": "Doradca",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "amnestiac": {
+            "name": "Cierpiący na amnezję",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "lawyer": {
+            "name": "Adwokat",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "wampire": {
+            "name": "Wampir",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "sailor": {
+            "name": "Żeglarz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "witch": {
+            "name": "Wiedźma",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "assasin": {
+            "name": "Asasyn",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "spy": {
+            "name": "Szpieg",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "prisonGuard": {
+            "name": "Strażnik więzienny",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "templar": {
+            "name": "Templariusz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "thief": {
+            "name": "Złodziej",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "seer": {
+            "name": "Wieszcz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "zombie": {
+            "name": "Zombie",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "psychiatrist": {
+            "name": "Psychiatra",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "shapeshifter": {
+            "name": "Zmiennokształtny",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "hunter": {
+            "name": "Łowca",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "instigator": {
+            "name": "Podżegacz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "coroner": {
+            "name": "Koroner",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "sheriff": {
+            "name": "Szeryf",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "dentist": {
+            "name": "Dentysta",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "manipulator": {
+            "name": "Manipulator",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "voodooMaster": {
+            "name": "Mistrz voodoo",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "butcher": {
+            "name": "Rzeźnik",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "baker": {
+            "name": "Piekarz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "fool": {
+            "name": "Głupek",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "peacefulTownie": {
+            "name": "Pokojowy mieszkaniec",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "vangefulTownie": {
+            "name": "Mściwy mieszkaniec",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "werewolf": {
+            "name": "Wilkołak",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "arsonist": {
+            "name": "Podpalacz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "judge": {
+            "name": "Sędzia",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "prosecutor": {
+            "name": "Oskarżyciel",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "guardianAngel": {
+            "name": "Anioł stróż",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "tailor": {
+            "name": "Krawiec",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "tracker": {
+            "name": "Tropiciel",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "watcher": {
+            "name": "Obserwator",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "ronin": {
+            "name": "Ronin",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "deamon": {
+            "name": "Demon",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "bauza": {
+            "name": "Bauza",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "journalist": {
+            "name": "Dziennikarz",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        },
+        "cultist": {
+            "name": "Kultysta",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
+        }
     }
 }

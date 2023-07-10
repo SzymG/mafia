@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { GamePlayer, GamePlayers, GameState, GameStateModel } from 'src/app/store/game/game.state';
-import { CIVILIAN_SYMBOL, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
+import { TOWNIE_SYMBOL, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
 
 @Injectable({
     providedIn: 'root'
@@ -39,10 +39,10 @@ export class GameService implements OnDestroy {
 
     getPlayers(): GamePlayers {
         return {
-            town: this.gamePlayers.filter(player => TOWN_FRACTIONS.includes(player.symbol) && player.symbol !== CIVILIAN_SYMBOL),
+            town: this.gamePlayers.filter(player => TOWN_FRACTIONS.includes(player.symbol) && player.symbol !== TOWNIE_SYMBOL),
             mafia: this.gamePlayers.filter(player => MAFIA_FRACTIONS.includes(player.symbol)),
             neutral: this.gamePlayers.filter(player => NEUTRAL_FRACTIONS.includes(player.symbol)),
-            civilian: this.gamePlayers.filter(player => CIVILIAN_SYMBOL === player.symbol),
+            townie: this.gamePlayers.filter(player => TOWNIE_SYMBOL === player.symbol),
         };
     }
 

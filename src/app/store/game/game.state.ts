@@ -28,7 +28,7 @@ export interface GamePlayers {
     town: GamePlayer[],
     mafia: GamePlayer[],
     neutral: GamePlayer[],
-    civilian: GamePlayer[]
+    townie: GamePlayer[]
 }
 
 export interface GameStateModel {
@@ -109,20 +109,20 @@ export class GameState {
     /**
      * Dopełnienie wybranych graczy odpowiednią liczbą cywilów
      */
-    @Action(GameActions.SelectCiviliansAndMarkAsSelectedAction)
-    public selectCivilians(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectCiviliansAndMarkAsSelectedAction) {
+    @Action(GameActions.SelectTowniesAndMarkAsSelectedAction)
+    public selectTownies(ctx: StateContext<GameStateModel>, { payload }: GameActions.SelectTowniesAndMarkAsSelectedAction) {
         const { players, playersSelected, ...rest } = ctx.getState();
 
-        const civilians: GamePlayer[] = [];
+        const townies: GamePlayer[] = [];
 
-        payload.civilians.forEach((civil) => {
-            civilians.push({
+        payload.townies.forEach((civil) => {
+            townies.push({
                 id: makeid(10),
                 ...civil
             });
         });
 
-        ctx.setState({ ...rest, players: [...players, ...civilians], playersSelected: true, gameWithNumbers: payload.gameWithNumbers });
+        ctx.setState({ ...rest, players: [...players, ...townies], playersSelected: true, gameWithNumbers: payload.gameWithNumbers });
     }
 
     /**

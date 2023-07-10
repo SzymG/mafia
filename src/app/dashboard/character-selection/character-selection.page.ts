@@ -9,7 +9,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 import { ConfigWithCount, PlayersConfigService } from 'src/app/shared/services/players-config.service';
 import { PlayersService } from 'src/app/shared/services/players.service';
 import {
-    ChangePlayersCountAction, ClearPlayersAction, SelectCiviliansAndMarkAsSelectedAction,
+    ChangePlayersCountAction, ClearPlayersAction, SelectTowniesAndMarkAsSelectedAction,
     SelectPlayerAction, UnselectPlayerAction
 } from 'src/app/store/game/game.actions';
 import { GameState, GameStateModel, GamePlayer } from 'src/app/store/game/game.state';
@@ -84,26 +84,26 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
 
     confirmSelection() {
         const ciliviansArray = [];
-        const civilian = this.playersService.getByName('civilian');
+        const townie = this.playersService.getByName('townie');
 
-        for (let i = 0; i < this.civilianCount; i++) { ciliviansArray.push(civilian) };
+        for (let i = 0; i < this.townieCount; i++) { ciliviansArray.push(townie) };
 
-        this.store.dispatch(new SelectCiviliansAndMarkAsSelectedAction({ civilians: ciliviansArray, gameWithNumbers: this.gameWithNumbers })).pipe(first()).subscribe(_ => {
+        this.store.dispatch(new SelectTowniesAndMarkAsSelectedAction({ townies: ciliviansArray, gameWithNumbers: this.gameWithNumbers })).pipe(first()).subscribe(_ => {
             this.router.navigate(['/tabs/dashboard/character-assign']);
         });
     }
 
     // W przyszłości rozszerzyć sprawdzanie czy poprawnie wybrano postaci
     get playersSelectedProperly() {
-        return this.civilianCount >= 0;
+        return this.townieCount >= 0;
     }
 
     get selectedPlayersCount() {
         return this.gamePlayers?.length || 0;
     }
 
-    get civilianCount() {
-        return this.playersConfig?.town?.civiliansCount || 0;
+    get townieCount() {
+        return this.playersConfig?.town?.towniesCount || 0;
     }
 
     get townSelectedPlayersCount() {

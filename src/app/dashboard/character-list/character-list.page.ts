@@ -33,7 +33,7 @@ export class CharacterListPage implements OnInit, OnDestroy {
     }
 
     get isAnyOneKilled() {
-        const { town, mafia, neutral, civilian } = this.gamePlayers;
-        return !![...town, ...mafia, ...neutral, ...civilian].find(palyer => !palyer.user.alive);
+        const { town, mafia, neutral, townie } = this.gamePlayers;
+        return !![...town, ...mafia, ...neutral, ...townie].find(palyer => !palyer.user.alive);
     }
 }

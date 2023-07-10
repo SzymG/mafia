@@ -75,6 +75,10 @@ ion-checkbox {
     --border-color: var(--ion-color-primary);
 }
 
+ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+}
+
 .center-grid {
     min-height: 100%;
     display: flex;

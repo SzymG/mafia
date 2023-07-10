@@ -5,8 +5,7 @@
                 (click)="dismiss()">
             </ion-back-button>
         </ion-buttons>
-        <ion-title class="ion-text-center">{{ "CharacterAssign.assignTitle" | translate }}: {{"Characters." +
-            player.name | translate}}</ion-title>
+        <ion-title class="ion-text-center">{{ "CharacterAssign.assignTitle" | translate }}: {{ ("Characters." + player.name + ".name") | translate}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
