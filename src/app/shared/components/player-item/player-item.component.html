@@ -1,12 +1,12 @@
-<div [ngClass]="class" class="player-item-container" [class.killed]="gamePlayer && !gamePlayer?.user?.alive" [class.selected]="selected">
+<div [ngClass]="playerConfig.class" class="player-item-container" [class.killed]="playerConfig.gamePlayer && !playerConfig.gamePlayer?.user?.alive" [class.selected]="playerConfig.selected">
     <ion-row>
-        <ion-col size="12" class="image-container" (click)="imageClick()">
-            <img [src]="'/assets/img/characters/' + name + '.png'">
+        <ion-col size="12" class="image-container" (click)="imageClick()" *ngIf="playerConfig.name">
+            <img [src]="'/assets/img/characters/' + playerConfig.name + '.png'">
         </ion-col>
-        <ion-col size="12" class="ion-text-center" (click)="labelClick()" *ngIf="withLabel">
+        <ion-col size="12" class="ion-text-center" (click)="labelClick()" *ngIf="playerConfig.showLabel">
             <ion-text class="bold name">
-                {{ ("Characters." + name + ".name") | translate}}
-                <span *ngIf="selectable" class="character-info">{{player?.symbol}}</span>
+                {{ ("Characters." + playerConfig.name + ".name") | translate}}
+                <span *ngIf="playerConfig.showSymbol" class="character-info">{{player?.symbol}}</span>
             </ion-text>
         </ion-col>
     </ion-row>

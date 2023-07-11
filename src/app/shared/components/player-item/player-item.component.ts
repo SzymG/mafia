@@ -5,44 +5,68 @@ import { Player } from 'src/app/store/players/players.state';
 import { PlayersService } from '../../services/players.service';
 import { PlayerInfoModalComponent } from '../player-info-modal/player-info-modal.component';
 
+export interface PlayerItemConfig {
+    name: string,
+    selected?: boolean,
+    showLabel?: boolean,
+    showSymbol?: boolean,
+    selectable?: boolean,
+    deselectable?: boolean,
+    showInfoModal?: boolean,
+    class?: string,
+    gamePlayer?: GamePlayer
+}
+
+const defaultConfig: PlayerItemConfig = {
+    name: '',
+    selected: false,
+    showLabel: false,
+    showSymbol: false,
+    selectable: false,
+    deselectable: false,
+    showInfoModal: false,
+    class: ''
+}
+
 @Component({
     selector: 'player-item',
     templateUrl: './player-item.component.html',
     styleUrls: ['./player-item.component.scss'],
 })
 export class PlayerItemComponent implements OnChanges {
-    @Input() name: string;
-    @Input() class: string;
-    @Input() selected: boolean = false;
-    @Input() selectable: boolean = false;
-    @Input() showInfoModal: boolean = false;
-    @Input() withLabel: boolean = true;
-    @Input() gamePlayer: GamePlayer;
+    @Input() config: PlayerItemConfig;
 
     @Output() selectEvent = new EventEmitter<boolean>();
 
     public player: Player;
+    public playerConfig: PlayerItemConfig;
 
     constructor(
         private readonly modalCtrl: ModalController,
         private readonly playerService: PlayersService
-    ) { }
+    ) {
+        this.playerConfig = defaultConfig;
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.player = this.gamePlayer || this.playerService.getByName(this.name);
+        this.player = this.config.gamePlayer || this.playerService.getByName(this.config.name);
+        this.playerConfig = { ...defaultConfig, ...this.config };
     }
 
     imageClick() {
-        if (this.selectable) {
-            this.selectEvent.emit(!this.selected);
+        if (this.config.selectable && !this.config.selected) {
+            this.selectEvent.emit(true);
         }
-        if (this.showInfoModal) {
+        if (this.config.deselectable && this.config.selected) {
+            this.selectEvent.emit(false);
+        }
+        if (this.config.showInfoModal) {
             this.showPlayerModal();
         }
     }
 
     labelClick() {
-        if (this.showInfoModal) {
+        if (this.config.showInfoModal) {
             this.showPlayerModal();
         }
     }

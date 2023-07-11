@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
+import { PlayerItemConfig } from 'src/app/shared/components/player-item/player-item.component';
 import { ToolbarActionsConfig } from 'src/app/shared/components/toolbar-actions/toolbar-actions.component';
 import { GameService } from 'src/app/shared/services/game.service';
 import { ConfigWithCount, PlayersConfigService } from 'src/app/shared/services/players-config.service';
@@ -13,7 +14,7 @@ import {
     SelectPlayerAction, UnselectPlayerAction
 } from 'src/app/store/game/game.actions';
 import { GameState, GameStateModel, GamePlayer } from 'src/app/store/game/game.state';
-import { AvailablePlayers, Player } from 'src/app/store/players/players.state';
+import { AvailablePlayers, Player, TOWNIE_NAME } from 'src/app/store/players/players.state';
 
 @Component({
     selector: 'app-character-selection',
@@ -93,7 +94,41 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         });
     }
 
-    // W przyszłości rozszerzyć sprawdzanie czy poprawnie wybrano postaci
+    getPlayerItemConfig(player: Player): PlayerItemConfig {
+        const isPlayerSelected = this.isPlayerSelected(player);
+
+        return {
+            name: player.name,
+            selected: isPlayerSelected,
+            selectable: this.canSelectPlayer(player.symbol),
+            deselectable: isPlayerSelected,
+            showLabel: true,
+            showSymbol: true
+        };
+    }
+
+    getTowniePlayerItemConfig(): PlayerItemConfig {
+        return {
+            name: TOWNIE_NAME,
+            selected: this.townieCount > 0,
+            showLabel: true,
+            showSymbol: true
+        };
+    }
+
+    canSelectPlayer(playerSymbol: string): boolean {
+        if (this.playersService.isTownPlayer(playerSymbol)) {
+            return this.townSelectedPlayersCount < this.playersConfig?.town.count;
+        }
+        else if (this.playersService.isMafiaPlayer(playerSymbol)) {
+            return this.mafiaSelectedPlayersCount < this.playersConfig?.mafia.count;
+        }
+        else if (this.playersService.isNeutralPlayer(playerSymbol)) {
+            return this.neutralSelectedPlayersCount < this.playersConfig?.neutral.count;
+        }
+    }
+
+    // TODO W przyszłości rozszerzyć sprawdzanie czy poprawnie wybrano postaci
     get playersSelectedProperly() {
         return this.townieCount >= 0;
     }

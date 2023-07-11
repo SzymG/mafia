@@ -7,6 +7,7 @@ import { EndVotingAction } from 'src/app/store/game/game.actions';
 import { GamePlayer } from 'src/app/store/game/game.state';
 import { ModalService } from '../../services/modal.service';
 import { ToastService } from '../../services/toast.service';
+import { PlayerItemConfig } from '../player-item/player-item.component';
 
 interface VotingGamePlayer extends GamePlayer {
     voting: {
@@ -148,6 +149,15 @@ export class VotingComponent implements OnInit, OnDestroy {
         if(!this.isGuiltyPhase) {
             this.calculateVotes();
         }
+    }
+
+    getPlayerItemConfig(player: GamePlayer): PlayerItemConfig {
+        return {
+            name: player.name,
+            class: 'ion-no-padding',
+            selected: this.selectedPlayer?.id === player.id,
+            showLabel: false
+        };
     }
 
     get time() {

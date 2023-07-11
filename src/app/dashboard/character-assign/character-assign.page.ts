@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, AlertInput, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, AlertInput, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { first } from 'rxjs/operators';
 import { ToolbarActionsConfig } from 'src/app/shared/components/toolbar-actions/toolbar-actions.component';
 import { GameService } from 'src/app/shared/services/game.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
-import { AssignAllPlayersAction, AssignPlayerAction, MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
+import { AssignAllPlayersAction, MarkPlayersAsAssignedAction } from 'src/app/store/game/game.actions';
 import { GamePlayer, GamePlayers } from 'src/app/store/game/game.state';
 import { User } from 'src/app/store/user/user.state';
 import { AssignModalPage } from './assign-modal/assign-modal.page';
 import { UserManagePage } from './user-manage-modal/user-manage.page';
+import { PlayerItemConfig } from 'src/app/shared/components/player-item/player-item.component';
 
 @Component({
     selector: 'app-character-assign',
@@ -68,6 +69,14 @@ export class CharacterAssignPage implements OnInit {
         this.store.dispatch(new MarkPlayersAsAssignedAction()).pipe(first()).subscribe(_ => {
             this.router.navigate(['/tabs/game']);
         });
+    }
+
+    getPlayerItemConfig(player: GamePlayer): PlayerItemConfig {
+        return {
+            name: player.name,
+            selected: !!player.user?.assign_name,
+            showLabel: true
+        };
     }
 
     async manageUsers() {
@@ -135,7 +144,7 @@ export class CharacterAssignPage implements OnInit {
         return this.gameService.areAllPlayersAssigned();;
     }
 
-    shuffleArray(array) {
+    private shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];

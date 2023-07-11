@@ -50,8 +50,7 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.town">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
-                            (selectEvent)="selectPlayer(player)">
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
                         </player-item>
                     </ion-col>
                 </ion-row>
@@ -66,9 +65,10 @@
                 </ion-text>
             </ion-col>
             <ion-col size="12">
+                // TODO - tutaj mieszczuchów trzeba też móc wybierać. Swatkę, Bauzę etc.
                 <ion-row>
                     <ion-col size="5">
-                        <player-item [name]="'townie'" [selected]="townieCount > 0" [selectable]="true">
+                        <player-item [config]="getTowniePlayerItemConfig()">
                         </player-item>
                     </ion-col>
                     <ion-col size="7" class="townies-count-container">
@@ -95,8 +95,7 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.mafia">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
-                            (selectEvent)="selectPlayer(player)">
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
                         </player-item>
                     </ion-col>
                 </ion-row>
@@ -118,8 +117,7 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.neutral">
-                        <player-item [name]="player.name" [selected]="isPlayerSelected(player)" [selectable]="true"
-                            (selectEvent)="selectPlayer(player)">
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
                         </player-item>
                     </ion-col>
                 </ion-row>

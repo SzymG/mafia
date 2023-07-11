@@ -3,6 +3,7 @@ import { Action, State, StateContext } from '@ngxs/store';
 import * as PlayersActions from './players.actions';
 
 export const TOWNIE_SYMBOL = 'RT';
+export const TOWNIE_NAME = 'townie';
 export const TOWN_FRACTIONS = ['TK', 'TI', 'TP', 'TS', 'TL', TOWNIE_SYMBOL];
 export const MAFIA_FRACTIONS = ['GF', 'MF', 'MS'];
 export const NEUTRAL_FRACTIONS = ['N', 'NK', 'NE'];
@@ -45,7 +46,7 @@ const initialState = {
         { name: 'matchmaker', symbol: 'RT', weights: { night: [98], day: 0 } },
         { name: 'mayor', symbol: 'TL', weights: { night: [0], day: 1 } },
         { name: 'littleGirl', symbol: 'TI', weights: { night: [4], day: 0 } },
-        { name: 'townie', symbol: 'RT', weights: { night: [0], day: 0 } },
+        { name: TOWNIE_NAME, symbol: 'RT', weights: { night: [0], day: 0 } },
         { name: 'bartender', symbol: 'MS', weights: { night: [51], day: 0 } },
         { name: 'insomniac', symbol: 'RT', weights: { night: [0], day: 0 } },
         { name: 'survivalist', symbol: 'N', weights: { night: [21], day: 0 } },

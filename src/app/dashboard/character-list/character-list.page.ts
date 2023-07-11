@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
+import { PlayerItemConfig } from 'src/app/shared/components/player-item/player-item.component';
 import { GameService } from 'src/app/shared/services/game.service';
-import { GamePlayers, GameState, GameStateModel } from 'src/app/store/game/game.state';
+import { GamePlayer, GamePlayers, GameState, GameStateModel } from 'src/app/store/game/game.state';
 
 @Component({
     selector: 'app-character-list',
@@ -30,6 +31,16 @@ export class CharacterListPage implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriber.unsubscribe();
+    }
+
+    getPlayerItemConfig(player: GamePlayer): PlayerItemConfig {
+        return {
+            name: player.name,
+            selected: true,
+            showLabel: true,
+            showInfoModal: true,
+            gamePlayer: player
+        };
     }
 
     get isAnyOneKilled() {
