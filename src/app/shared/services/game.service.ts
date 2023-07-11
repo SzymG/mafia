@@ -39,7 +39,7 @@ export class GameService implements OnDestroy {
 
     getPlayers(): GamePlayers {
         return {
-            town: this.gamePlayers.filter(player => TOWN_FRACTIONS.includes(player.symbol) && player.symbol !== TOWNIE_SYMBOL),
+            town: this.gamePlayers.filter(player => TOWN_FRACTIONS.includes(player.symbol)),
             mafia: this.gamePlayers.filter(player => MAFIA_FRACTIONS.includes(player.symbol)),
             neutral: this.gamePlayers.filter(player => NEUTRAL_FRACTIONS.includes(player.symbol)),
             townie: this.gamePlayers.filter(player => TOWNIE_SYMBOL === player.symbol),

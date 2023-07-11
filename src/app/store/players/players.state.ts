@@ -4,7 +4,7 @@ import * as PlayersActions from './players.actions';
 
 export const TOWNIE_SYMBOL = 'RT';
 export const TOWNIE_NAME = 'townie';
-export const TOWN_FRACTIONS = ['TK', 'TI', 'TP', 'TS', 'TL', TOWNIE_SYMBOL];
+export const TOWN_FRACTIONS = ['TK', 'TI', 'TP', 'TS', 'TL'];
 export const MAFIA_FRACTIONS = ['GF', 'MF', 'MS'];
 export const NEUTRAL_FRACTIONS = ['N', 'NK', 'NE'];
 
@@ -20,7 +20,8 @@ export interface Player {
 export interface AvailablePlayers {
     town: Player[],
     mafia: Player[],
-    neutral: Player[]
+    neutral: Player[],
+    townie: Player[]
 }
 
 export interface PlayersStateModel {

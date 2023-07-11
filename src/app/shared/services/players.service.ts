@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AvailablePlayers, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, Player, PlayersState, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
+import { AvailablePlayers, MAFIA_FRACTIONS, NEUTRAL_FRACTIONS, Player, PlayersState, TOWNIE_SYMBOL, TOWN_FRACTIONS } from 'src/app/store/players/players.state';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +23,7 @@ export class PlayersService {
             town: this.players.filter(player => TOWN_FRACTIONS.includes(player.symbol)),
             mafia: this.players.filter(player => MAFIA_FRACTIONS.includes(player.symbol)),
             neutral: this.players.filter(player => NEUTRAL_FRACTIONS.includes(player.symbol)),
+            townie: this.players.filter(player => player.symbol === TOWNIE_SYMBOL)
         };
     }
 
