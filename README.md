@@ -1,12 +1,12 @@
 # Mafia
 
-<div style="text-align: center;">
+<p align="center">
   <img src="src/assets/img/logo.png" alt="Logo" width="300" />
-</div>
+</p>
 
-<div style="text-align: center;">
+<p align="center">
   <img src="src/assets/img/bottom.png" alt="Bottom" width="300" />
-</div>
+</p>
 
 Mafia jest mobilną aplikacją stworzoną w Ionicu, która ma na celu ułatwienie pracy Game Mastera (GM) w autorskiej adaptacji gry towarzyskiej Mafia. Aplikacja oferuje zestaw narzędzi i funkcji, które pomogą w prowadzeniu rozgrywki, śledzeniu postępów oraz utrzymaniu odpowiedniego tempa gry.
 
@@ -54,11 +54,11 @@ Po wykonaniu powyższych kroków, aplikacja powinna zostać uruchomiona w przegl
 
 ### 1. Tworzenie rozgrywki
 
-<div style="text-align: center;">
+<p align="center">
   <img src="src/assets/img/screens/Screenshot_1.png" alt="Start" width="300" />
   <img src="src/assets/img/screens/Screenshot_2.png" alt="Wybór" width="300" />
   <img src="src/assets/img/screens/Screenshot_3.png" alt="Przypisywanie" width="300" />
-</div>
+</p>
 
 - **Wybieranie konfiguracji gry i ról, według predefiniowanej logiki**: Aplikacja umożliwia wybór różnych konfiguracji gry, takich jak liczba graczy oraz jakie konkretne role będą mogli oni przyjmować. Logika gry jest zaimplementowana w aplikacji, dzięki czemu możesz łatwo dostosować rozgrywkę do swoich preferencji.
 - **Dodawanie uczestników i automatyczne przypisywanie ich do wybranych ról biorących udział w rozgrywce**: Możesz dodawać uczestników do rozgrywki, wprowadzając ich imiona lub pseudonimy. Aplikacja posiada opcję automatycznego przypisania ich do wybranych ról, uwzględniając konfigurację gry.
@@ -67,10 +67,10 @@ Po wykonaniu powyższych kroków, aplikacja powinna zostać uruchomiona w przegl
 
 ### 2. Prowadzenie rozgrywki
 
-<div style="text-align: center;">
+<p align="center">
   <img src="src/assets/img/screens/Screenshot_4.png" alt="Głosowanie" width="300" />
   <img src="src/assets/img/screens/Screenshot_5.png" alt="Noc" width="300" />
-</div>
+</p>
 
 - **Instrukcje dotyczące kart i graczy dla GM**: Aplikacja dostarcza GMowi szczegółowe instrukcje dotyczące poszczególnych faz gry, takich jak noc, dzień, głosowanie itp. Dzięki temu GM może płynnie prowadzić rozgrywkę i zapewnić, że wszyscy gracze rozumieją, co się dzieje.
 - **Możliwość przeprowadzania głosowania**: Mafia Companion oferuje narzędzia do przeprowadzania dwuetapowego głosowania między graczami. GM może łatwo zainicjować głosowanie, zbierać głosy od graczy i wyświetlać wyniki.
