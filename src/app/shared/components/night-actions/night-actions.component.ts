@@ -39,7 +39,8 @@ export class NightActionsComponent implements OnInit {
 
     ngOnInit() {
         this.players = this.players.flatMap(player => {
-            return player.weights.night.map((weight, index) => ({
+            console.log(player);
+            return player.actionWeights.night.map((weight, index) => ({
                 index,
                 weight,
                 ...player
@@ -50,6 +51,7 @@ export class NightActionsComponent implements OnInit {
 
         this.selectedPlayerIndex = 0;
         this.selectedPlayer = this.players[this.selectedPlayerIndex];
+        console.log(this.selectedPlayer);
 
         this.createSwipeGesture();
     }
@@ -74,7 +76,7 @@ export class NightActionsComponent implements OnInit {
             el: this.elementRef.nativeElement,
             gestureName: 'swipe',
             direction: 'x',
-            threshold: 0,
+            threshold: 80,
             passive: false,
             canStart: () => true,
             onStart: () => { },

@@ -1,4 +1,40 @@
 .night-actions-grid {
+    #bottom-fixed-button {
+        padding: .8rem;
+        position: fixed;
+        bottom: 0;
+        background: var(--ion-color-secondary);
+    }
+
+    .symbol-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .symbol {
+            background-image: url("/assets/img/frame.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            font-size: 1.5rem;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--ion-color-primary);
+        }
+    }
+
+    .name {
+        color: var(--ion-color-primary);
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+
+    .subheadline {
+        margin-top: 1rem;
+    }
 }
 
 ion-back-button {

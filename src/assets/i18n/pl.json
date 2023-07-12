@@ -93,7 +93,9 @@
     "NightActions": {
         "title": "Akcje nocne",
         "next": "Dalej",
-        "endActions": "Zakończ akcje"
+        "endActions": "Zakończ akcje",
+        "info": "Informacje",
+        "action": "Akcje"
     },
     "Fractions": {
         "TK": "Town Killing",
