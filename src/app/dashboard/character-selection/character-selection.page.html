@@ -50,30 +50,7 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.town">
-                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
-                        </player-item>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary">
-                    <h5 class="ion-text-center bold section-title">
-                        {{"Basic.cits" | translate}}
-                    </h5>
-                </ion-text>
-            </ion-col>
-            <ion-col size="12">
-                <ion-row>
-                    <ion-col size="5">
-                        <player-item [config]="getTowniePlayerItemConfig()">
-                        </player-item>
-                    </ion-col>
-                    <ion-col size="7" class="townies-count-container">
-                        <ion-text color="primary">
-                            <p class="ion-text-center bold">{{townieCount}}</p>
-                        </ion-text>
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)"></player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -94,8 +71,7 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.mafia">
-                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
-                        </player-item>
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)"></player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
@@ -116,13 +92,44 @@
             <ion-col size="12">
                 <ion-row class="scroll-players">
                     <ion-col size="5" *ngFor="let player of availablePlayers.neutral">
-                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)">
-                        </player-item>
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)"></player-item>
                     </ion-col>
                 </ion-row>
             </ion-col>
         </ion-row>
         <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h5 class="ion-text-center bold section-title">
+                        {{"Basic.cits" | translate}}
+                    </h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-row class="scroll-players">
+                    <ion-col size="5">
+                        <player-item [config]="getTowniePlayerItemConfig()"></player-item>
+                    </ion-col>
+                    <ion-col size="2" class="townies-count-container">
+                        <ion-text color="primary">
+                            <p class="ion-text-center bold">{{townieCount}}</p>
+                        </ion-text>
+                    </ion-col>
+                    <ion-col size="5" *ngFor="let player of availablePlayers.townie">
+                        <player-item [config]="getPlayerItemConfig(player)" (selectEvent)="selectPlayer(player)"></player-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <ion-item class="item-transparent">
+                    <ion-checkbox color="primary" [(ngModel)]="restrictiveChecking"></ion-checkbox>
+                    <ion-label color="primary" class="ion-margin-start">
+                        {{"CharacterSelection.restrictiveChecking" | translate}}
+                    </ion-label>
+                </ion-item>
+            </ion-col>
             <ion-col size="12">
                 <ion-item class="item-transparent">
                     <ion-checkbox color="primary" [(ngModel)]="gameWithNumbers"></ion-checkbox>

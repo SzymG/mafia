@@ -21,7 +21,8 @@
         "playersAmount": "Łączna liczba graczy",
         "confirm": "Potwierdź wybór",
         "reset": "Resetuj graczy",
-        "gameWithNumbers": "Przypisz numery do graczy"
+        "gameWithNumbers": "Przypisz numery do graczy",
+        "restrictiveChecking": "Restrykcyjne sprawdzanie postaci"
     },
     "CharacterAssign": {
         "title": "Przypisywanie postaci",

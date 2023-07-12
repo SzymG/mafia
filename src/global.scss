@@ -75,6 +75,10 @@ ion-checkbox {
     --border-color: var(--ion-color-primary);
 }
 
+ion-checkbox + ion-label {
+    font-size: .9rem !important;
+}
+
 ion-segment-button {
     --indicator-color: var(--ion-color-primary);
 }

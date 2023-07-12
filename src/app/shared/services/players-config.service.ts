@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GamePlayer } from 'src/app/store/game/game.state';
 
 interface Config {
     town: ConfigItem[];
@@ -15,14 +16,17 @@ export interface ConfigItem {
 export interface ConfigWithCount {
     town: {
         count: number,
-        towniesCount: number,
         items: ConfigItem[]
     },
-    mafia:  {
+    mafia: {
         count: number,
         items: ConfigItem[]
     },
-    neutral:  {
+    neutral: {
+        count: number,
+        items: ConfigItem[]
+    },
+    townie: {
         count: number,
         items: ConfigItem[]
     }
@@ -33,7 +37,7 @@ export interface ConfigWithCount {
 })
 export class PlayersConfigService {
     constructor(
-    ) {}
+    ) { }
 
     getConfigByCount(count: number): ConfigWithCount {
         switch (count) {
@@ -208,16 +212,33 @@ export class PlayersConfigService {
         }
     }
 
+    checkConfig(players: GamePlayer[], config: ConfigWithCount) {
+        const gamePlayersSymbols = players?.map(player => player.symbol).sort() || [];
+        const configPlayersSymbols = [];
+
+        const processItems = (items) => {
+            items?.forEach(item => {
+                item.symbol.forEach(symbol => {
+                    configPlayersSymbols.push(...Array(item.count).fill(symbol));
+                    configPlayersSymbols.sort();
+                });
+            });
+        };
+
+        processItems(config?.town.items);
+        processItems(config?.mafia.items);
+        processItems(config?.neutral.items);
+
+        return configPlayersSymbols.length >= gamePlayersSymbols.length && gamePlayersSymbols.every(element => configPlayersSymbols.includes(element));
+    }
+
     private mapConfig(config: Config): ConfigWithCount {
         const add = (a, b) => { return a + b };
         return {
-            town: {
-                count: config.town.map(item => item.count).reduce(add, 0),
-                towniesCount: config.townies.count,
-                items: config.town 
-            },
+            town: { count: config.town.map(item => item.count).reduce(add, 0), items: config.town },
             mafia: { count: config.mafia.map(item => item.count).reduce(add, 0), items: config.mafia },
             neutral: { count: config.neutral.map(item => item.count).reduce(add, 0), items: config.neutral },
-        }
+            townie: { count: config.townies.count, items: [config.townies] }
+        };
     }
 }

@@ -36,6 +36,7 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
     public gamePlayers: GamePlayer[];
     public availablePlayers: AvailablePlayers;
     public gameWithNumbers: boolean = false;
+    public restrictiveChecking: boolean = true;
 
     private subscriber: Subscription = new Subscription();
 
@@ -126,19 +127,32 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
         else if (this.playersService.isNeutralPlayer(playerSymbol)) {
             return this.neutralSelectedPlayersCount < this.playersConfig?.neutral.count;
         }
+        else if (this.playersService.isTowniePlayer(playerSymbol)) {
+            return this.townieCount > 0;
+        }
+
+        return false;
     }
 
-    // TODO W przyszłości rozszerzyć sprawdzanie czy poprawnie wybrano postaci
-    get playersSelectedProperly() {
-        return this.townieCount >= 0;
+    get playersSelectedProperly(): boolean {
+        if (!this.restrictiveChecking) {
+            const townEqual = this.townSelectedPlayersCount === this.playersConfig?.town.count;
+            const mafiaEqual = this.mafiaSelectedPlayersCount === this.playersConfig?.mafia.count;
+            const neutralEqual = this.neutralSelectedPlayersCount === this.playersConfig?.neutral.count;
+            const townieEqual = (this.townieCount + this.townieSelectedPlayersCount) === this.playersConfig?.townie.count;
+
+            return townEqual && mafiaEqual && neutralEqual && townieEqual;
+        } else {
+            return this.playersConfigService.checkConfig(this.gamePlayers, this.playersConfig);
+        }
     }
 
     get selectedPlayersCount() {
-        return this.gamePlayers?.length || 0;
+        return (this.gamePlayers?.length + this.townieCount) || 0;
     }
 
     get townieCount() {
-        return this.playersConfig?.town?.towniesCount || 0;
+        return this.playersConfig?.townie.count - this.townieSelectedPlayersCount;
     }
 
     get townSelectedPlayersCount() {
@@ -151,5 +165,9 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
 
     get neutralSelectedPlayersCount() {
         return this.gamePlayers?.filter(player => this.playersService.isNeutralPlayer(player.symbol))?.length || 0;
+    }
+
+    get townieSelectedPlayersCount() {
+        return this.gamePlayers?.filter(player => this.playersService.isTowniePlayer(player.symbol))?.length || 0;
     }
 }
