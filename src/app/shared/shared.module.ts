@@ -9,6 +9,7 @@ import { ToolbarActionsComponent } from './components/toolbar-actions/toolbar-ac
 import { HistoryItemComponent } from './components/history-item/history-item.component';
 import { HistoryItemImagePipe } from './pipes/history-item-image.pipe';
 import { VotingComponent } from './components/voting/voting.component';
+import { NightActionsComponent } from './components/night-actions/night-actions.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { VotingComponent } from './components/voting/voting.component';
         ToolbarActionsComponent,
         HistoryItemComponent,
         HistoryItemImagePipe,
-        VotingComponent
+        VotingComponent,
+        NightActionsComponent
     ],
     imports: [
         CommonModule,
@@ -31,7 +33,8 @@ import { VotingComponent } from './components/voting/voting.component';
         PlayerInfoModalComponent,
         ToolbarActionsComponent,
         HistoryItemComponent,
-        VotingComponent
+        VotingComponent,
+        NightActionsComponent
     ]
 })
 export class SharedModule { }

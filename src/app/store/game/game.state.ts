@@ -38,7 +38,8 @@ export interface GameStateModel {
     gameWithNumbers: boolean;
     playersSelected: boolean;
     playersAssigned: boolean;
-    votingEnded: boolean;
+    votingFinished: boolean;
+    nightActionsFinished: boolean;
     phase: string;
     dayNumber: number,
     fullMoon: {
@@ -54,7 +55,8 @@ const initialState = {
     gameWithNumbers: false,
     playersSelected: false,
     playersAssigned: false,
-    votingEnded: false,
+    votingFinished: false,
+    nightActionsFinished: false,
     phase: GAME_PHASE.day,
     dayNumber: 1,
     fullMoon: {
@@ -235,9 +237,9 @@ export class GameState {
      */
     @Action(GameActions.StartDayAction)
     public startDay(ctx: StateContext<GameStateModel>) {
-        const { phase, dayNumber, votingEnded, ...rest } = ctx.getState();
+        const { phase, dayNumber, votingFinished, nightActionsFinished, ...rest } = ctx.getState();
 
-        ctx.setState({ ...rest, phase: GAME_PHASE.day, dayNumber: dayNumber + 1, votingEnded: false });
+        ctx.setState({ ...rest, phase: GAME_PHASE.day, dayNumber: dayNumber + 1, votingFinished: false, nightActionsFinished: false });
     }
 
     /**
@@ -289,7 +291,7 @@ export class GameState {
      */
     @Action(GameActions.EndVotingAction)
     public endVoting(ctx: StateContext<GameStateModel>, { payload }: GameActions.EndVotingAction) {
-        const { players, votingEnded, ...rest } = ctx.getState();
+        const { players, votingFinished, ...rest } = ctx.getState();
         let updatedPlayers = players;
 
         // Jeśli ktoś został powieszony
@@ -304,7 +306,30 @@ export class GameState {
             });
         }
 
-        ctx.setState({ ...rest, players: [...updatedPlayers], votingEnded: true });
+        ctx.setState({ ...rest, players: [...updatedPlayers], votingFinished: true });
+    }
+
+    /**
+     * Zakończenie akcji nocnych
+     */
+    @Action(GameActions.EndNightActionsAction)
+    public endNightActions(ctx: StateContext<GameStateModel>) {
+        const { players, nightActionsFinished, ...rest } = ctx.getState();
+        let updatedPlayers = players;
+
+        // // Jeśli na kimś zostały wykonane jakieś akcje - należy je zastosować tutaj
+        // if(payload) {
+        //     updatedPlayers = players.map((player) => {
+        //         if (player.id === payload.id) {
+        //             player.user.alive = false;
+        //             this.store.dispatch(new AddHistoryItemAction({ dayNumber: rest.dayNumber, phase: rest.phase, type: HISTORY_ITEM_TYPE.hang, destinationPlayer: payload }));
+        //         }
+    
+        //         return player;
+        //     });
+        // }
+
+        ctx.setState({ ...rest, players: [...updatedPlayers], nightActionsFinished: true });
     }
 
     getUniquePlayerNumber(numbers: number[], playersCount: number) {

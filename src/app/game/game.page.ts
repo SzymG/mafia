@@ -9,6 +9,7 @@ import { VotingComponent } from '../shared/components/voting/voting.component';
 import { ModalService } from '../shared/services/modal.service';
 import { ClearGameAction, StartDayAction, StartNightAction } from '../store/game/game.actions';
 import { GameState, GameStateModel, GAME_PHASE } from '../store/game/game.state';
+import { NightActionsComponent } from '../shared/components/night-actions/night-actions.component';
 
 @Component({
     selector: 'app-game',
@@ -72,6 +73,17 @@ export class GamePage implements OnInit, OnDestroy {
     async startVoting() {
         const modal = await this.modalCtrl.create({
             component: VotingComponent,
+            componentProps: {
+                players: this.game.players
+            }
+        });
+
+        await modal.present();
+    }
+
+    async startNightActions() {
+        const modal = await this.modalCtrl.create({
+            component: NightActionsComponent,
             componentProps: {
                 players: this.game.players
             }

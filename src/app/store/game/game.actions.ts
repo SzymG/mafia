@@ -71,3 +71,8 @@ export class EndVotingAction {
     public static readonly type = '[GAME] End Voting';
     constructor(public payload: GamePlayer | null) {};
 }
+
+export class EndNightActionsAction {
+    public static readonly type = '[GAME] End Night Actions';
+    constructor() {};
+}

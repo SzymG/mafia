@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline" defaultHref="tabs/dashboard/game" (click)="dismiss()">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{"NightActions.title" | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="night-actions-grid">
+        <ion-row *ngIf="selectedPlayer">
+            <ion-col size="12">
+                <ion-row class="ion-justify-content-center">
+                    <ion-col size="8">
+                        <ion-segment value="info" [(ngModel)]="segment">
+                            <ion-segment-button value="info">
+                                {{"PlayerInfo.info" | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button value="action">
+                                {{"PlayerInfo.action" | translate}}
+                            </ion-segment-button>
+                        </ion-segment>
+                    </ion-col>
+
+                    <ng-container [ngSwitch]="segment">
+                        <ion-col size="10" *ngSwitchCase="'info'">
+                            <ion-row>
+                                <ion-col size="8" class="image-symbol">
+                                    <img [src]="'/assets/img/characters/' + selectedPlayer.name + '.png'">
+                                </ion-col>
+                                <ion-col size="12" class="name-container ion-text-center">
+                                    <div class="name">{{ ("Characters." + selectedPlayer.name + ".name") | translate }}</div>
+                                </ion-col>
+                                <ion-col size="12" class="symbol-container">
+                                    <div class="symbol">{{selectedPlayer.symbol}}</div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col size="12">
+                                    <ion-text color="primary" class="bold">
+                                        {{ ("PlayerInfo.info") | translate}}
+                                    </ion-text>
+                                </ion-col>
+                                <ion-col size="12">
+                                    <ion-text color="primary">
+                                        <small>
+                                            {{ ("Characters." + selectedPlayer.name + ".info") | translate }}
+                                        </small>
+                                    </ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                        <ion-col size="10" *ngSwitchCase="'action'">
+                            // TODO akcje
+                        </ion-col>
+                    </ng-container>
+                </ion-row>
+            </ion-col>
+            <ion-col size="12" *ngIf="!isLastPlayerAction; else endNightActionsTemplate">
+                <ion-button class="bold" [disabled]="!selectedPlayerActionDone" (click)="nextAction()" expand="block" size="large">
+                    {{"NightActions.next" | translate}}
+                </ion-button>
+            </ion-col>
+            <ng-template #endNightActionsTemplate>
+                <ion-col size="12">
+                    <ion-button class="bold" (click)="endActions()" expand="block" size="large">
+                        {{"NightActions.endActions" | translate}}
+                    </ion-button>
+                </ion-col>
+            </ng-template>
+        </ion-row>
+    </ion-grid>
+</ion-content>

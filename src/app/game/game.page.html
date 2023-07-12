@@ -20,6 +20,11 @@
         </ion-row>
         <ion-row>
             <ng-container *ngIf="isNight; else dayButtonsTemplate">
+                <ion-col size="12" *ngIf="!game.nightActionsFinished">
+                    <ion-button class="bold" (click)="startNightActions()" expand="block" size="large">
+                        {{"Game.startNightActions" | translate}}
+                    </ion-button>
+                </ion-col>
                 <ion-col size="12">
                     <ion-button class="bold" (click)="startDay()" expand="block" size="large">
                         {{"Game.startDay" | translate}}
@@ -27,7 +32,7 @@
                 </ion-col>
             </ng-container>
             <ng-template #dayButtonsTemplate>
-                <ion-col size="12" *ngIf="!game.votingEnded">
+                <ion-col size="12" *ngIf="!game.votingFinished">
                     <ion-button class="bold" (click)="startVoting()" expand="block" size="large">
                         {{"Game.startVoting" | translate}}
                     </ion-button>

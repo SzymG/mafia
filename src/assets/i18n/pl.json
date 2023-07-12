@@ -51,7 +51,8 @@
         "startNight": "Rozpocznij noc",
         "startNightConfirm": "Czy na pewno chcesz rozpocząć kolejną noc?",
         "fullMoon": "Pełnia",
-        "startVoting": "Rozpocznij głosowanie"
+        "startVoting": "Rozpocznij głosowanie",
+        "startNightActions": "Rozpocznij akcje"
     },
     "CharacterList": {
         "title": "Lista postaci w grze",
@@ -88,6 +89,11 @@
         "endVotingConfirm": "Czy na pewno chcesz zakończyć głosowanie bez powieszenia żadnego z graczy?",
         "hangPlayer": "Powieś gracza",
         "hangPlayerConfirm": "Czy na pewno skazujesz wybranego gracza na ścięcie?"
+    },
+    "NightActions": {
+        "title": "Akcje nocne",
+        "next": "Dalej",
+        "endActions": "Zakończ akcje"
     },
     "Fractions": {
         "TK": "Town Killing",
