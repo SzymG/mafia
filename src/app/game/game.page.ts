@@ -30,7 +30,7 @@ export class GamePage implements OnInit, OnDestroy {
         private modalService: ModalService
     ) {
         this.subscriber.add(
-            this.game$.subscribe((game) => { 
+            this.game$.subscribe((game) => {
                 this.game = game;
             })
         );
@@ -40,28 +40,28 @@ export class GamePage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscriber.unsubscribe();``
+        this.subscriber.unsubscribe();
     }
 
     startDay() {
         this.modalService.showConfirmationModal(this.translateService.instant('Game.startDayConfirm')).then((confirmed) => {
-            if(confirmed) {
-                this.store.dispatch(new StartDayAction()).pipe(first()).subscribe(_ => {});
+            if (confirmed) {
+                this.store.dispatch(new StartDayAction()).pipe(first()).subscribe(_ => { });
             }
         });
     }
 
     startNight() {
         this.modalService.showConfirmationModal(this.translateService.instant('Game.startNightConfirm')).then((confirmed) => {
-            if(confirmed) {
-                this.store.dispatch(new StartNightAction()).pipe(first()).subscribe(_ => {});
+            if (confirmed) {
+                this.store.dispatch(new StartNightAction()).pipe(first()).subscribe(_ => { });
             }
         });
     }
 
     endGame() {
         this.modalService.showConfirmationModal(this.translateService.instant('Game.endGameConfirm')).then((confirmed) => {
-            if(confirmed) {
+            if (confirmed) {
                 this.store.dispatch(new ClearGameAction()).pipe(first()).subscribe(_ => {
                     this.router.navigate(['/tabs/dashboard']);
                 });
@@ -72,7 +72,7 @@ export class GamePage implements OnInit, OnDestroy {
     async startVoting() {
         const modal = await this.modalCtrl.create({
             component: VotingComponent,
-            componentProps: { 
+            componentProps: {
                 players: this.game.players
             }
         });

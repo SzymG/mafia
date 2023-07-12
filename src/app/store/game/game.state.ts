@@ -131,6 +131,7 @@ export class GameState {
     @Action(GameActions.StartGameAction)
     public startGame(ctx: StateContext<GameStateModel>) {
         this.store.dispatch(new InitPlayersAction());
+        this.store.dispatch(new GameActions.StartNightAction())
 
         const { started, ...rest } = initialState;
         ctx.patchState({ started: true, ...rest });
