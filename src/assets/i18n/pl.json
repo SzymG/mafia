@@ -608,6 +608,13 @@
             "victoryCondition": "// TODO victoryCondition",
             "descriptionHeadline": "// TODO descriptionHeadline",
             "description": "// TODO description"
+        },
+        "deputy": {
+            "name": "Zastępca",
+            "info": "// TODO info",
+            "victoryCondition": "// TODO victoryCondition",
+            "descriptionHeadline": "// TODO descriptionHeadline",
+            "description": "// TODO description"
         }
     }
 }

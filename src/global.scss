@@ -25,28 +25,32 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-:root, :host, html, body {
-    --ion-color-primary: #d9a43b !important;
-    --ion-color-primary-rgb: 217, 164, 59 !important;
-    --ion-color-primary-contrast: #000000 !important;
-    --ion-color-primary-contrast-rgb: 0, 0, 0 !important;
-    --ion-color-primary-shade: #836323ae !important;
-    --ion-color-primary-tint: #f0b642 !important;
+:root,
+:host,
+html,
+body {
+    --ion-color-primary: #791212 !important;
+    --ion-color-primary-rgb: 121, 18, 18 !important;
+    --ion-color-primary-contrast: #ffffff !important;
+    --ion-color-primary-contrast-rgb: 255, 255, 255 !important;
+    --ion-color-primary-shade: #470b0b !important;
+    --ion-color-primary-tint: #ae1d1d !important;
 
-    --ion-color-secondary: #630f0f !important;
-    --ion-color-secondary-rgb: 99, 15, 15 !important;
-    --ion-color-secondary-contrast: #ffffff !important;
+    --ion-color-secondary: #020000 !important;
+    --ion-color-secondary-rgb: 2, 0, 0 !important;
+    --ion-color-secondary-contrast: #ffecec !important;
     --ion-color-secondary-contrast-rgb: 255, 255, 255 !important;
-    --ion-color-secondary-shade: #470b0b !important;
-    --ion-color-secondary-tint: #801414 !important;
+    --ion-color-secondary-shade: #000000 !important;
+    --ion-color-secondary-tint: #420b0b !important;
 
     --ion-color-gray: #bdbdbd !important;
 
-    --ion-toolbar-background: #d9a43b !important;
-    --ion-toolbar-color: #000000 !important;
+    --ion-toolbar-background: var(--ion-color-primary) !important;
+    --ion-toolbar-color: #ffecec !important;
+    --ion-color-light: #f6e4e4 !important;
 }
 
-@font-face {   
+@font-face {
     font-family: 'Glegoo';
     src: url('/assets/fonts/Glegoo-Regular.ttf');
     font-weight: 400;
@@ -62,11 +66,132 @@
     font-family: Glegoo !important;
 }
 
-ion-content {
-    --background: var(--ion-color-secondary) url("assets/img/background.png") 50% 50%/96% 96% no-repeat;
+ion-grid {
+    background: var(--ion-color-secondary);
+    min-height: 100%;
+    $circleSize: 12rem;
+
+    &::before,
+    &::after {
+        position: fixed;
+        content: "";
+        height: $circleSize;
+        width: $circleSize;
+        background: radial-gradient(var(--ion-color-primary), var(--ion-color-secondary));
+        filter: blur(calc($circleSize / 2.5));
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    &::before {
+        left: calc(-1 * calc($circleSize / 2));
+        bottom: 2rem;
+    }
+
+    &::after {
+        right: calc(-1 * calc($circleSize / 2));
+        top: 11rem;
+    }
+
+    &>* {
+        position: relative;
+    }
+
+    ion-col {
+        z-index: 3;
+    }
+
+    .on-bottom {
+        z-index: 1;
+    }
 }
 
-ion-buttons ~ ion-title {
+ion-button {
+    --box-shadow: none;
+    font-weight: 400;
+    text-transform: inherit;
+    position: relative;
+
+    &.with-icon ion-icon {
+        position: absolute;
+        font-size: 2rem;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &:not(.button-disabled) {
+        --box-shadow: 0.25rem 0.5rem 1.5rem -1rem var(--ion-color-primary-tint);
+    }
+}
+
+.custom-alert {
+    .alert-wrapper {
+        contain: layout;
+        border-radius: 1rem;
+        background-color: var(--ion-color-primary-shade);
+    }
+
+    h2 {
+        font-size: 1.1rem !important;
+        font-weight: 400 !important;
+        text-align: center;
+        color: var(--ion-color-primary-contrast) !important;
+    }
+
+    .alert-message {
+        font-size: 0.9rem;
+        text-align: center;
+        color: var(--ion-color-secondary-tint);
+        font-weight: 400;
+        padding-bottom: 1rem;
+
+        &:not(:empty) {
+            padding-top: 1rem !important;
+        }
+    }
+
+    .alert-checkbox-group {
+        background: var(--ion-color-primary-shade);
+        border: none;
+
+        .alert-checkbox-label {
+            color: var(--ion-color-secondary-contrast);
+        }
+    }
+
+    .alert-button-group {
+        display: flex;
+        background: var(--ion-color-primary-shade);
+        border-radius: 1rem;
+
+        button {
+            flex-grow: 1;
+            padding: 0;
+            height: 2.25rem;
+            border: 1px solid var(--ion-color-primary);
+            background: var(--ion-color-primary);
+            color: var(--ion-color-primary-contrast);
+            border-radius: 2rem;
+            margin: 0 0.5rem;
+            transform: translateY(50%);
+
+            &.alert-button-role-cancel {
+                background: var(--ion-color-primary-contrast);
+                color: var(--ion-color-primary);
+            }
+        }
+
+        span {
+            justify-content: center;
+            text-transform: capitalize;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    }
+}
+
+ion-buttons~ion-title {
     margin-left: -48px;
 }
 
@@ -75,12 +200,27 @@ ion-checkbox {
     --border-color: var(--ion-color-primary);
 }
 
-ion-checkbox + ion-label {
+ion-checkbox+ion-label {
     font-size: .9rem !important;
 }
 
 ion-segment-button {
     --indicator-color: var(--ion-color-primary);
+}
+
+ion-header {
+    background: var(--ion-color-secondary);
+
+    ion-toolbar {
+        --padding-top: 0.5rem;
+        --padding-bottom: 0.5rem;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+
+        ion-title {
+            font-weight: 500;
+        }
+    }
 }
 
 .center-grid {

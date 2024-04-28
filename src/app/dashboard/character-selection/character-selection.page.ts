@@ -104,6 +104,7 @@ export class CharacterSelectionPage implements OnInit, OnDestroy {
             selectable: this.canSelectPlayer(player.symbol),
             deselectable: isPlayerSelected,
             showLabel: true,
+            showInfoModal: true,
             showSymbol: true
         };
     }

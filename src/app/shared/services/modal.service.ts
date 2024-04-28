@@ -20,7 +20,7 @@ export class ModalService {
     showConfirmationModal(message: string) {
         return new Promise(async (resolve) => {
             const alert = await this.alertController.create({
-                cssClass: 'confirmation-modal',
+                cssClass: 'custom-alert',
                 header: message,
                 buttons: [
                     {

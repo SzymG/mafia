@@ -113,7 +113,7 @@ export class CharacterAssignPage implements OnInit {
             });
 
             const alert = await this.alertController.create({
-                cssClass: 'my-custom-class',
+                cssClass: 'custom-alert',
                 header: this.translateService.instant('CharacterAssign.assignAutomatically') + ``,
                 inputs: userOptions,
                 buttons: [

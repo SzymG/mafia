@@ -4,7 +4,7 @@
             <img [src]="'/assets/img/characters/' + playerConfig.name + '.png'">
         </ion-col>
         <ion-col size="12" class="ion-text-center" (click)="labelClick()" *ngIf="playerConfig.showLabel">
-            <ion-text class="bold name">
+            <ion-text class="bold name" color="light">
                 {{ ("Characters." + playerConfig.name + ".name") | translate}}
                 <span *ngIf="playerConfig.showSymbol" class="character-info">{{player?.symbol}}</span>
             </ion-text>

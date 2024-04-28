@@ -13,14 +13,14 @@
     <ion-grid class="character-selection-grid">
         <ion-row>
             <ion-col size="12" class="ion-text-center">
-                <ion-text color="primary">
+                <ion-text color="light">
                     <h5 class="ion-text-center">{{"CharacterSelection.playersAmount" | translate}}</h5>
                 </ion-text>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12" id="players-count" class="ion-text-center ion-no-padding">
-                <ion-text color="primary">
+                <ion-text color="light">
                     <span *ngIf="selectedPlayersCount" id="selected-count">{{selectedPlayersCount}} /</span>
                     <span id="max-count">{{maxPlayersCount}}</span>
                 </ion-text>
@@ -35,8 +35,8 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary section-title">
+            <ion-col size="12" class="ion-margin-bottom">
+                <ion-text color="light section-title">
                     <h5 class="ion-text-center bold">
                         {{"Basic.town" | translate}}
                         <span class="section-count" *ngIf="playersConfig?.town">
@@ -56,8 +56,8 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary section-title">
+            <ion-col size="12" class="ion-margin-bottom">
+                <ion-text color="light section-title">
                     <h5 class="ion-text-center bold">
                         {{"Basic.mafia" | translate}}
                         <span class="section-count" *ngIf="playersConfig?.mafia">
@@ -77,8 +77,8 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="12">
-                <ion-text color="primary section-title">
+            <ion-col size="12" class="ion-margin-bottom">
+                <ion-text color="light section-title">
                     <h5 class="ion-text-center bold">
                         {{"Basic.neutrals" | translate}}
                         <span class="section-count" *ngIf="playersConfig?.neutral">
@@ -99,7 +99,7 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-text color="primary">
+                <ion-text color="light">
                     <h5 class="ion-text-center bold section-title">
                         {{"Basic.cits" | translate}}
                     </h5>
@@ -111,7 +111,7 @@
                         <player-item [config]="getTowniePlayerItemConfig()"></player-item>
                     </ion-col>
                     <ion-col size="2" class="townies-count-container">
-                        <ion-text color="primary">
+                        <ion-text color="light">
                             <p class="ion-text-center bold">{{townieCount}}</p>
                         </ion-text>
                     </ion-col>
@@ -125,7 +125,7 @@
             <ion-col size="12">
                 <ion-item class="item-transparent">
                     <ion-checkbox color="primary" [(ngModel)]="restrictiveChecking"></ion-checkbox>
-                    <ion-label color="primary" class="ion-margin-start">
+                    <ion-label color="light" class="ion-margin-start">
                         {{"CharacterSelection.restrictiveChecking" | translate}}
                     </ion-label>
                 </ion-item>
@@ -133,14 +133,14 @@
             <ion-col size="12">
                 <ion-item class="item-transparent">
                     <ion-checkbox color="primary" [(ngModel)]="gameWithNumbers"></ion-checkbox>
-                    <ion-label color="primary" class="ion-margin-start">
+                    <ion-label color="light" class="ion-margin-start">
                         {{"CharacterSelection.gameWithNumbers" | translate}}
                     </ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
-                <ion-button class="bold" (click)="confirmSelection()" [disabled]="!playersSelectedProperly"
-                    expand="block" size="large">
+                <ion-button class="bold ion-margin-top" (click)="confirmSelection()" [disabled]="!playersSelectedProperly"
+                    expand="block" size="large" shape="round">
                     {{"CharacterSelection.confirm" | translate}}
                 </ion-button>
             </ion-col>

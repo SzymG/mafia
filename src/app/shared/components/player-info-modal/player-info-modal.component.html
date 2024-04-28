@@ -17,10 +17,10 @@
                     <ion-col size="8">
                         <ion-segment value="info" [(ngModel)]="segment">
                             <ion-segment-button value="info">
-                                {{"PlayerInfo.info" | translate}}
+                                <ion-text color="light">{{"PlayerInfo.info" | translate}}</ion-text>
                             </ion-segment-button>
                             <ion-segment-button value="action" *ngIf="actionable">
-                                {{"PlayerInfo.action" | translate}}
+                                <ion-text color="light">{{"PlayerInfo.action" | translate}}</ion-text>
                             </ion-segment-button>
                         </ion-segment>
                     </ion-col>
@@ -40,12 +40,12 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col size="12">
-                                    <ion-text color="primary" class="bold">
+                                    <ion-text color="light" class="bold">
                                         {{ ("PlayerInfo.info") | translate}}
                                     </ion-text>
                                 </ion-col>
                                 <ion-col size="12">
-                                    <ion-text color="primary">
+                                    <ion-text color="light">
                                         <small>
                                             {{ ("Characters." + player.name + ".info") | translate }}
                                         </small>
@@ -54,12 +54,12 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col size="12" class="subheadline">
-                                    <ion-text color="primary" class="bold">
+                                    <ion-text color="light" class="bold">
                                         {{ ("PlayerInfo.victoryCondition") | translate}}
                                     </ion-text>
                                 </ion-col>
                                 <ion-col size="12">
-                                    <ion-text color="primary">
+                                    <ion-text color="light">
                                         <small>
                                             {{ ("Characters." + player.name + ".victoryCondition") | translate }}
                                         </small>
@@ -68,7 +68,7 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col size="12" id="description-headline">
-                                    <ion-text color="primary">
+                                    <ion-text color="light">
                                         <small>
                                             {{ ("Characters." + player.name + ".descriptionHeadline") | translate }}
                                         </small>
@@ -77,12 +77,12 @@
                             </ion-row>
                             <ion-row>
                                 <ion-col size="12" class="subheadline">
-                                    <ion-text color="primary" class="bold">
+                                    <ion-text color="light" class="bold">
                                         {{ ("PlayerInfo.description") | translate}}
                                     </ion-text>
                                 </ion-col>
                                 <ion-col size="12">
-                                    <ion-text color="primary">
+                                    <ion-text color="light">
                                         <small>
                                             {{ ("Characters." + player.name + ".description") | translate }}
                                         </small>
@@ -91,7 +91,7 @@
                             </ion-row>
                         </ion-col>
                         <ion-col size="10" *ngSwitchCase="'action'">
-                            <ion-button class="bold" (click)="kill()" expand="block" size="large">
+                            <ion-button class="bold" (click)="kill()" expand="block" size="large" shape="round">
                                 {{"PlayerInfo.kill" | translate}}
                             </ion-button>
                         </ion-col>

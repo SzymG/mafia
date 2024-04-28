@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GamePlayer } from 'src/app/store/game/game.state';
+import { TOWNIE_SYMBOL } from 'src/app/store/players/players.state';
 
 interface Config {
     town: ConfigItem[];
@@ -213,7 +214,7 @@ export class PlayersConfigService {
     }
 
     checkConfig(players: GamePlayer[], config: ConfigWithCount) {
-        const gamePlayersSymbols = players?.map(player => player.symbol).sort() || [];
+        const gamePlayersSymbols = players?.map(player => player.symbol).filter(symbol => symbol != TOWNIE_SYMBOL).sort() || [];
         const configPlayersSymbols = [];
 
         const processItems = (items) => {
@@ -229,8 +230,24 @@ export class PlayersConfigService {
         processItems(config?.mafia.items);
         processItems(config?.neutral.items);
 
-        return configPlayersSymbols.length >= gamePlayersSymbols.length && gamePlayersSymbols.every(element => configPlayersSymbols.includes(element));
+        const areAllItemsInArray = () => {
+            const configPlayersSymbolsCopy = [...configPlayersSymbols];
+            return gamePlayersSymbols.every(item => {
+                const index = configPlayersSymbolsCopy.indexOf(item);
+        
+                if (index === -1) {
+                    return false;
+                }
+
+                configPlayersSymbolsCopy.splice(index, 1);  
+                return true;
+            });
+        };
+
+        return ((config?.mafia.count + config?.neutral.count + config?.town.count) == gamePlayersSymbols.length) && areAllItemsInArray();
     }
+
+
 
     private mapConfig(config: Config): ConfigWithCount {
         const add = (a, b) => { return a + b };

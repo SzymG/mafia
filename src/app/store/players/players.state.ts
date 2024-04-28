@@ -100,7 +100,8 @@ const initialState = {
         { name: 'deamon', symbol: 'NE', actionWeights: { night: [0], day: 0 } },
         { name: 'bauza', symbol: 'RT', actionWeights: { night: [0], day: 0 } },
         { name: 'journalist', symbol: 'RT', actionWeights: { night: [0], day: 0 } },
-        { name: 'cultist', symbol: 'MS', actionWeights: { night: [53], day: 0 } }
+        { name: 'cultist', symbol: 'MS', actionWeights: { night: [53], day: 0 } },
+        { name: 'deputy', symbol: 'TK', actionWeights: { night: [0], day: 1 } },
     ]
 };
 

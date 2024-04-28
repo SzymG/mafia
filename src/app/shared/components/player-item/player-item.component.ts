@@ -56,11 +56,9 @@ export class PlayerItemComponent implements OnChanges {
     imageClick() {
         if (this.config.selectable && !this.config.selected) {
             this.selectEvent.emit(true);
-        }
-        if (this.config.deselectable && this.config.selected) {
+        } else if (this.config.deselectable && this.config.selected) {
             this.selectEvent.emit(false);
-        }
-        if (this.config.showInfoModal) {
+        } else if (this.config.showInfoModal) {
             this.showPlayerModal();
         }
     }

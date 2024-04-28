@@ -1,8 +1,8 @@
 .player-item-container {
     &:not(.ion-no-padding) {
-        padding: 1rem;
+        padding: .5rem;
     }
-    
+
     .image-container {
         background-image: url("/assets/img/frame.png");
         background-repeat: no-repeat;
@@ -14,16 +14,32 @@
         }
     }
 
-    &.selected {
+    &.selected:not(.killed) {
         .image-container {
-            background-image: url("/assets/img/frame-active.png");
+            position: relative;
+            z-index: 1;
+
+            &::after {
+                $imageSize: 110%;
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: $imageSize;
+                width: $imageSize;
+                background-image: url("/assets/img/frame-active.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+                z-index: 2;
+            }
         }
     }
 
-    
+
     &.killed {
-        .image-container {
-            background-image: url("/assets/img/frame-killed.png");
+        img {
+            filter: grayscale(1);
         }
 
         .name {
@@ -36,7 +52,6 @@
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        color: var(--ion-color-primary);
 
         .character-info {
             font-size: .7rem;

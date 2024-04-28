@@ -15,12 +15,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--ion-color-primary);
+            color: var(--ion-color-primary-contrast);
         }
     }
 
     .name {
-        color: var(--ion-color-primary);
+        color: var(--ion-color-primary-contrast);
         font-weight: 600;
         font-size: 1.7rem;
     }
