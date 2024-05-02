@@ -1,6 +1,6 @@
 {
   "name": "mafia",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -8,9 +8,11 @@
     "start": "ng serve",
     "dev": "ionic cordova run android -ls",
     "start:android": "ionic cordova run android",
+    "platform:refetch-android": "ionic cordova platform rm android && ionic cordova platform add android@9.1.0",
     "build": "ng build",
-    "build:android": "ionic cordova build --release android",
-    "build-full:android": "ionic cordova build --prod --release android && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mafia.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk mafia && del /f \"./apps/v%npm_config_number%\" && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ./apps/v%npm_config_number%/mafia.apk",
+    "build:android": "ionic cordova build --release android --verbose",
+    "build-sign:android": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mafia.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk mafia && (mkdir -p \"./apps/v%npm_config_number%\"/ || echo '') && del /f \"./apps/v%npm_config_number%\" && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ./apps/v%npm_config_number%/mafia.apk",
+    "build-full:android": "ionic cordova build --prod --release android && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mafia.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk mafia && (mkdir -p \"./apps/v%npm_config_number%\"/ || echo '') && del /f \"./apps/v%npm_config_number%\" && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ./apps/v%npm_config_number%/mafia.apk",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -19,6 +19,16 @@
         }
     }
 
+    .image-symbol {
+        img {
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            mask-image: url("/assets/img/mask.png");
+            mask-mode: alpha;
+        }
+    }
+
     .name {
         color: var(--ion-color-primary-contrast);
         font-weight: 600;

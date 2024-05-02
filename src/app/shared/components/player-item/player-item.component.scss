@@ -1,16 +1,31 @@
+$imageSize: 110%;
 .player-item-container {
     &:not(.ion-no-padding) {
         padding: .5rem;
     }
 
     .image-container {
-        background-image: url("/assets/img/frame.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: $imageSize;
+            width: $imageSize;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url("/assets/img/frame.png");
+            z-index: -1;
+        }
 
         img {
             width: 100%;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: 100%;  
+            mask-image: url("/assets/img/mask.png");
+            mask-mode: alpha;
         }
     }
 
@@ -20,7 +35,6 @@
             z-index: 1;
 
             &::after {
-                $imageSize: 110%;
                 content: '';
                 position: absolute;
                 top: 50%;
@@ -28,9 +42,9 @@
                 transform: translate(-50%, -50%);
                 height: $imageSize;
                 width: $imageSize;
-                background-image: url("/assets/img/frame-active.png");
                 background-size: contain;
                 background-repeat: no-repeat;
+                background-image: url("/assets/img/frame-active.png");
                 z-index: 2;
             }
         }

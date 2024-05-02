@@ -10,6 +10,14 @@
         color: var(--ion-color-primary);
         border-radius: 5px;
     }
+    
+    img {
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 100%;
+        mask-image: url("/assets/img/mask.png");
+        mask-mode: alpha;
+    }
 
     ion-list {
         background: transparent;
